@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simple8583-config>
+
+	<!-- 长度全部都是字节数（由自己换算,LLVAR,LLLVAR,LLVAR_NUMERIC等变长数据域定义的长度无效） -->
+
+	<!-- 统一头，每次不管请求还是响应都包含的共同内容 -->
+	<header>
+		<field id="MsgLength" type="NUMERIC" length="2" />
+		<field id="tpdu" type="NUMERIC" length="5" />
+		<field id="appType" type="BCD" length="2" />
+		<field id="VersionNo" type="BCD" length="2" />
+		<!-- <field id="termStatus" type="BCD" length="1"/> -->
+		<field id="dealReq" type="BCD" length="2" />
+		<field id="reserv" type="BCD" length="6" />
+
+		<field id="mti" type="NUMERIC" length="2" />
+		<field id="BitMap" type="BINARY" length="8" />
+	</header>
+
+	<!-- 机构签到请求 -->
+	<package mti="0800">
+		<field id="11" type="BCD" length="6" />
+		<field id="41" type="CHAR" length="8" />
+		<field id="42" type="CHAR" length="15" />
+		<field id="60" type="BCD" length="16" />
+	</package>
+
+	<!-- 机构签到返回 -->
+	<package mti="0810">
+		<field id="11" type="BCD" length="6" />
+		<field id="12" type="BCD" length="6" />
+		<field id="13" type="BCD" length="4" />
+
+		<field id="32" type="LLVAR_BCD" />
+		<field id="37" type="BCD" length="24" />
+		<field id="39" type="BCD" length="4" />
+
+		<field id="41" type="BCD" length="16" />
+		<field id="42" type="BCD" length="30" />
+		<field id="60" type="BCD" length="16" />
+
+		<field id="62" type="BCD" length="68" />
+	</package>
+
+	<!-- 消费交易请求 -->
+	<package mti="0200">
+		<field id="2" type="LLVAR_NUMERIC" />
+		<field id="3" type="BCD" length="6" />
+		<field id="4" type="BCD" length="12" />
+
+		<field id="11" type="BCD" length="6" />
+		<field id="22" type="BCD" length="3" />
+		<field id="25" type="BCD" length="2" />
+
+		<field id="26" type="BCD" length="2" />
+		<field id="35" type="LLVAR_NUMERIC" />
+		<field id="36" type="LLLVAR_NUMERIC" />
+		<field id="41" type="CHAR" length="8" />
+
+		<field id="42" type="CHAR" length="15" />
+		<field id="49" type="CHAR" length="3" />
+		<field id="52" type="BCD" length="16" />
+
+		<field id="53" type="BCD" length="16" />
+		<field id="60" type="LLLVAR_NUMERIC" />
+		<field id="64" type="BCD" length="16" />
+	</package>
+	<!-- 消费交易返回 -->
+	<package mti="0210">
+		<field id="2" type="LLVAR_NUMERIC" />
+		<field id="3" type="BCD" length="6" />
+		<field id="4" type="BCD" length="12" />
+
+		<field id="11" type="BCD" length="6" />
+		<field id="12" type="BCD" length="6" />
+		<field id="13" type="BCD" length="4" />
+		<field id="14" type="BCD" length="4" />
+		<field id="15" type="BCD" length="4" />
+
+		<field id="25" type="BCD" length="2" />
+
+
+		<field id="32" type="LLVAR_BCD" />
+		<field id="37" type="BCD" length="24" />
+		<field id="38" type="BCD" length="12" />
+		<field id="39" type="BCD" length="4" />
+
+		<field id="41" type="CHAR" length="8" />
+
+		<field id="42" type="CHAR" length="15" />
+		<field id="49" type="CHAR" length="3" />
+
+		<field id="60" type="LLLVAR_NUMERIC" />
+		<field id="64" type="BCD" length="16" />
+	</package>
+	
+	
+		<!-- 冲正 -->
+	<package mti="0400">
+		<field id="3" type="BCD" length="6" />
+		<field id="4" type="BCD" length="12" />
+
+		<field id="11" type="BCD" length="6" />
+		<field id="22" type="BCD" length="3" />
+		<field id="25" type="BCD" length="2" />
+
+
+		<field id="35" type="LLVAR_NUMERIC" />
+		<field id="36" type="LLLVAR_NUMERIC" />
+		
+		<field id="39" type="BCD" length="4" />
+
+		<field id="41" type="CHAR" length="8" />
+
+		<field id="42" type="CHAR" length="15" />
+		<field id="49" type="CHAR" length="3" />
+
+		<field id="60" type="LLLVAR_NUMERIC" />
+		<field id="61" type="LLLVAR"  />
+		<field id="64" type="BCD" length="16" />
+	</package>
+	
+			<!-- 冲正返回 -->
+	<package mti="0410">
+		<field id="3" type="BCD" length="6" />
+		<field id="4" type="BCD" length="12" />
+
+		<field id="11" type="BCD" length="6" />
+		<field id="12" type="BCD" length="6" />
+		<field id="13" type="BCD" length="4" />
+		<field id="14" type="BCD" length="4" />
+		<field id="15" type="BCD" length="4" />
+		
+		<field id="25" type="BCD" length="2" />
+		<field id="37" type="BCD" length="24" />
+		<field id="39" type="BCD" length="4" />
+
+ 
+
+		<field id="41" type="CHAR" length="8" />
+
+		<field id="42" type="CHAR" length="15" />
+		<field id="49" type="CHAR" length="3" />
+
+		<field id="60" type="LLLVAR_NUMERIC" />
+		<field id="61" type="LLLVAR"  />
+		<field id="64" type="BCD" length="16" />
+	</package>
+	
+	
+</simple8583-config>

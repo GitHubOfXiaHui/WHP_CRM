@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.wondersgroup.card.repository.mybatis.MedicalDao">
+	<!-- 医疗机构快速查询 -->
+	<select id="fastSearchListPage" parameterType="map"
+		resultType="MedicalInstitutions">
+		SELECT id,
+		m.address,
+		m.administrative_area as administrativeArea,
+		m.affiliation,
+		m.apply_for_date as applyForDate,
+		m.approval_number as
+		approvalNumber,
+		m.approve_date as approveDate,
+		m.beds_number as
+		bedsNumber,
+		m.certification_authority as certificationAuthority,
+		m.dental_chairs_number as dentalChairsNumber,
+		m.forms_of_ownership as
+		formsOfOwnership,
+		m.head_id_no as headIdNo,
+		m.head_name as headName,
+		m.industry,
+		m.legal_id_no as legalIdNo,
+		m.legal_name as legalName,
+		m.next_calibration_date as nextCalibrationDate,
+		m.opening_date as
+		openingDate,
+		m.org_grade as orgGrade,
+		m.org_name as orgName,
+		m.org_name2
+		as orgName2,
+		m.org_type as orgType,
+		m.org_level as orgLevel,
+		m.reg_capital as regCapital,
+		m.registration_no as registrationNo,
+		m.remark1,
+		m.remark2,
+		m.service_object as serviceObject,
+		m.status,
+		m.telephone,
+		m.unique_id as uniqueId,
+		m.valid_end_date as validEndDate,
+		m.valid_start_date as validStartDate,
+		m.zip_code as zipCode
+		FROM
+		base_medical_institutions m
+		<where>
+			<if test="certificationAuthority != null">
+				<if test="certificationAuthority !=''">
+					m.certification_authority = #{certificationAuthority}
+				</if>
+			</if>
+			<if test="orgType != null">
+				<if test="orgType !=''">and m.org_type = #{orgType}</if>
+			</if>
+			<if test="orgLevel != null">
+				<if test="orgLevel !=''">and m.org_level = #{orgLevel}</if>
+			</if>
+			<if test="industry != null">
+				<if test="industry != ''">and m.industry = #{industry}</if>
+			</if>
+			<if test="bedsNumberMin != null">
+				<if test="bedsNumberMin >0 ">and m.beds_number &gt;= #{bedsNumberMin}</if>
+			</if>
+			<if test="bedsNumberMax != null">
+				<if test="bedsNumberMax >0">and m.beds_number &lt;=#{bedsNumberMax}
+				</if>
+			</if>
+			<if test="medicalItemCode != null">
+				<if test="medicalItemCode !=''">
+					and exists (select 1 from base_medical_item s where
+					m.id=s.medical_id and s.code = #{medicalItemCode})
+				</if>
+			</if>
+		</where>
+	</select>
+	<select id="fastSearchCount" parameterType="map" resultType="long">
+		select count(*) from base_medical_institutions m
+		<where>
+			<if test="certificationAuthority != null">
+				<if test="certificationAuthority !=''">
+					m.certification_authority = #{certificationAuthority}
+				</if>
+			</if>
+			<if test="orgType != null">
+				<if test="orgType !=''">and m.org_type = #{orgType}</if>
+			</if>
+			<if test="orgLevel != null">
+				<if test="orgLevel !=''">and m.org_level = #{orgLevel}</if>
+			</if>
+			<if test="industry != null">
+				<if test="industry != ''">and m.industry = #{industry}</if>
+			</if>
+			<if test="bedsNumberMin != null">
+				<if test="bedsNumberMin >0 ">and m.beds_number &gt;= #{bedsNumberMin}</if>
+			</if>
+			<if test="bedsNumberMax != null">
+				<if test="bedsNumberMax >0">and m.beds_number &lt;=
+					#{bedsNumberMax}
+				</if>
+			</if>
+			<if test="medicalItemCode != null">
+				<if test="medicalItemCode !=''">
+					and exists (select 1 from base_medical_item s where
+					m.id=s.medical_id and s.code = #{medicalItemCode})
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<select id="orgTypeStuct" parameterType="map" resultType="FastChar">
+	<![CDATA[
+		select case when length(m.org_type) < 1 then '其他' else m.org_type END
+		AS orgType, count(*) as countNum from base_medical_institutions m
+		]]>
+		<where>
+			<if test="certificationAuthority != null">
+				<if test="certificationAuthority !=''">
+					m.certification_authority = #{certificationAuthority}
+				</if>
+			</if>
+			<if test="orgType != null">
+				<if test="orgType !=''">and m.org_type = #{orgType}</if>
+			</if>
+			<if test="orgLevel != null">
+				<if test="orgLevel !=''">and m.org_level = #{orgLevel}</if>
+			</if>
+			<if test="industry != null">
+				<if test="industry != ''">and m.industry = #{industry}</if>
+			</if>
+			<if test="bedsNumberMin != null">
+				<if test="bedsNumberMin >0 ">and m.beds_number &gt;= #{bedsNumberMin}</if>
+			</if>
+			<if test="bedsNumberMax != null">
+				<if test="bedsNumberMax >0">and m.beds_number &lt;=#{bedsNumberMax}
+				</if>
+			</if>
+			<if test="medicalItemCode != null">
+				<if test="medicalItemCode !=''">
+					and exists (select 1 from base_medical_item s where
+					m.id=s.medical_id
+					and s.code = #{medicalItemCode})
+				</if>
+			</if>
+		</where>
+		GROUP BY m.org_type
+	</select>
+</mapper> 

@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* 背景图 */
+.bgimg_1 { background-image: url(../images/public/links_bgs/bg_1.gif); background-position:right bottom;}
+.bgimg_2 { background-image: url(../images/public/links_bgs/bg_2.gif); background-position:bottom center}
+.bgimg_3 { background-image: url(../images/public/links_bgs/bg_3.gif); background-position:right bottom}
+.bgimg_4 { background-image: url(../images/public/links_bgs/bg_4.gif); background-position:right bottom}
+.bgimg_5 { background-image: url(../images/public/links_bgs/bg_5.jpg);}
+.bgimg_6 { background-image: url(../images/public/links_bgs/bg_6.jpg)}
+.bgimg_7 { background-image: url(../images/public/links_bgs/bg_7.gif); background-position:right bottom}
+.bgimg_8 { background-image: url(../images/public/links_bgs/bg_8.gif); background-position:right bottom}
+.bgimg_9 { background-image: url(../images/public/links_bgs/bg_9.gif); background-position:right bottom}
+.bgimg_10 { background-image: url(../images/public/links_bgs/bg_10.jpg)}
+.bgimg_11 { background-image: url(../images/public/links_bgs/bg_11.gif); background-position:right bottom}
+.bgimg_12 { background-image: url(../images/public/links_bgs/bg_12.gif); background-position:center 10px}
+.bgimg_13 {}
+.bgimg_14 { background-image: url(../images/public/links_bgs/bg_13.jpg)}
+.bgimg_15 { background-image: url(../images/public/links_bgs/bg_14.gif); background-position: center center}
+.bgimg_16 { background-image: url(../images/public/links_bgs/bg_15.jpg)}
+.bgimg_17 { background-image: url(../images/public/links_bgs/bg_16.gif); background-position:right bottom}
+.bgimg_18 { background-image: url(../images/public/links_bgs/bg_17.gif); background-position:right center}
+.bgimg_19 { background-image: url(../images/public/links_bgs/bg_18.jpg)}
+.bgimg_20 { background-image: url(../images/public/links_bgs/bg_19.jpg)}
+.bgimg_21 { background-image: url(../images/public/links_bgs/bg_20.gif); background-position:right bottom}
+.bgimg_22 { background-image: url(../images/public/links_bgs/bg_21.gif); background-position:right bottom}
+.bgimg_23 { background-image: url(../images/public/links_bgs/bg_22.gif); background-position:right bottom}
+.bgimg_24 { background-image: url(../images/public/links_bgs/bg_23.gif); background-position:right bottom}
+.bgimg_25 { background-image: url(../images/public/links_bgs/bg_24.gif); background-position:right bottom}
+.bgimg_26 { background-image: url(../images/public/links_bgs/bg_25.gif); background-position:right bottom}
+.bgimg_27 { background-image: url(../images/public/links_bgs/bg_26.gif); background-position:right bottom}
+.bgimg_28 { background-image: url(../images/public/links_bgs/bg_27.gif); background-position:right bottom}
+.bgimg_29 { background-image: url(../images/public/links_bgs/bg_28.gif); background-position:right bottom}
+.bgimg_30 {}
+
+/*   aaaa  */
+.logoOne { position:absolute; background:url(../images/public/logo.gif) left center no-repeat;}
+.regData  { position:absolute}

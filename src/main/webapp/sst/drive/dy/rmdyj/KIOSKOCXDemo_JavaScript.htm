@@ -1,0 +1,340 @@
+<html>
+
+<head>
+<meta http-equiv="Pragma" http-equiv="Content-Type" content="text/html; charset=gb18030; no-cache">
+<title>KIOSKOCXDemo</title>
+</head>
+
+<body>
+
+<script language="javascript" src="KIOSKOCXDemo.js"></script>
+<form name="form">
+	 <button id="test" onclick="printText()" value="test">test</button>
+	 <button id="test11" onclick="closePort()" value="test11">close port</button>
+</form>
+<object id="KIOSKOCX" classid="clsid:A0B8F293-5E7E-47D7-8E96-B2F0B0A77964"   width="0" height="0" align="center" hspace="0" vspace="0">
+</object>
+
+</body>
+<script type="text/javascript">
+hPort="";
+  var leftMargin = 95;
+function closePort(){
+	resutlMsg=KIOSKOCX.KIOSKCloseCom(hPort);
+	alert(resutlMsg);
+}
+function printText(){
+	//1:鎵撳紑涓插彛
+	hPort=KIOSKOCX.KIOSKOpenCom("COM3",38400, 8, 1, 0, 2);
+	alert("1:"+hPort);
+	if(hPort == -1)
+	{	
+		alert( "Can't open selected port!");
+		return;			
+	}
+	nPortType=0;
+	//2:鍒涘缓鏂扮殑鎵撳嵃浣滀笟銆?
+	resutlMsg=KIOSKOCX.KIOSKStartDoc(hPort);
+	alert("2:"+resutlMsg);	
+	//3:璁剧疆涓插彛瓒呮椂
+	resutlMsg=KIOSKOCX.KIOSKSetComTimeOuts(hPort,nPortType, 90000, 0, 3000);
+	alert("3:"+resutlMsg);	
+	/* resutlMsg=KIOSKOCX.KIOSKSetCharSetAndCodePage(hPort,nPortType,'GBK',0x00);
+	alert("3.1:"+resutlMsg); 
+	 //4:鍙戦�佹暟鎹埌绔彛鎴栨枃浠?
+	
+	reslutMsg=KIOSKOCX.KIOSKWriteData(hPort,nPortType, printTextTemp, getTextByteLength(printTextTemp));
+	alert("4:"+resutlMsg);*/	
+	//澶嶄綅鎵撳嵃鏈恒�?
+	reslutMsg=KIOSKOCX.KIOSKReset(hPort,nPortType);
+	alert("5:"+resutlMsg);
+	//璁剧疆鎵撳嵃鏈虹殑鎵撳嵃妯″紡
+	//Set mode
+	tempReturnValue = KIOSKOCX.KIOSKSetMode(hPort,nPortType, KIOSK_PRINT_MODE_PAGE);
+	if(tempReturnValue != KIOSK_SUCCESS)
+	{
+		return returnValue;
+
+	}
+	alert("5.1:"+tempReturnValue);
+	
+	//Set motion unit
+    tempReturnValue = KIOSKOCX.KIOSKSetMotionUnit(hPort,nPortType, 203, 203);
+	if(tempReturnValue != KIOSK_SUCCESS)
+	{
+		return returnValue;
+
+	}
+	alert("5.2:"+tempReturnValue);
+	//*****************************************************************************************************************
+	//Set right spacing
+	tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(hPort, nPortType, 0);
+	if(tempReturnValue != KIOSK_SUCCESS)
+	{
+		return returnValue;
+
+	}
+	alert("5.3:"+tempReturnValue);
+	m_hPort=hPort;
+	nPortType=nPortType;
+	//Set left margin and area
+	tempReturnValue = KIOSKOCX.KIOSKPageSetAreaAndDirection(m_hPort, iPortType, 10, 10, 
+																  640, 400, KIOSK_AREA_LEFT_TO_RIGHT);
+	if(tempReturnValue != KIOSK_SUCCESS)
+	{
+		return returnValue;
+
+	}
+	alert("5.4:"+tempReturnValue);
+	
+	//Text setting
+	tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "江夏区人民医院",
+													  150, 50, 2, 2, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_BOLD);
+	if(tempReturnValue != KIOSK_SUCCESS)
+	{
+		return returnValue;
+
+	}
+	
+	tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "挂号凭条", 
+			  200, 90, 2, 2, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_BOLD);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+/* tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "------------------2-----------------",  
+			  leftMargin, 100, 1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}  */
+
+//*************************************************************************************************************
+//Set right spacing
+tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(m_hPort, iPortType, 0);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "挂号单号：11111111111101",  
+			  leftMargin, 125,1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+/* tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "12312312",  
+			  330, 125,1, 1, KIOSK_FONT_TYPE_STANDARD,KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+} */
+
+//*************************************************************************************************************
+//Set right spacing
+tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(m_hPort, iPortType, 1);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "就诊时间：2015-11-11 12:12",  
+			  leftMargin, 150, 1, 1,KIOSK_FONT_TYPE_STANDARD,KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+/* tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "2015-11-11 12:12",  
+			  330, 150,1, 1, KIOSK_FONT_TYPE_STANDARD,KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+} */
+
+//*************************************************************************************************************
+//Set right spacing
+tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(m_hPort, iPortType, 2);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "就诊序号：mz0000000000001",  
+			  leftMargin, 175, 1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+/* tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "KIOSK Printer",  
+			  330, 175,1, 1, KIOSK_FONT_TYPE_STANDARD,KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+} */
+
+//*************************************************************************************************************
+//Set right spacing
+tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(m_hPort, iPortType, 2);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "病人姓名：李山东",  
+			  leftMargin, 220,1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_NORMAL );
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "就诊科室：外科",  
+			  leftMargin, 245,1, 1, KIOSK_FONT_TYPE_STANDARD,KIOSK_FONT_STYLE_BOLD);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType,"就诊科室：门诊大楼1楼2112室",  
+			  leftMargin, 270,1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_THICK_UNDERLINE);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "医生姓名：李医生",  
+			  leftMargin, 295,1, 1,KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_THIN_UNDERLINE);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "医生职务：副主任",  
+			  leftMargin, 320,1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_REVERSE);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+//*************************************************************************************************************
+//Set right spacing
+tempReturnValue = KIOSKOCX.KIOSKSetRightSpacing(m_hPort, iPortType, 0);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+}
+
+/* //*************************************************************************************************************
+//Text setting
+tempReturnValue = KIOSKOCX.KIOSKPageTextout(m_hPort, iPortType, "------------------1-----------------",  
+			  leftMargin, 350,1, 1, KIOSK_FONT_TYPE_STANDARD, KIOSK_FONT_STYLE_NORMAL);
+if(tempReturnValue != KIOSK_SUCCESS)
+{
+return returnValue;
+
+} */
+	
+	
+	
+	
+	
+	
+	
+	
+	//璁剧疆绾稿紶绫诲瀷
+	//reslutMsg=KIOSKOCX.KIOSKSetPaperMode(long hPort, long nPortType, long nMode);
+	//alert(resutlMsg);
+	/**
+	 printTextTemp="1111111111111哥：被你整死了22222";
+	//鏍囧噯妯″紡涓嬫妸灏嗚鎵撳嵃鐨勫瓧绗︿覆鏁版嵁鍙戦�佸埌鎵撳嵃缂撳啿鍖轰腑锛屾寚瀹氳捣濮嬬偣姘村钩鏂瑰悜涓婄殑缁濆浣嶇疆銆佸瓧绗︾殑鏀惧ぇ鍊嶆暟銆佺被鍨嬪拰椋庢牸銆?
+	reslutMsg=KIOSKOCX.KIOSKTextout(  hPort, nPortType, printTextTemp, 1, 1, 1, 0x00, 0x00);
+	alert("7:"+resutlMsg);
+	****/
+	//*****************************************************************************************************************
+	//Print
+	reslutMsg = KIOSKOCX.KIOSKPagePrint(hPort, nPortType);
+	//alert("8:"+resutlMsg);
+	
+	//*****************************************************************************************************************
+	//Clear buffer
+	resutlMsg = KIOSKOCX.KIOSKPageClear(hPort, nPortType);
+	//alert("9:"+resutlMsg);
+
+	//*****************************************************************************************************************
+	//Cut paper
+	resutlMsg = KIOSKOCX.KIOSKCutPaper(hPort, nPortType, 1, 0);
+	//alert("10:"+resutlMsg);
+	
+	//缁撴潫鎵撳嵃浣滀笟
+	resutlMsg = KIOSKOCX.KIOSKEndDoc(hPort);
+	//alert("11:"+resutlMsg); 
+	
+	//close port
+	resutlMsg=KIOSKOCX.KIOSKCloseCom(hPort);
+	//alert(resutlMsg);
+}
+function getTextByteLength(pText) {
+
+    var len = 0;
+
+    var i = 0;
+
+    for (i = 0; i < pText.length; i++) {
+
+        if (pText.substr(i, 1).charCodeAt() > 1000)
+
+        { len += 2; } else { len++; }
+
+    }
+
+    return len;
+
+}
+
+</script>
+</html>
