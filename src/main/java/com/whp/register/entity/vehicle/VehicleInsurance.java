@@ -11,7 +11,7 @@ import com.whp.framework.entity.IdEntity;
 
 @Entity
 @Table(name = "t_vehicle_insurance")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.wondersgroup.framework.entity.vehicle")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.framework.entity.vehicle")
 public class VehicleInsurance extends IdEntity {
 
 	private static final long serialVersionUID = -7579391903985615753L;
