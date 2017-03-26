@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"	trimDirectiveWhitespaces="true"%>
-<%@ page import="com.wondersgroup.framework.service.StatusDefinition.RegStatus"%>
+<%@ page import="com.whp.framework.service.StatusDefinition.RegStatus"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>

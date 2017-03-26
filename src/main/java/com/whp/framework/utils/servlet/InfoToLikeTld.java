@@ -1,0 +1,65 @@
+package com.whp.framework.utils.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+
+import com.whp.framework.service.StatusDefinition.RegStatus;
+import com.whp.framework.utils.FuzzyUtil;
+
+/**
+ * The Class CodeToNameTld.
+ * 自定义标签--将默认审核流程状态代码转换为中文显示<br>
+ * 具体内容请参考StatusDefinition.RegStatus枚举
+ * @author zpfox
+ */
+public class InfoToLikeTld extends TagSupport implements javax.servlet.jsp.tagext.Tag {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/** 标签属性code. */
+	private String code = null;
+
+	/** 标签结束方法 */
+	@Override
+	public int doEndTag() throws JspTagException {
+		JspWriter out = this.pageContext.getOut();
+		try {
+			// 标签的返回值
+		    if(code.length()==18){
+		        
+		        out.println(FuzzyUtil.getIDCardFuzzy(code, 10, 14));
+		    }else{
+		        out.println(FuzzyUtil.getNameFuzzy(code));
+		        
+		    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return EVAL_PAGE;
+	}
+
+	/**
+	 * Gets the 标签属性code.
+	 * 
+	 * @return the 标签属性code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * Sets the 标签属性code.
+	 * 
+	 * @param code
+	 *            the new 标签属性code
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+}

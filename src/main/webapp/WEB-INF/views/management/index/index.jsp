@@ -187,7 +187,7 @@ $(function(){
 	</div>
 
 	<div id="footer">版权所有： <%
- out.print(com.wondersgroup.framework.SecurityConstants.configMap.get("copyright"));
+ out.print(com.whp.framework.SecurityConstants.configMap.get("copyright"));
  %></div>
 
 <!-- 注意此处js代码用于google站点统计，非DWZ代码，请删除 -->

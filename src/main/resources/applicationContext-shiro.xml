@@ -12,7 +12,7 @@
 	</bean>
 
 	<!-- 項目自定义的Realm -->
-	<bean id="shiroDbRealm" class="com.wondersgroup.framework.shiro.ShiroDbRealm" depends-on="userDAO, userRoleDAO, moduleDAO, organizationRoleDAO, captchaService">
+	<bean id="shiroDbRealm" class="com.whp.framework.shiro.ShiroDbRealm" depends-on="userDAO, userRoleDAO, moduleDAO, organizationRoleDAO, captchaService">
 		<property name="userService" ref="userServiceImpl"/>
 		<property name="userRoleService" ref="userRoleServiceImpl"/>
 		<property name="moduleService" ref="moduleServiceImpl"/>
@@ -59,8 +59,8 @@
 		<property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache-shiro.xml"/>
 	</bean>
 	
-	<bean id="captchaFormAuthenticationFilter" class="com.wondersgroup.framework.shiro.CaptchaFormAuthenticationFilter"/>
-	<bean id="dWZUserFilter" class="com.wondersgroup.framework.shiro.DWZUserFilter"/>
+	<bean id="captchaFormAuthenticationFilter" class="com.whp.framework.shiro.CaptchaFormAuthenticationFilter"/>
+	<bean id="dWZUserFilter" class="com.whp.framework.shiro.DWZUserFilter"/>
 	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

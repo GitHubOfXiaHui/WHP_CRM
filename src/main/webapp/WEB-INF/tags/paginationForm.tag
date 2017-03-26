@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8" body-content="scriptless"  trimDirectiveWhitespaces="true"%>
-<%@ attribute name="page" type="com.wondersgroup.framework.utils.dwz.Page" required="true"%>
+<%@ attribute name="page" type="com.whp.framework.utils.dwz.Page" required="true"%>
 <%@ attribute name="action" type="java.lang.String" required="true"%>
 <%@ attribute name="onsubmit" type="java.lang.String"%>
 

@@ -10,19 +10,19 @@
 	<!-- 自动扫描且只扫描@Controller -->
 	<!-- 加入定制化包实体路径com.sample -->
 
-	<context:component-scan base-package="com.wondersgroup" use-default-filters="false">
+	<context:component-scan base-package="com.whp" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
 	<!-- 系统日志跟踪功能 -->
-	<bean id="log4JDBCImpl" class="com.wondersgroup.framework.log.impl.Log4JDBCImpl" >
+	<bean id="log4JDBCImpl" class="com.whp.framework.log.impl.Log4JDBCImpl" >
 		<property name="logEntityService" ref="logEntityServiceImpl"/>
 		<property name="rootLogLevel" value="ERROR"/>
 		<property name="customLogLevel">
            <map>
-              <entry key="com.wondersgroup.framework" value="TRACE" />
-              <entry key="com.wondersgroup" value="INFO" />
+              <entry key="com.whp.framework" value="TRACE" />
+              <entry key="com.whp" value="INFO" />
            </map>
        </property>
 	</bean>
@@ -32,13 +32,13 @@
 		<!-- 
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.wondersgroup.framework.spring.ExecuteTimeInterceptor" />
+			<bean class="com.whp.framework.spring.ExecuteTimeInterceptor" />
 		</mvc:interceptor>
 		 -->	
 		<mvc:interceptor>
 			<mvc:mapping path="/management/**" />
 			<mvc:mapping path="/login/timeout/success"/>
-			<bean class="com.wondersgroup.framework.log.spring.LogInterceptor" >
+			<bean class="com.whp.framework.log.spring.LogInterceptor" >
 				<property name="logAPI" ref="log4JDBCImpl"/>
 			</bean>
 		</mvc:interceptor>	
@@ -57,7 +57,7 @@
 			<mvc:exclude-mapping path="/sst/errorSst" />
 			 
 			<mvc:exclude-mapping path="/sst/default/**" />
-			<bean class="com.wondersgroup.framework.spring.CookieAuthFilter" />
+			<bean class="com.whp.framework.spring.CookieAuthFilter" />
 		</mvc:interceptor>	
 		 		
 	</mvc:interceptors>

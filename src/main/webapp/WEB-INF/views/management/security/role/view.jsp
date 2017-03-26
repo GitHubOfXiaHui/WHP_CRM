@@ -1,7 +1,7 @@
-<%@page import="com.wondersgroup.framework.entity.main.RolePermission"%>
-<%@page import="com.wondersgroup.framework.entity.main.Permission"%>
-<%@page import="com.wondersgroup.framework.entity.main.Module"%>
-<%@page import="com.wondersgroup.framework.entity.main.Role"%>
+<%@page import="com.whp.framework.entity.main.RolePermission"%>
+<%@page import="com.whp.framework.entity.main.Permission"%>
+<%@page import="com.whp.framework.entity.main.Module"%>
+<%@page import="com.whp.framework.entity.main.Role"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>

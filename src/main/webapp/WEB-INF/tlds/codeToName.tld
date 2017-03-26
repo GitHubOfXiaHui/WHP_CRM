@@ -10,7 +10,7 @@
 	</description>
 	<tag>
 		<name>codeToName</name>
-		<tag-class>com.wondersgroup.framework.utils.servlet.CodeToNameTld</tag-class>
+		<tag-class>com.whp.framework.utils.servlet.CodeToNameTld</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>code</name>

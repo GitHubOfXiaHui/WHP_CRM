@@ -1,4 +1,4 @@
-<%@ page import="com.wondersgroup.framework.entity.sys.Constant"%>
+<%@ page import="com.whp.framework.entity.sys.Constant"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 

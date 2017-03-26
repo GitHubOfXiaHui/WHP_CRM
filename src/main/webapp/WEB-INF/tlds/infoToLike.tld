@@ -10,7 +10,7 @@
 	</description>
 	<tag>
 		<name>infoToLike</name>
-		<tag-class>com.wondersgroup.framework.utils.servlet.InfoToLikeTld</tag-class>
+		<tag-class>com.whp.framework.utils.servlet.InfoToLikeTld</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>code</name>

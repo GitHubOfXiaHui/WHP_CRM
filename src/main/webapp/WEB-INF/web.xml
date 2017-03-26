@@ -85,7 +85,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Captcha</servlet-name>
-		<servlet-class>com.wondersgroup.framework.shiro.JcaptchaServlet</servlet-class>
+		<servlet-class>com.whp.framework.shiro.JcaptchaServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Captcha</servlet-name>

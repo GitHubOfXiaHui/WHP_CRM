@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ attribute name="page" type="com.wondersgroup.framework.utils.dwz.Page" required="true"%>
+<%@ attribute name="page" type="com.whp.framework.utils.dwz.Page" required="true"%>
 <%@ attribute name="pageNumShown" type="java.lang.Integer"%>
 <%@ attribute name="begin" type="java.lang.Integer"%>
 <%@ attribute name="end" type="java.lang.Integer"%>

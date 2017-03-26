@@ -1,4 +1,4 @@
-<%@page import="com.wondersgroup.framework.entity.main.Module"%>
+<%@page import="com.whp.framework.entity.main.Module"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
     pageEncoding="UTF-8"%>
