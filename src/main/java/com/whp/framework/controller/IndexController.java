@@ -56,8 +56,7 @@ public class IndexController {
 	@Autowired
 	private ModuleService moduleService;
 	
-	private static final String INDEX = "management/index/index.new";
-//	private static final String INDEX = "management/index/index";
+	private static final String INDEX = "management/index/index";
 	private static final String UPDATE_PASSWORD = "management/index/updatePwd";
 	private static final String UPDATE_BASE = "management/index/updateBase";
 	

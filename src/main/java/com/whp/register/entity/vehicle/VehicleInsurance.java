@@ -2,6 +2,7 @@ package com.whp.register.entity.vehicle;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -24,6 +25,9 @@ public class VehicleInsurance extends IdEntity {
 	
 	@Column(name = "insurance_validity")
 	private String insuranceValidity;			// 保险有效期
+	
+    @JoinColumn(name = "PARENT_ID")
+    private Vehicle parent;						// 关联车辆主表
 
 	public String getInsuranceCarriers() {
 		return insuranceCarriers;

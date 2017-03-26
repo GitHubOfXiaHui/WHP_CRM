@@ -17,5 +17,4 @@ target
 
 # ignore logs
 logs
-/carmysql.sql
 /pom.xml
