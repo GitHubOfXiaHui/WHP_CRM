@@ -7,11 +7,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.wondersgroup.framework.entity.IdEntity;
+import com.whp.framework.entity.IdEntity;
 
 @Entity
 @Table(name = "t_vehicle")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.wondersgroup.framework.entity.vehicle")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.framework.entity.vehicle")
 public class Vehicle extends IdEntity {
 
 	private static final long serialVersionUID = -5592946999598258429L;

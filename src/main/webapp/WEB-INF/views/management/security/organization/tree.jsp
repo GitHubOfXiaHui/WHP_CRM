@@ -1,4 +1,4 @@
-<%@page import="com.wondersgroup.framework.entity.main.Organization"%>
+<%@page import="com.whp.framework.entity.main.Organization"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 <link href="${contextPath }/styles/ztree/css/zTreeStyle.css" rel="stylesheet" type="text/css" />

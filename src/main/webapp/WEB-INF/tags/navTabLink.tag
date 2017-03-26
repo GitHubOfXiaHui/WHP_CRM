@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" body-content="empty" %>
-<%@ attribute name="module" type="com.wondersgroup.framework.entity.main.Module" required="true"%>
+<%@ attribute name="module" type="com.whp.framework.entity.main.Module" required="true"%>
 <%@ attribute name="urlPrefix" type="java.lang.String" required="true"%>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
