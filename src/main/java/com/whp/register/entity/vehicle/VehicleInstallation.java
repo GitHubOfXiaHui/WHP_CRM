@@ -15,7 +15,7 @@ import com.whp.framework.entity.IdLongEntity;
  *
  */
 @Entity
-@Table(name = "t_vehicle_inspection")
+@Table(name = "t_vehicle_installation")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
 public class VehicleInstallation extends IdLongEntity {
 
