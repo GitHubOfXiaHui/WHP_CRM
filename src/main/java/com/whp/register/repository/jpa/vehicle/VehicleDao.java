@@ -5,4 +5,5 @@ import com.whp.register.entity.vehicle.Vehicle;
 
 public interface VehicleDao extends BaseJpaDao<Vehicle, Long> {
 
+	Vehicle findByLicense(String license);
 }

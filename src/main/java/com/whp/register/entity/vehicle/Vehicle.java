@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.whp.framework.entity.IdEntity;
 import com.whp.framework.entity.IdLongEntity;
 
 /**
@@ -23,7 +22,7 @@ public class Vehicle extends IdLongEntity {
 	private static final long serialVersionUID = -5592946999598258429L;
 
 	@Column
-	private String license;			// 车牌
+	private String license;			// 车牌号
 	
 	@Column
 	private String type;			// 车辆型号

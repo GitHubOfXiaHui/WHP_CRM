@@ -44,12 +44,12 @@
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="page_white_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/vehicle/vehicle/delete" title="确认要删除选定的车辆信息?"><span>删除</span></a></li>
 			<%-- </shiro:hasPermission> --%>
-			<%-- <shiro:hasPermission name="Vehicle:import"> --%>
+			<%-- <shiro:hasPermission name="Vehicle:import">
 				<li><a iconClass="page_white_get" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/import"><span>导入</span></a></li>
-			<%-- </shiro:hasPermission>	 --%>
-			<%-- <shiro:hasPermission name="Vehicle:export"> --%>
+			</shiro:hasPermission>	 --%>
+			<%-- <shiro:hasPermission name="Vehicle:export">
 				<li><a iconClass="page_white_put" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/export"><span>导出</span></a></li>
-			<%-- </shiro:hasPermission>	 --%>
+			</shiro:hasPermission>	 --%>
 		</ul>
 	</div>
 	
