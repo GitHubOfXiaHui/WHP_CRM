@@ -35,21 +35,21 @@
 
 	<div class="panelBar">
 		<ul class="toolBar">
-			<shiro:hasPermission name="Vehicle:save">
+			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
 				<li><a iconClass="page_white_add" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/create"><span>添加</span></a></li>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Vehicle:edit">
+			<%-- </shiro:hasPermission> --%>
+			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
 				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑</span></a></li>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Vehicle:delete">
+			<%-- </shiro:hasPermission> --%>
+			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="page_white_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/vehicle/vehicle/delete" title="确认要删除选定的车辆信息?"><span>删除</span></a></li>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="Vehicle:import">
+			<%-- </shiro:hasPermission> --%>
+			<%-- <shiro:hasPermission name="Vehicle:import"> --%>
 				<li><a iconClass="page_white_get" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/import"><span>导入</span></a></li>
-			</shiro:hasPermission>	
-			<shiro:hasPermission name="Vehicle:export">
+			<%-- </shiro:hasPermission>	 --%>
+			<%-- <shiro:hasPermission name="Vehicle:export"> --%>
 				<li><a iconClass="page_white_put" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/export"><span>导出</span></a></li>
-			</shiro:hasPermission>	
+			<%-- </shiro:hasPermission>	 --%>
 		</ul>
 	</div>
 	
