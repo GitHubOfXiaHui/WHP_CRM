@@ -7,12 +7,17 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.whp.framework.entity.IdEntity;
+import com.whp.framework.entity.IdLongEntity;
 
+/**
+ * 车辆年审信息
+ * @author xiahui
+ *
+ */
 @Entity
 @Table(name = "t_vehicle_inspection")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
-public class VehicleInspection extends IdEntity {
+public class VehicleInspection extends IdLongEntity {
 
 	private static final long serialVersionUID = 6523883328234169413L;
 
