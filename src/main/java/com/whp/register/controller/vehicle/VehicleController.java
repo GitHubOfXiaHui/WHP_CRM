@@ -118,20 +118,6 @@ public class VehicleController {
     
     @Log(message = "删除了车牌号为{0}的车辆的基本信息。")
     //@RequiresPermissions("Vehicle:delete")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    @ResponseBody
-    public String delete(@PathVariable Long id) {
-    	Vehicle vehicle = vehicleService.get(id);
-    	if (vehicle != null) {
-    		vehicleService.delete(vehicle);
-    		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] {vehicle.getLicense()}));
-    	}
-    	
-        return AjaxObject.newOk("删除车辆基本信息成功。").setCallbackType("").toString();
-    }
-    
-    @Log(message = "删除了车牌号为{0}的车辆的基本信息。")
-    //@RequiresPermissions("Vehicle:delete")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public String deleteMany(Long[] ids) {

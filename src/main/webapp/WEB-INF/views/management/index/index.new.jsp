@@ -113,7 +113,7 @@ $(function(){
 						<li><a href="${contextPath}/management/vehicle/vehicle/list" target="navTab">车辆基本信息管理</a></li>
 						<li><a href="" target="navTab">车辆保险信息管理</a></li>
 						<li><a href="${contextPath}/management/vehicle/inspection/list" target="navTab">车辆年审信息管理</a></li>
-						<li><a href="" target="navTab" rel="">车辆加装信息管理</a></li>
+						<li><a href="${contextPath}/management/vehicle/installation/list" target="navTab">车辆加装信息管理</a></li>
 						<li><a href="" target="navTab" rel="">车辆信息查询</a></li>
 					</ul>
 				</div>
