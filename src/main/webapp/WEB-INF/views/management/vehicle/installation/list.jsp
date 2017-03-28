@@ -18,7 +18,7 @@
 		<div class="searchBar">
 			<ul class="searchContent">
 				<li>
-					<label>车牌号：</label>
+					<label>加装项：</label>
 					<input type="text" name="search_LIKE_addItem" value="${LIKE_addItem}"/>
 				</li>
 			</ul>
