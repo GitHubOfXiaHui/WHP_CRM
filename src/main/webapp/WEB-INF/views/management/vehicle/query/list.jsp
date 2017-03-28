@@ -62,7 +62,7 @@
 				<td>${item.price}</td>
 				<td>${item.purchaseTax}</td>
 				<td>${item.buyingTime}</td>
-				<td><a target="dialog" href="${contextPath }/management/vehicle/query/details/${item.id}" title="车辆详细信息">详情</a></td>
+				<td><a target="navTab" rel="query_details" href="${contextPath }/management/vehicle/query/details/${item.id}" title="车辆详细信息">详情</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>

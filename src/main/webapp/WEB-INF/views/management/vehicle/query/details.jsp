@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 <div class="tabs">
 	<div class="tabsHeader">
@@ -12,8 +11,8 @@
 			</ul>
 		</div>
 	</div>
-	<div class="tabsContent"><!--  style="height: 150px;" -->
-		<div>
+	<div class="tabsContent">
+		<div class="pageFormContent">
 			<p>
 				<label>车牌号：</label>
 				<input type="text" name="license" value="${vehicle.license }" size="20" readonly="readonly"/>

@@ -24,6 +24,7 @@ public class VehicleQueryController {
 	
 	private static final String LIST = "management/vehicle/query/list";
 	private static final String DETAILS = "management/vehicle/query/details";
+	private static final String VEHICLE = "management/vehicle/query/vehicle";
 	
 	//@RequiresPermissions("VehicleQuery:view")
 	@RequestMapping(value = "/list")
@@ -46,6 +47,16 @@ public class VehicleQueryController {
 		model.put("vehicle", vehicle);
 		
 		return DETAILS;
+	}
+	
+	//@RequiresPermissions("VehicleQuery:view")
+	@RequestMapping(value = "/vehicle/{id}")
+	public String vehicle(@PathVariable Long id, Map<String, Object> model) {
+		Vehicle vehicle = vehicleService.get(id);
+		
+		model.put("vehicle", vehicle);
+		
+		return VEHICLE;
 	}
 
 }
