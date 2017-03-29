@@ -2,6 +2,7 @@ package com.whp.register.entity.vehicle;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -32,6 +33,9 @@ public class VehicleInspection extends IdLongEntity {
 	
 	@Column
 	private String remind;				// 是否继续提醒
+	
+    @JoinColumn(name = "PARENT_ID")
+    private Vehicle parent;				// 关联车辆主表
 
 	public String getAnnualCycle() {
 		return annualCycle;

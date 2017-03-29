@@ -1,5 +1,8 @@
 package com.whp.register.repository.jpa.vehicle;
 
-public interface VehicleInsuranceDao {
+import com.whp.framework.repository.jpa.BaseJpaDao;
+import com.whp.register.entity.vehicle.VehicleInsurance;
+
+public interface VehicleInsuranceDao extends BaseJpaDao<VehicleInsurance, Long>{
 
 }

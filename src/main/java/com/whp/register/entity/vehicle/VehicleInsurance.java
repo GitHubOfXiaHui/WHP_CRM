@@ -31,7 +31,16 @@ public class VehicleInsurance extends IdLongEntity {
 	@Column(name = "insurance_validity")
 	private String insuranceValidity;			// 保险有效期
 	
-    @JoinColumn(name = "PARENT_ID")
+	@Column(name = "insurance_validity")		
+	private float insuranceCost;				// 保险价格（元）
+	
+	@Column(name = "insurance_validity")		
+	private String insuranceType;				// 保险类型
+	
+	@Column(name = "insurance_validity")		
+	private String status;						// 保险有效标志 0 无效  1 有效
+	
+    @JoinColumn(name = "PARENT_ID")				
     private Vehicle parent;						// 关联车辆主表
 
 	public String getInsuranceCarriers() {
