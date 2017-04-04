@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.Length;
  * 流程处理对象公共字段--流程操作时间与操作人
  */
 @MappedSuperclass
-public abstract class RecordObject extends ObservableEntity implements StatusObj {
+public abstract class RecordObject extends IdLongEntity implements StatusObj {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -80,6 +80,19 @@ public abstract class RecordObject extends ObservableEntity implements StatusObj
 	@Length(max = 255)
 	@Column(length = 255)
 	private String obsoleteExplain;
+	
+    /** 状态. 10保存 20提交 30审核 99作废*/
+    @Length(max = 2)
+    @Column(nullable = false, length = 2)
+    private String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	/**
 	 * Gets the 创建日期.

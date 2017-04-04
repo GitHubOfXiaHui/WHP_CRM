@@ -111,7 +111,7 @@ $(function(){
 				<div class="accordionContent">
 					<ul class="tree treeFolder">
 						<li><a href="${contextPath}/management/vehicle/vehicle/list" target="navTab" rel="vehicle">车辆基本信息管理</a></li>
-						<li><a href="" target="navTab" rel="vehicle">车辆保险信息管理</a></li>
+						<li><a href="${contextPath}/management/vehicle/insurance/list" target="navTab" rel="insurance">车辆保险信息管理</a></li>
 						<li><a href="${contextPath}/management/vehicle/inspection/list" target="navTab" rel="inspection">车辆年审信息管理</a></li>
 						<li><a href="${contextPath}/management/vehicle/installation/list" target="navTab" rel="installation">车辆加装信息管理</a></li>
 						<li><a href="${contextPath}/management/vehicle/query/list" target="navTab" rel="query">车辆信息查询</a></li>

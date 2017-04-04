@@ -1,12 +1,18 @@
 package com.whp.register.entity.vehicle;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.google.common.collect.Lists;
 import com.whp.framework.entity.IdLongEntity;
 
 /**
@@ -47,6 +53,21 @@ public class Vehicle extends IdLongEntity {
 	
 	@Column(name = "buying_time")
 	private String buyingTime;		// 购买时间
+	
+	@Column(name = "insurance_status")
+	private String insuranceStatus;	// 保险信息状态1、已录入0、未录入
+	
+    /** 保险列表. */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VehicleInsurance> insuranceList = Lists.newArrayList();
+
+	public String getInsuranceStatus() {
+		return insuranceStatus;
+	}
+
+	public void setInsuranceStatus(String insuranceStatus) {
+		this.insuranceStatus = insuranceStatus;
+	}
 
 	public String getLicense() {
 		return license;
@@ -118,6 +139,14 @@ public class Vehicle extends IdLongEntity {
 
 	public void setBuyingTime(String buyingTime) {
 		this.buyingTime = buyingTime;
+	}
+
+	public List<VehicleInsurance> getInsuranceList() {
+		return insuranceList;
+	}
+
+	public void setInsuranceList(List<VehicleInsurance> insuranceList) {
+		this.insuranceList = insuranceList;
 	}
 	
 }

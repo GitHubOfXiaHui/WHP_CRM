@@ -36,7 +36,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/create"><span>添加</span></a></li>
+				<li><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/create/{slt_uid}"><span>录入保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
 				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑</span></a></li>
@@ -59,13 +59,10 @@
 				<th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
 				<th>车牌号</th>
 				<th>车辆型号</th>
-				<th>车辆颜色</th>
 				<th>车辆配置</th>
 				<th>排量</th>
-				<th>乘员数</th>
-				<th>价格</th>
-				<th>购置税</th>
 				<th>购买时间</th>
+				<th>保险信息状态</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -74,13 +71,13 @@
 				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
-				<td>${item.color}</td>
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
-				<td>${item.crew}</td>
-				<td>${item.price}</td>
-				<td>${item.purchaseTax}</td>
 				<td>${item.buyingTime}</td>
+				<td>
+				<c:if test="${item.insuranceStatus==1}">已录入</c:if>
+				<c:if test="${item.insuranceStatus==0}">未录入</c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>
