@@ -36,13 +36,15 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/create/{slt_uid}"><span>录入保险信息</span></a></li>
+				<li id='insuranceAdd'><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/create/{slt_uid}"><span>录入保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑</span></a></li>
+				<li id='insuranceEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
-				<li><a iconClass="page_white_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/vehicle/vehicle/delete" title="确认要删除选定的车辆信息?"><span>删除</span></a></li>
+				<li>
+					<a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/insurance/view/{slt_uid}"><span>查看</span></a>
+				</li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:import">
 				<li><a iconClass="page_white_get" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/import"><span>导入</span></a></li>
@@ -67,7 +69,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
-			<tr target="slt_uid" rel="${item.id}">
+			<tr target="slt_uid" rel="${item.id}" onclick="displayButton('${item.insuranceStatus}')">
 				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
@@ -84,4 +86,19 @@
 	</table>
 	<!-- 分页 -->
 	<keta:pagination page="${page }"/>
+	
 </div>
+	<script type="text/javascript">
+ function displayButton(status)
+ {
+	 if(status=='1')
+	 {
+	 	$("#insuranceAdd").hide();
+	 	$("#insuranceEdit").show();
+ 		}
+	 else if(status=='0')
+ 		{
+ 		 $("#insuranceAdd").show();
+ 		 	$("#insuranceEdit").hide();
+ 	 	}
+	}

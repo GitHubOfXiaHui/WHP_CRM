@@ -49,7 +49,7 @@ public class VehicleInsurance extends RecordObject {
 	private String insuranceType;				// 保险类型1、交强险2、车辆损失险3、第三者责任险4、盗抢险5、车上座位责任险6、玻璃单独破碎险7、自燃险8、划痕险9、不计免赔特约险
 	
 	@Column(name = "insurance_validity")		
-	private String insuranceValidity;			// 保险有效标志 0 无效  1 有效
+	private String insuranceValidity;			// 保险有效标志 0 过保  1 在保
 	
 	@Column(name = "insurance_remark")		
 	private String insuranceRemark;				// 备注
