@@ -1,10 +1,15 @@
 package com.whp.register.service.vehicle.impl;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.whp.framework.service.BaseServiceImpl;
+import com.whp.framework.shiro.ShiroDbRealm.ShiroUser;
+import com.whp.register.entity.vehicle.Vehicle;
 import com.whp.register.entity.vehicle.VehicleInspection;
 import com.whp.register.repository.jpa.vehicle.VehicleInspectionDao;
 import com.whp.register.service.vehicle.VehicleInspectionService;
@@ -19,6 +24,18 @@ public class VehicleInspectionServiceImpl extends BaseServiceImpl<VehicleInspect
 	public VehicleInspectionServiceImpl(VehicleInspectionDao vehicleInspectionDao) {
 		super(vehicleInspectionDao);
 		this.vehicleInspectionDao = vehicleInspectionDao;
+	}
+
+	@Override
+	public List<VehicleInspection> setInspection(Vehicle vehicle, ShiroUser shiroUser) {
+		// TODO Auto-generated method stub
+		for (VehicleInspection inspection : vehicle.getInspectionList()) {
+			inspection.setStatus("10");
+			inspection.setCreateUser(shiroUser.getUser().getUsername());
+			inspection.setCreateDate(new Date());
+			inspection.setParent(vehicle);
+		}
+		return vehicle.getInspectionList();
 	}
 
 }

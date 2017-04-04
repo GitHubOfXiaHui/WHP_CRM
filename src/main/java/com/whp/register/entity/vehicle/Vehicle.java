@@ -60,6 +60,13 @@ public class Vehicle extends IdLongEntity {
     /** 保险列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInsurance> insuranceList = Lists.newArrayList();
+    
+    @Column(name = "insurance_status")
+	private String inspectionStatus;	// 年审信息状态1、已录入0、未录入
+	
+    /** 年审列表. */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VehicleInspection> inspectionList = Lists.newArrayList();
 
 	public String getInsuranceStatus() {
 		return insuranceStatus;
@@ -147,6 +154,22 @@ public class Vehicle extends IdLongEntity {
 
 	public void setInsuranceList(List<VehicleInsurance> insuranceList) {
 		this.insuranceList = insuranceList;
+	}
+
+	public String getInspectionStatus() {
+		return inspectionStatus;
+	}
+
+	public void setInspectionStatus(String inspectionStatus) {
+		this.inspectionStatus = inspectionStatus;
+	}
+
+	public List<VehicleInspection> getInspectionList() {
+		return inspectionList;
+	}
+
+	public void setInspectionList(List<VehicleInspection> inspectionList) {
+		this.inspectionList = inspectionList;
 	}
 	
 }
