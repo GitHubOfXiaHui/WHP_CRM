@@ -36,10 +36,10 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/create"><span>录入车辆信息</span></a></li>
+				<li><a iconClass="page_white_add" target="dialog" mask="true" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/create"><span>录入车辆信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑车辆信息</span></a></li>
+				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑车辆信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="page_white_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/vehicle/vehicle/delete" title="确认要删除选定的车辆信息?"><span>删除车辆信息</span></a></li>
@@ -80,7 +80,7 @@
 				<td>${item.crew}</td>
 				<td>${item.price}</td>
 				<td>${item.purchaseTax}</td>
-				<td>${item.buyingTime}</td>
+				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			</c:forEach>
 		</tbody>

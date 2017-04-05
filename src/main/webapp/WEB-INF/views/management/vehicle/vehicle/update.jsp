@@ -38,7 +38,7 @@
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" name="buyingTime" value="${vehicle.buyingTime }" size="20"/>
+			<input type="text" name="buyingTime" value="<fmt:formatDate value='${vehicle.buyingTime}' pattern='yyyy-MM-dd'/>" size="20"/>
 		</p>
 	</div>
 			

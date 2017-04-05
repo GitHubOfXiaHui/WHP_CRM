@@ -1,5 +1,6 @@
 package com.whp.register.entity.vehicle;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.google.common.collect.Lists;
-import com.whp.framework.entity.IdLongEntity;
+import com.whp.framework.entity.RecordObject;
 
 /**
  * 车辆基本信息
@@ -23,7 +26,7 @@ import com.whp.framework.entity.IdLongEntity;
 @Entity
 @Table(name = "t_vehicle")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
-public class Vehicle extends IdLongEntity {
+public class Vehicle extends RecordObject {
 	
 	// 已录入保险、年审、加装等信息
 	public static final String RECORDED = "1";
@@ -47,16 +50,17 @@ public class Vehicle extends IdLongEntity {
 	private String displacement;	// 排量
 	
 	@Column
-	private String crew;			// 乘员数
+	private int crew;				// 乘员数
 	
 	@Column
-	private String price;			// 价格
+	private float price;			// 价格
 	
 	@Column(name = "purchase_tax")
-	private String purchaseTax;		// 购置税
+	private float purchaseTax;		// 购置税
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "buying_time")
-	private String buyingTime;		// 购买时间
+	private Date buyingTime;		// 购买时间
 	
 	@Column(name = "insurance_status")
 	private String insuranceStatus = UNRECORDED;
@@ -127,35 +131,35 @@ public class Vehicle extends IdLongEntity {
 		this.displacement = displacement;
 	}
 
-	public String getCrew() {
+	public int getCrew() {
 		return crew;
 	}
 
-	public void setCrew(String crew) {
+	public void setCrew(int crew) {
 		this.crew = crew;
 	}
 
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
-	public String getPurchaseTax() {
+	public float getPurchaseTax() {
 		return purchaseTax;
 	}
 
-	public void setPurchaseTax(String purchaseTax) {
+	public void setPurchaseTax(float purchaseTax) {
 		this.purchaseTax = purchaseTax;
 	}
 
-	public String getBuyingTime() {
+	public Date getBuyingTime() {
 		return buyingTime;
 	}
 
-	public void setBuyingTime(String buyingTime) {
+	public void setBuyingTime(Date buyingTime) {
 		this.buyingTime = buyingTime;
 	}
 
