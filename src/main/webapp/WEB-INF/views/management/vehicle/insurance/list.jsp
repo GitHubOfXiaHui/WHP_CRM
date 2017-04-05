@@ -4,16 +4,16 @@
 <script type="text/javascript">
 <!--
 	function close2upload() {
-		navTab.reload('${contextPath }/management/vehicle/vehicle/list', {});
+		navTab.reload('${contextPath }/management/vehicle/insurance/list', {});
 		return true;
 	}
 //-->
 </script>
-<keta:paginationForm action="${contextPath }/management/vehicle/vehicle/list" page="${page }" onsubmit="return navTabSearch(this);">
+<keta:paginationForm action="${contextPath }/management/vehicle/insurance/list" page="${page }" onsubmit="return navTabSearch(this);">
 	<input type="hidden" name="search_LIKE_license" value="${LIKE_license}"/>
 </keta:paginationForm>
 
-<form method="post" action="${contextPath }/management/vehicle/vehicle/list" onsubmit="return navTabSearch(this);">
+<form method="post" action="${contextPath }/management/vehicle/insurance/list" onsubmit="return navTabSearch(this);">
 	<div class="pageHeader">
 		<div class="searchBar">
 			<ul class="searchContent">
@@ -39,19 +39,11 @@
 				<li id='insuranceAdd'><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/create/{slt_uid}"><span>录入保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li id='insuranceEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑</span></a></li>
+				<li id='insuranceEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/update/{slt_uid}"><span>编辑保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
-				<li>
-					<a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/insurance/view/{slt_uid}"><span>查看</span></a>
-				</li>
+				<li><a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/insurance/view/{slt_uid}"><span>查看保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
-			<%-- <shiro:hasPermission name="Vehicle:import">
-				<li><a iconClass="page_white_get" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/import"><span>导入</span></a></li>
-			</shiro:hasPermission>	 --%>
-			<%-- <shiro:hasPermission name="Vehicle:export">
-				<li><a iconClass="page_white_put" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/export"><span>导出</span></a></li>
-			</shiro:hasPermission>	 --%>
 		</ul>
 	</div>
 	
@@ -88,17 +80,15 @@
 	<keta:pagination page="${page }"/>
 	
 </div>
-	<script type="text/javascript">
- function displayButton(status)
- {
-	 if(status=='1')
-	 {
-	 	$("#insuranceAdd").hide();
-	 	$("#insuranceEdit").show();
- 		}
-	 else if(status=='0')
- 		{
- 		 $("#insuranceAdd").show();
- 		 	$("#insuranceEdit").hide();
- 	 	}
+
+<script type="text/javascript">
+function displayButton(status) {
+	if(status=='1') {
+		$("#insuranceAdd").hide();
+		$("#insuranceEdit").show();
+	} else if(status=='0') {
+		$("#insuranceAdd").show();
+		$("#insuranceEdit").hide();
 	}
+}
+</script>

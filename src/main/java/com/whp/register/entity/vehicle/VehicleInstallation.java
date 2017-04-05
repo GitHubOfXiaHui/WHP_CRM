@@ -1,14 +1,20 @@
 package com.whp.register.entity.vehicle;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.whp.framework.entity.IdLongEntity;
+import com.whp.framework.entity.RecordObject;
 
 /**
  * 车辆加装信息
@@ -18,19 +24,21 @@ import com.whp.framework.entity.IdLongEntity;
 @Entity
 @Table(name = "t_vehicle_installation")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
-public class VehicleInstallation extends IdLongEntity {
+public class VehicleInstallation extends RecordObject {
 
 	private static final long serialVersionUID = -8881474242781578450L;
 
 	@Column(name = "add_item")
 	private String addItem;				// 加装项
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "installation_time")
-	private String installationTime;	// 加装时间
+	private Date installationTime;		// 加装时间
 	
 	@Column
-	private String price;				// 价格明细
+	private float price;				// 价格明细
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "PARENT_ID")
     private Vehicle parent;				// 关联车辆主表
 
@@ -42,20 +50,28 @@ public class VehicleInstallation extends IdLongEntity {
 		this.addItem = addItem;
 	}
 
-	public String getInstallationTime() {
+	public Date getInstallationTime() {
 		return installationTime;
 	}
 
-	public void setInstallationTime(String installationTime) {
+	public void setInstallationTime(Date installationTime) {
 		this.installationTime = installationTime;
 	}
 
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public Vehicle getParent() {
+		return parent;
+	}
+
+	public void setParent(Vehicle parent) {
+		this.parent = parent;
 	}
 	
 }

@@ -74,7 +74,6 @@ public class VehicleController {
         try
         {
         	vehicle.setLicense(vehicle.getLicense().trim());
-        	vehicle.setInsuranceStatus("0");
         	vehicleService.save(vehicle);
         }
         catch (ExistedException e)

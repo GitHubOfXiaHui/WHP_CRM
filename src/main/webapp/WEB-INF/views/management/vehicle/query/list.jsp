@@ -32,7 +32,13 @@
 </form>
 
 <div class="pageContent">
-
+	<div class="panelBar">
+		<ul class="toolBar">
+			<%-- <shiro:hasPermission name="Vehicle:view"> --%>
+				<li><a iconClass="magnifier" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/query/details/{slt_uid}"  title="车辆详细信息"><span>查看车辆详细信息</span></a></li>
+			<%-- </shiro:hasPermission> --%>
+		</ul>
+	</div>
 	<table class="table" layoutH="137" width="100%">
 		<thead>
 			<tr>
@@ -46,7 +52,6 @@
 				<th>价格</th>
 				<th>购置税</th>
 				<th>购买时间</th>
-				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,7 +67,6 @@
 				<td>${item.price}</td>
 				<td>${item.purchaseTax}</td>
 				<td>${item.buyingTime}</td>
-				<td><a target="navTab" rel="query_details" href="${contextPath }/management/vehicle/query/details/${item.id}" title="车辆详细信息">详情</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>

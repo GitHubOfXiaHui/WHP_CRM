@@ -24,6 +24,10 @@ import com.whp.framework.entity.IdLongEntity;
 @Table(name = "t_vehicle")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
 public class Vehicle extends IdLongEntity {
+	
+	// 已录入保险、年审、加装等信息
+	public static final String RECORDED = "1";
+	public static final String UNRECORDED = "0";
 
 	private static final long serialVersionUID = -5592946999598258429L;
 
@@ -55,18 +59,25 @@ public class Vehicle extends IdLongEntity {
 	private String buyingTime;		// 购买时间
 	
 	@Column(name = "insurance_status")
-	private String insuranceStatus;	// 保险信息状态1、已录入0、未录入
+	private String insuranceStatus = UNRECORDED;
 	
     /** 保险列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInsurance> insuranceList = Lists.newArrayList();
     
-    @Column(name = "insurance_status")
-	private String inspectionStatus;	// 年审信息状态1、已录入0、未录入
+    @Column(name = "inspection_status")
+	private String inspectionStatus = UNRECORDED;
 	
     /** 年审列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInspection> inspectionList = Lists.newArrayList();
+    
+    @Column(name = "installation_status")
+	private String installationStatus = UNRECORDED;
+	
+    /** 加装列表. */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VehicleInstallation> installationList = Lists.newArrayList();
 
 	public String getInsuranceStatus() {
 		return insuranceStatus;
@@ -170,6 +181,22 @@ public class Vehicle extends IdLongEntity {
 
 	public void setInspectionList(List<VehicleInspection> inspectionList) {
 		this.inspectionList = inspectionList;
+	}
+
+	public String getInstallationStatus() {
+		return installationStatus;
+	}
+
+	public void setInstallationStatus(String installationStatus) {
+		this.installationStatus = installationStatus;
+	}
+
+	public List<VehicleInstallation> getInstallationList() {
+		return installationList;
+	}
+
+	public void setInstallationList(List<VehicleInstallation> installationList) {
+		this.installationList = installationList;
 	}
 	
 }

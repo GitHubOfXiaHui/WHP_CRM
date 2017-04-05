@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
-import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import com.whp.framework.log.impl.LogUitl;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicle.Vehicle;
-import com.whp.register.entity.vehicle.VehicleInspection;
 import com.whp.register.service.vehicle.VehicleInspectionService;
 import com.whp.register.service.vehicle.VehicleService;
 
@@ -39,7 +37,7 @@ public class VehicleInspectionController extends BaseController {
 	private VehicleService vehicleService;
 
 	@Autowired
-	private VehicleInspectionService vehicleInspectionService;
+	private VehicleInspectionService inspectionService;
 	
 	private static final String LIST = "management/vehicle/inspection/list";
 	private static final String CREATE = "management/vehicle/inspection/create";
@@ -62,7 +60,7 @@ public class VehicleInspectionController extends BaseController {
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> model) {
 		Vehicle vehicle = vehicleService.get(id);
-		if ("1".equals(vehicle.getInspectionStatus())) {
+		if (Vehicle.RECORDED.equals(vehicle.getInspectionStatus())) {
 			return null;
 		}
 		model.put("vehicle", vehicle);
@@ -79,8 +77,8 @@ public class VehicleInspectionController extends BaseController {
 		if (vehicle.getInspectionList().isEmpty()) {
 			return AjaxObject.newError("未添加年审信息").toString();
 		} else {
-			entity.setInspectionList(vehicleInspectionService.setInspection(vehicle, getShiroUser()));
-			entity.setInspectionStatus("1");
+			entity.setInspectionList(inspectionService.setInspection(vehicle, getShiroUser()));
+			entity.setInspectionStatus(Vehicle.RECORDED);
 			vehicleService.update(entity);
 		}
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));

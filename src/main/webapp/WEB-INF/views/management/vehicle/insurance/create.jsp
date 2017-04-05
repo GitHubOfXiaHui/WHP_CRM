@@ -10,31 +10,31 @@
 	<div class="pageFormContent" layoutH="97">
 		<p>
 			<label>车牌号：</label>
-			<input type="text" name="license" value='${vehicle.license }' readonly="readonly" /> 
+			<input type="text" value='${vehicle.license }' readonly="readonly" /> 
 			<input type="hidden" name="id" value='${vehicle.id }' />
 		</p>
 		<p>
 			<label>车辆型号：</label>
-			<input type="text" name="type" value='${vehicle.type }' readonly="readonly" /> 
+			<input type="text" value='${vehicle.type }' readonly="readonly" /> 
 		</p>
 		<p>
 			<label>车辆配置：</label>
-			<input type="text" name="ename" value='${vehicle.configuration }' readonly="readonly" /> 
+			<input type="text" value='${vehicle.configuration }' readonly="readonly" /> 
 		</p>
 		<p >
 			<label>排量：</label>
-			<input type="text" name="spell" value='${vehicle.displacement }' readonly="readonly" />
+			<input type="text" value='${vehicle.displacement }' readonly="readonly" />
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" name="legal" value='${vehicle.buyingTime }' readonly="readonly" />
+			<input type="text" value='${vehicle.buyingTime }' readonly="readonly" />
 		</p>
 		<div class="divider"></div>
 		<div class="tabs">
 			<div class="tabsHeader">
 				<div class="tabsHeaderContent">
 					<ul>
-						<li class="selected"><a href="javascript:void(0)"><span>保险信息</span></a></li>
+						<li class="selected"><a href="javascript:;"><span>保险信息</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 									size="16" postField="" defaultVal="2">保险类型</th>
 								<th type="text" name="insuranceList[#index#].insuranceCarriers" size="20" fieldClass="validate[required,maxSize[64]] required">承保公司</th>
 								<th type="text" name="insuranceList[#index#].insuranceCost" fieldClass="validate[required,maxSize[10]] required" size="20">保险价格（元）</th>
-								<th type="text" name="insuranceList[#index#].insuranceAmount" fieldClass="validate[maxSize[10]]" size="20" defaultVal=0>保险额度（万元） </th>
+								<th type="text" name="insuranceList[#index#].insuranceAmount" fieldClass="validate[maxSize[10]]" size="20" defaultVal="0">保险额度（万元） </th>
 								<th type="date" format="yyyy-MM-dd"
 									name="insuranceList[#index#].insuredTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"

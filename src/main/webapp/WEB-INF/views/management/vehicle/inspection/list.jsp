@@ -44,12 +44,6 @@
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/inspection/view/{slt_uid}"><span>查看年审信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
-			<%-- <shiro:hasPermission name="Vehicle:import">
-				<li><a iconClass="page_white_get" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/import"><span>导入</span></a></li>
-			</shiro:hasPermission>	 --%>
-			<%-- <shiro:hasPermission name="Vehicle:export">
-				<li><a iconClass="page_white_put" target="dialog" mask="true" width="430" height="300" close="close2upload" href="${contextPath }/management/vehicle/vehicle/export"><span>导出</span></a></li>
-			</shiro:hasPermission>	 --%>
 		</ul>
 	</div>
 	

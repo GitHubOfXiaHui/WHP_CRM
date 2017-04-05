@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import com.whp.framework.entity.RecordObject;
 
@@ -39,8 +40,9 @@ public class VehicleInspection extends RecordObject {
 	@Column(name = "next_time")
 	private Date nextTime;				// 下次年审时间
 	
+	@Type(type = "yes_no")
 	@Column
-	private String remind;				// 是否继续提醒
+	private boolean remind = true;				// 是否继续提醒
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "PARENT_ID")
@@ -70,11 +72,11 @@ public class VehicleInspection extends RecordObject {
 		this.nextTime = nextTime;
 	}
 
-	public String getRemind() {
+	public boolean getRemind() {
 		return remind;
 	}
 
-	public void setRemind(String remind) {
+	public void setRemind(boolean remind) {
 		this.remind = remind;
 	}
 
