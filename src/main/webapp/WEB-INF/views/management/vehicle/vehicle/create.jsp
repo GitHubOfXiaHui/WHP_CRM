@@ -12,31 +12,31 @@
 		</p>
 		<p>
 			<label>车辆型号：</label>
-			<input type="text" name="type" size="20"/>
+			<input type="text" name="type" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>车辆颜色：</label>
-			<input type="text" name="color" size="20"/>
+			<input type="text" name="color" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>车辆配置：</label>
-			<input type="text" name="configuration" size="20"/>
+			<input type="text" name="configuration" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>排量：</label>
-			<input type="text" name="displacement" size="20"/>
+			<input type="text" name="displacement" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>乘员数：</label>
-			<input type="text" name="crew" size="20"/>
+			<input type="text" name="crew" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>价格：</label>
-			<input type="text" name="price" size="20"/>
+			<input type="text" name="price" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>购置税：</label>
-			<input type="text" name="purchaseTax" size="20"/>
+			<input type="text" name="purchaseTax" class="validate[required] required" size="20"/>
 		</p>
 		<p>
 			<label>购买时间：</label>
