@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
-<script type="text/javascript">
-<!--
-	function close2upload() {
-		navTab.reload('${contextPath }/management/vehicle/inspection/list', {});
-		return true;
-	}
-//-->
-</script>
+
 <keta:paginationForm action="${contextPath }/management/vehicle/inspection/list" page="${page }" onsubmit="return navTabSearch(this);">
 	<input type="hidden" name="search_LIKE_annualCycle" value="${LIKE_annualCycle}"/>
 </keta:paginationForm>
@@ -50,7 +43,6 @@
 	<table class="table" layoutH="137" width="100%">
 		<thead>
 			<tr>
-				<th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
 				<th>车牌号</th>
 				<th>车辆型号</th>
 				<th>车辆配置</th>
@@ -62,12 +54,11 @@
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
 			<tr target="slt_uid" rel="${item.id}" onclick="displayButton('${item.inspectionStatus}')">
-				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
-				<td>${item.buyingTime}</td>
+				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
 				<td>
 				<c:if test="${item.inspectionStatus==1}">已录入</c:if>
 				<c:if test="${item.inspectionStatus==0}">未录入</c:if>

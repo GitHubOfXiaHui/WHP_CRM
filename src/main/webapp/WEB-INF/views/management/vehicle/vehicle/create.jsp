@@ -4,7 +4,7 @@
 <%@ page import="java.util.Calendar"%>
 
 <div class="pageContent">
-<form method="post" action="${contextPath }/management/vehicle/vehicle/create" class="required-validate pageForm" onsubmit="return validateCallback(this, dialogReloadNavTab);">
+	<form method="post" action="${contextPath }/management/vehicle/vehicle/create" class="required-validate pageForm" onsubmit="return validateCallback(this, dialogReloadNavTab);">
 	<div class="pageFormContent" layoutH="58">
 		<p>
 			<label>车牌号：</label>
@@ -50,5 +50,5 @@
 			<li><div class="button"><div class="buttonContent"><button type="button" class="close">关闭</button></div></div></li>
 		</ul>
 	</div>
-</form>
+	</form>
 </div>

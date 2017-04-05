@@ -4,7 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Calendar"%>
 
-
 <form method="post" id="installationCreateForm" action="${contextPath }/management/vehicle/installation/create" class="required-validate pageForm"
 	onsubmit="return validateCallback(this, dialogReloadNavTab);">
 	<div class="pageFormContent" layoutH="97">
@@ -27,7 +26,7 @@
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" value='${vehicle.buyingTime }' readonly="readonly" />
+			<input type="text" value='<fmt:formatDate value="${vehicle.buyingTime}" pattern="yyyy-MM-dd"/>' readonly="readonly" />
 		</p>
 		<div class="divider"></div>
 		<div class="tabs">

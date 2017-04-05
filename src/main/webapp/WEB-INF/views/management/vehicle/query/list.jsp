@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
-<script type="text/javascript">
-<!--
-	function close2upload() {
-		navTab.reload('${contextPath }/management/vehicle/query/list', {});
-		return true;
-	}
-//-->
-</script>
+
 <keta:paginationForm action="${contextPath }/management/vehicle/query/list" page="${page }" onsubmit="return navTabSearch(this);">
 	<input type="hidden" name="search_LIKE_license" value="${LIKE_license}"/>
 </keta:paginationForm>
@@ -42,7 +35,6 @@
 	<table class="table" layoutH="137" width="100%">
 		<thead>
 			<tr>
-				<th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
 				<th>车牌号</th>
 				<th>车辆型号</th>
 				<th>车辆颜色</th>
@@ -57,7 +49,6 @@
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
 			<tr target="slt_uid" rel="${item.id}">
-				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.color}</td>
@@ -66,7 +57,7 @@
 				<td>${item.crew}</td>
 				<td>${item.price}</td>
 				<td>${item.purchaseTax}</td>
-				<td>${item.buyingTime}</td>
+				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			</c:forEach>
 		</tbody>
