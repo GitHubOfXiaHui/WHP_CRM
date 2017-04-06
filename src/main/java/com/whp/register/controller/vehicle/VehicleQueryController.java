@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springside.modules.web.Servlets;
 
+import com.whp.framework.controller.BaseController;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicle.Vehicle;
 import com.whp.register.service.vehicle.VehicleService;
 
 @Controller
 @RequestMapping("/management/vehicle/query")
-public class VehicleQueryController {
+public class VehicleQueryController extends BaseController {
 	
 	@Autowired
 	private VehicleService vehicleService;

@@ -14,7 +14,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.google.common.collect.Lists;
 import com.whp.framework.entity.RecordObject;
@@ -59,7 +58,6 @@ public class Vehicle extends RecordObject {
 	@Column(name = "purchase_tax")
 	private float purchaseTax;		// 购置税
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "buying_time")
 	private Date buyingTime;		// 购买时间

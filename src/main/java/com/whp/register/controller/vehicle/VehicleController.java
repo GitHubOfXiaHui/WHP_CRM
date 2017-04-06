@@ -1,10 +1,10 @@
 package com.whp.register.controller.vehicle;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
-import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +18,7 @@ import org.springside.modules.beanvalidator.BeanValidators;
 import org.springside.modules.web.Servlets;
 
 import com.google.common.collect.Lists;
+import com.whp.framework.controller.BaseController;
 import com.whp.framework.exception.ExistedException;
 import com.whp.framework.log.Log;
 import com.whp.framework.log.LogMessageObject;
@@ -34,13 +35,10 @@ import com.whp.register.service.vehicle.VehicleService;
  */
 @Controller
 @RequestMapping("/management/vehicle/vehicle")
-public class VehicleController {
+public class VehicleController extends BaseController {
 	
 	@Autowired
 	private VehicleService vehicleService;
-	
-	@Autowired
-    private Validator validator;
 	
 	private static final String LIST = "management/vehicle/vehicle/list";
 	private static final String CREATE = "management/vehicle/vehicle/create";
@@ -71,13 +69,13 @@ public class VehicleController {
 	@ResponseBody
 	public String create(Vehicle vehicle) {
 		BeanValidators.validateWithException(validator, vehicle);
-        try
-        {
+        try {
+        	vehicle.setStatus("10");
+    		vehicle.setCreateUser(getShiroUser().getUser().getUsername());
+    		vehicle.setCreateDate(new Date());
         	vehicle.setLicense(vehicle.getLicense().trim());
         	vehicleService.save(vehicle);
-        }
-        catch (ExistedException e)
-        {
+        } catch (ExistedException e) {
             return AjaxObject.newError(e.getMessage()).setCallbackType("").toString();
         }
         
