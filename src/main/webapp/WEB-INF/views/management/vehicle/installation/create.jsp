@@ -2,7 +2,6 @@
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.util.Calendar"%>
 
 <form method="post" id="installationCreateForm" action="${contextPath }/management/vehicle/installation/create" class="required-validate pageForm"
 	onsubmit="return validateCallback(this, dialogReloadNavTab);">
@@ -46,7 +45,7 @@
 								<th type="date" format="yyyy-MM-dd"
 									name="installationList[#index#].installationTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"
-									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>">加装时间</th>
+									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">加装时间</th>
 								<th type="text" name="insuranceList[#index#].price" fieldClass="validate[maxSize[10]]" size="20" defaultVal="0">价格明细 </th>
 								<th type="del" width="40">操作</th>
 							</tr>

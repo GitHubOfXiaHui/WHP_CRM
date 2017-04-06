@@ -2,7 +2,6 @@
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.util.Calendar"%>
 
 <form method="post" id="inspectionCreateForm" action="${contextPath }/management/vehicle/inspection/create" class="required-validate pageForm"
 	onsubmit="return validateCallback(this, dialogReloadNavTab);">
@@ -46,11 +45,11 @@
 								<th type="date" format="yyyy-MM-dd"
 									name="inspectionList[#index#].lastTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"
-									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>">上次年审时间</th>
+									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">上次年审时间</th>
 								<th type="date" format="yyyy-MM-dd"
 									name="inspectionList[#index#].nextTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"
-									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>">下次年审时间</th>
+									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">下次年审时间</th>
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>

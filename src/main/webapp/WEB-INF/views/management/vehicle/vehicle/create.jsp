@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.util.Calendar"%>
+<%@ page import="java.util.Date"%>
 
 <div class="pageContent">
 	<form method="post" action="${contextPath }/management/vehicle/vehicle/create" class="required-validate pageForm" onsubmit="return validateCallback(this, dialogReloadNavTab);">
@@ -40,7 +40,7 @@
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" class="date" name="buyingTime" size="20" readonly="readonly"/>
+			<input type="date" class="date" name="buyingTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
 		</p>
 	</div>
 			
