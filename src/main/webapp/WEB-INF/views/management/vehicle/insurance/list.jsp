@@ -32,7 +32,7 @@
 				<li id='insuranceAdd'><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/create/{slt_uid}"><span>录入保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li id='insuranceEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/update/{slt_uid}"><span>编辑保险信息</span></a></li>
+				<li id='insuranceEdit'><a iconClass="page_white_edit" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/insurance/update/{slt_uid}"><span>编辑保险信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/insurance/view/{slt_uid}"><span>查看保险信息</span></a></li>
