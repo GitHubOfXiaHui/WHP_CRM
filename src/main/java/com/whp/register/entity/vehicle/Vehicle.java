@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import com.google.common.collect.Lists;
 import com.whp.framework.entity.RecordObject;
@@ -28,68 +29,87 @@ import com.whp.framework.entity.RecordObject;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
 public class Vehicle extends RecordObject {
 	
-	// 已录入保险、年审、加装等信息
-	public static final String RECORDED = "1";
-	public static final String UNRECORDED = "0";
+	/** 车辆状态. */
+	// 空闲
+	public static final String IDLE = "00";
+	// 使用中
+	public static final String USING = "10";
+	// 维修中
+	public static final String REPAIRING = "99";
 
 	private static final long serialVersionUID = -5592946999598258429L;
 
+	// 车牌号
 	@Column
-	private String license;			// 车牌号
+	private String license;			
 	
+	// 车辆型号
 	@Column
-	private String type;			// 车辆型号
+	private String type;			
 	
+	// 车辆颜色
 	@Column
-	private String color;			// 车辆颜色
+	private String color;			
 	
+	// 车辆配置
 	@Column
-	private String configuration;	// 车辆配置
+	private String configuration;	
 	
+	// 排量
 	@Column
-	private String displacement;	// 排量
+	private String displacement;	
 	
+	// 乘员数
 	@Column
-	private int crew;				// 乘员数
+	private int crew;				
 	
+	// 价格
 	@Column
-	private float price;			// 价格
+	private float price;			
 	
+	// 购置税
 	@Column(name = "purchase_tax")
-	private float purchaseTax;		// 购置税
+	private float purchaseTax;		
 	
+	// 购买时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "buying_time")
-	private Date buyingTime;		// 购买时间
+	private Date buyingTime;		
 	
-	@Column(name = "insurance_status")
-	private String insuranceStatus = UNRECORDED;
+	// 是否录入保险信息
+	@Type(type = "yes_no")
+	@Column(name = "recorded_insurance")
+	private boolean recordedInsurance = false;
 	
     /** 保险列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInsurance> insuranceList = Lists.newArrayList();
     
-    @Column(name = "inspection_status")
-	private String inspectionStatus = UNRECORDED;
+    // 是否录入年审信息
+    @Type(type = "yes_no")
+	@Column(name = "recorded_inspection")
+	private boolean recordedInspection = false;
 	
     /** 年审列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInspection> inspectionList = Lists.newArrayList();
     
-    @Column(name = "installation_status")
-	private String installationStatus = UNRECORDED;
+    // 是否录入加装信息
+    @Type(type = "yes_no")
+	@Column(name = "recorded_installation")
+	private boolean recordedInstallation = false;
 	
     /** 加装列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleInstallation> installationList = Lists.newArrayList();
-
-	public String getInsuranceStatus() {
-		return insuranceStatus;
-	}
-
-	public void setInsuranceStatus(String insuranceStatus) {
-		this.insuranceStatus = insuranceStatus;
-	}
+    
+    // 车辆状态
+ 	@Column(name = "vehicle_status", nullable = false, length = 2)
+ 	private String vehicleStatus = IDLE;
+ 	
+    /** 车辆使用申请列表. */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VehicleInstallation> applicationList = Lists.newArrayList();
 
 	public String getLicense() {
 		return license;
@@ -163,6 +183,14 @@ public class Vehicle extends RecordObject {
 		this.buyingTime = buyingTime;
 	}
 
+	public boolean isRecordedInsurance() {
+		return recordedInsurance;
+	}
+
+	public void setRecordedInsurance(boolean recordedInsurance) {
+		this.recordedInsurance = recordedInsurance;
+	}
+
 	public List<VehicleInsurance> getInsuranceList() {
 		return insuranceList;
 	}
@@ -171,12 +199,12 @@ public class Vehicle extends RecordObject {
 		this.insuranceList = insuranceList;
 	}
 
-	public String getInspectionStatus() {
-		return inspectionStatus;
+	public boolean isRecordedInspection() {
+		return recordedInspection;
 	}
 
-	public void setInspectionStatus(String inspectionStatus) {
-		this.inspectionStatus = inspectionStatus;
+	public void setRecordedInspection(boolean recordedInspection) {
+		this.recordedInspection = recordedInspection;
 	}
 
 	public List<VehicleInspection> getInspectionList() {
@@ -187,12 +215,12 @@ public class Vehicle extends RecordObject {
 		this.inspectionList = inspectionList;
 	}
 
-	public String getInstallationStatus() {
-		return installationStatus;
+	public boolean isRecordedInstallation() {
+		return recordedInstallation;
 	}
 
-	public void setInstallationStatus(String installationStatus) {
-		this.installationStatus = installationStatus;
+	public void setRecordedInstallation(boolean recordedInstallation) {
+		this.recordedInstallation = recordedInstallation;
 	}
 
 	public List<VehicleInstallation> getInstallationList() {
@@ -202,5 +230,21 @@ public class Vehicle extends RecordObject {
 	public void setInstallationList(List<VehicleInstallation> installationList) {
 		this.installationList = installationList;
 	}
-	
+
+	public String getVehicleStatus() {
+		return vehicleStatus;
+	}
+
+	public void setVehicleStatus(String vehicleStatus) {
+		this.vehicleStatus = vehicleStatus;
+	}
+
+	public List<VehicleInstallation> getApplicationList() {
+		return applicationList;
+	}
+
+	public void setApplicationList(List<VehicleInstallation> applicationList) {
+		this.applicationList = applicationList;
+	}
+
 }

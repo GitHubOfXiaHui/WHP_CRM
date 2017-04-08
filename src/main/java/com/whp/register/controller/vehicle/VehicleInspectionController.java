@@ -60,7 +60,7 @@ public class VehicleInspectionController extends BaseController {
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> model) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (Vehicle.RECORDED.equals(vehicle.getInspectionStatus())) {
+		if (vehicle.isRecordedInspection()) {
 			return null;
 		}
 		model.put("vehicle", vehicle);
@@ -78,7 +78,7 @@ public class VehicleInspectionController extends BaseController {
 			return AjaxObject.newError("未添加年审信息").toString();
 		} else {
 			entity.setInspectionList(inspectionService.setInspection(vehicle, getShiroUser()));
-			entity.setInspectionStatus(Vehicle.RECORDED);
+			entity.setRecordedInspection(true);
 			vehicleService.update(entity);
 		}
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));

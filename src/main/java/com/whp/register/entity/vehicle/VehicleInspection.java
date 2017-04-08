@@ -29,24 +29,29 @@ public class VehicleInspection extends RecordObject {
 
 	private static final long serialVersionUID = 6523883328234169413L;
 
+	// 年审周期
 	@Column(name = "annual_cycle")
-	private String annualCycle; 		// 年审周期
+	private String annualCycle; 		
 	
+	// 上次年审时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_time")
-	private Date lastTime;				// 上次年审时间
+	private Date lastTime;				
 	
+	// 下次年审时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "next_time")
-	private Date nextTime;				// 下次年审时间
+	private Date nextTime;				
 	
+	// 是否继续提醒
 	@Type(type = "yes_no")
 	@Column
-	private boolean remind = true;				// 是否继续提醒
+	private boolean remind = true;				
 	
+	/** 关联车辆主表. */
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "PARENT_ID")
-    private Vehicle parent;				// 关联车辆主表
+    private Vehicle parent;				
 
 	public String getAnnualCycle() {
 		return annualCycle;

@@ -55,7 +55,7 @@ public class VehicleInstallationController extends BaseController {
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> model) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (Vehicle.RECORDED.equals(vehicle.getInstallationStatus())) {
+		if (vehicle.isRecordedInstallation()) {
 			return null;
 		}
 		model.put("vehicle", vehicle);
@@ -73,7 +73,7 @@ public class VehicleInstallationController extends BaseController {
 			return AjaxObject.newError("未添加加装信息").toString();
 		} else {
 			entity.setInstallationList(installationService.setInstallation(vehicle, getShiroUser()));
-			entity.setInstallationStatus(Vehicle.RECORDED);
+			entity.setRecordedInstallation(true);
 			vehicleService.update(entity);
 		}
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));

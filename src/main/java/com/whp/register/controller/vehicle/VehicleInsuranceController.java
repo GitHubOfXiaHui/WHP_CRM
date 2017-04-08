@@ -59,7 +59,7 @@ public class VehicleInsuranceController extends BaseController {
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (Vehicle.RECORDED.equals(vehicle.getInsuranceStatus())) {
+		if (vehicle.isRecordedInsurance()) {
 			return null;
 		}
 		map.put("vehicle", vehicle);
@@ -75,7 +75,7 @@ public class VehicleInsuranceController extends BaseController {
 			return AjaxObject.newError("未添加保险信息").toString();
 		} else {
 			entity.setInsuranceList(insuranceService.setInsurance(vehicle, getShiroUser()));
-			entity.setInsuranceStatus(Vehicle.RECORDED);
+			entity.setRecordedInsurance(true);
 			vehicleService.update(entity);
 		}
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));
@@ -92,7 +92,7 @@ public class VehicleInsuranceController extends BaseController {
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String preUpdate(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (Vehicle.UNRECORDED.equals(vehicle.getInsuranceStatus())) {
+		if (!vehicle.isRecordedInsurance()) {
 			return null;
 		}
 		map.put("vehicle", vehicle);
