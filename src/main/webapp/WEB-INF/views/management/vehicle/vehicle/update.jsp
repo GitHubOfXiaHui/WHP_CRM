@@ -6,7 +6,7 @@
 	<div class="pageFormContent" layoutH="58">
 		<p>
 			<label>车牌号：</label>
-			<input type="text" name="license" value="${vehicle.license }" class="validate[required] required" size="20" readonly="readonly"/>
+			<input type="text" class="validate[required] required" name="license" value="${vehicle.license }" size="20" readonly="readonly"/>
 			<input type="hidden" name="id" value="${vehicle.id}"/>
 		</p>
 		<p>
@@ -27,19 +27,19 @@
 		</p>
 		<p>
 			<label>乘员数：</label>
-			<input type="text" name="crew" value="${vehicle.crew }" size="20"/>
+			<input type="text" class="validate[required,custom[number]] required" name="crew" value="${vehicle.crew }" size="20"/>
 		</p>
 		<p>
 			<label>价格：</label>
-			<input type="text" name="price" value="${vehicle.price }" size="20"/>
+			<input type="text" class="validate[required,custom[number]] required" name="price" value="${vehicle.price }" size="20"/>
 		</p>
 		<p>
 			<label>购置税：</label>
-			<input type="text" name="purchaseTax" value="${vehicle.purchaseTax }" size="20"/>
+			<input type="text" class="validate[required,custom[number]] required" name="purchaseTax" value="${vehicle.purchaseTax }" size="20"/>
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" name="buyingTime" value="<fmt:formatDate value='${vehicle.buyingTime}' pattern='yyyy-MM-dd'/>" size="20"/>
+			<input type="date" class="date" name="buyingTime" value="<fmt:formatDate value='${vehicle.buyingTime}' pattern='yyyy-MM-dd'/>" size="20" readonly="readonly"/>
 		</p>
 	</div>
 			

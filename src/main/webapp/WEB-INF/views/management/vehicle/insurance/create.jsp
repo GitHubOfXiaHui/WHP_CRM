@@ -44,9 +44,12 @@
 								<th type="enum" name="insuranceList[#index#].insuranceType"
 									enumUrl="${contextPath }/management/vehicle/insurance/select"
 									size="16" postField="" defaultVal="2">保险类型</th>
-								<th type="text" name="insuranceList[#index#].insuranceCarriers" size="20" fieldClass="validate[required,maxSize[64]] required">承保公司</th>
-								<th type="text" name="insuranceList[#index#].insuranceCost" fieldClass="validate[required,maxSize[10]] required" size="20">保险价格（元）</th>
-								<th type="text" name="insuranceList[#index#].insuranceAmount" fieldClass="validate[maxSize[10]]" size="20" defaultVal="0">保险额度（万元） </th>
+								<th type="text" name="insuranceList[#index#].insuranceCarriers" 
+									fieldClass="validate[required,maxSize[64]] required" size="20">承保公司</th>
+								<th type="text" name="insuranceList[#index#].insuranceCost" 
+									fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">保险价格（元）</th>
+								<th type="text" name="insuranceList[#index#].insuranceAmount" 
+									fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">保险额度（万元） </th>
 								<th type="date" format="yyyy-MM-dd"
 									name="insuranceList[#index#].insuredTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"
