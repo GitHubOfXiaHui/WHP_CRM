@@ -21,6 +21,7 @@ import com.whp.framework.log.impl.LogUitl;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicle.Vehicle;
+import com.whp.register.entity.vehicle.VehicleInsurance;
 import com.whp.register.service.vehicle.VehicleInsuranceService;
 import com.whp.register.service.vehicle.VehicleService;
 
@@ -34,6 +35,8 @@ public class VehicleInsuranceController extends BaseController {
 	protected static final String SELECT = "management/vehicle/insurance/select";
 	/** view页面. */
 	protected static final String VIEW = "management/vehicle/insurance/view";
+	
+	private static final String UPDATE = "management/vehicle/insurance/update";
 
 	@Autowired
 	private VehicleService vehicleService;
@@ -85,7 +88,39 @@ public class VehicleInsuranceController extends BaseController {
 		map.put("entity", entity);
 		return VIEW;
 	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String preUpdate(@PathVariable Long id, Map<String, Object> map) {
+		Vehicle vehicle = vehicleService.get(id);
+		if (Vehicle.UNRECORDED.equals(vehicle.getInsuranceStatus())) {
+			return null;
+		}
+		map.put("vehicle", vehicle);
+		return UPDATE;
+	}
 
+	@Log(message = "修改了车牌号为{0}的车辆的保险信息。")
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody String update(Vehicle vehicle) {
+		BeanValidators.validateWithException(validator, vehicle);
+		Vehicle persitentObj = vehicleService.get(vehicle.getId());
+        List<VehicleInsurance> insurances = persitentObj.getInsuranceList();
+        for (VehicleInsurance insurance : insurances)
+        {
+        	insurance.setParent(null);
+        }
+        persitentObj.setInsuranceList(null);
+        vehicleService.update(persitentObj);
+        
+        if (!vehicle.getInsuranceList().isEmpty())
+        {
+            insuranceService.setInsurance(vehicle, getShiroUser());
+        }
+        persitentObj.setInsuranceList(vehicle.getInsuranceList());
+        vehicleService.update(persitentObj);
+        LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] {vehicle.getLicense()}));
+        return AjaxObject.newOk("保险信息修改成功！").toString();
+	}
 	/**
 	 * 行编辑器(保险类型下拉框)
 	 */

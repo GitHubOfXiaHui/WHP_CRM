@@ -58,7 +58,6 @@
 							<td>${child.insuranceCost}</td>
 							<td>${child.insuranceAmount}</td>
 							<td><fmt:formatDate value="${child.insuredTime}" pattern="yyyy-MM-dd"/></td>
-							<td><fmt:formatDate value="${child.expireTime}" pattern="yyyy-MM-dd"/></td>
 							<td>
 							<c:if test = "${child.insuranceValidity == '1' }">在保</c:if>
 			    			<c:if test = "${child.insuranceValidity == '0' }">过保</c:if>
