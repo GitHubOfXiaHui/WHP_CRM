@@ -53,15 +53,17 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
-			<tr target="slt_uid" rel="${item.id}" onclick="displayButton('${item.inspectionStatus}')">
+			<tr target="slt_uid" rel="${item.id}" onclick="displayButton(${item.recordedInspection })">
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
 				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
 				<td>
-				<c:if test="${item.inspectionStatus==1}">已录入</c:if>
-				<c:if test="${item.inspectionStatus==0}">未录入</c:if>
+				<c:choose>
+					<c:when test="${item.recordedInspection }">已录入</c:when>
+					<c:otherwise>未录入</c:otherwise>
+				</c:choose>
 				</td>
 			</tr>
 			</c:forEach>
@@ -74,11 +76,11 @@
 </div>
 
 <script type="text/javascript">
-function displayButton(status) {
-	if(status=='1') {
+function displayButton(recorded) {
+	if (recorded) {
 		$("#inspectionAdd").hide();
 		$("#inspectionEdit").show();
-	} else if(status=='0') {
+	} else {
 		$("#inspectionAdd").show();
 		$("#inspectionEdit").hide();
 	}

@@ -57,9 +57,9 @@
 				<td>${item.crew}</td>
 				<td>
 				<c:choose>
-					<c:when test="${item.approvalStatus } == '11'">等待所领导审批</c:when>
-					<c:when test="${item.approvalStatus } == '12'">等待吴主任审批</c:when>
-					<c:when test="${item.approvalStatus } == '13'">等待局领导审批</c:when>
+					<c:when test="${item.vehicleStatus == '00'}">空闲</c:when>
+					<c:when test="${item.vehicleStatus == '10'}">使用中</c:when>
+					<c:when test="${item.vehicleStatus == '99'}">维修中</c:when>
 				</c:choose>
 				</td>
 			</tr>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.whp.framework.entity.RecordObject;
 import com.whp.framework.service.BaseServiceImpl;
 import com.whp.framework.shiro.ShiroDbRealm.ShiroUser;
 import com.whp.framework.utils.DateUtil;
@@ -40,7 +41,7 @@ public class VehicleInsuranceServiceImpl extends BaseServiceImpl<VehicleInsuranc
 	public List<VehicleInsurance> setInsurance(Vehicle vehicle, ShiroUser shiroUser) {
 		// TODO Auto-generated method stub
 		for (VehicleInsurance insurance : vehicle.getInsuranceList()) {
-			insurance.setStatus("10");
+			insurance.setStatus(RecordObject.CREATE);
 			insurance.setCreateUser(shiroUser.getUser().getUsername());
 			insurance.setCreateDate(new Date());
 			insurance.setParent(vehicle);

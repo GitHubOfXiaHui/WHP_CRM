@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.whp.framework.entity.RecordObject;
 import com.whp.framework.service.BaseServiceImpl;
 import com.whp.framework.shiro.ShiroDbRealm.ShiroUser;
 import com.whp.register.entity.vehicle.Vehicle;
@@ -30,7 +31,7 @@ public class VehicleInstallationServiceImpl extends BaseServiceImpl<VehicleInsta
 	public List<VehicleInstallation> setInstallation(Vehicle vehicle, ShiroUser shiroUser) {
 		// TODO Auto-generated method stub
 		for (VehicleInstallation installation : vehicle.getInstallationList()) {
-			installation.setStatus("10");
+			installation.setStatus(RecordObject.CREATE);
 			installation.setCreateUser(shiroUser.getUser().getUsername());
 			installation.setCreateDate(new Date());
 			installation.setParent(vehicle);

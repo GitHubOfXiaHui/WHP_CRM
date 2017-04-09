@@ -17,6 +17,16 @@ import org.hibernate.validator.constraints.Length;
  */
 @MappedSuperclass
 public abstract class RecordObject extends IdLongEntity implements StatusObj {
+	
+	/** 记录状态. */
+	// 保存
+	public static final String CREATE = "10";
+	// 提交
+	public static final String SUBMIT = "20";
+	// 审核
+	public static final String AUDIT = "30";
+	// 作废
+	public static final String OBSOLETE = "99";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

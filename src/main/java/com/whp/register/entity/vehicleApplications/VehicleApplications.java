@@ -21,7 +21,7 @@ import com.whp.register.entity.vehicle.Vehicle;
  */
 @Entity
 @Table(name = "t_vehicle_applications")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicleApplications")
 public class VehicleApplications extends RecordObject {
 	
 	/** 审批状态. */
@@ -49,7 +49,7 @@ public class VehicleApplications extends RecordObject {
 	// 是否需要局领导审批
 	@Type(type = "yes_no")
 	@Column
-	private boolean requireApproval = true;
+	private boolean requireApproval = false;
 	
 	/** 关联车辆主表. */
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

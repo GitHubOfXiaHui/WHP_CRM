@@ -19,6 +19,7 @@ import org.springside.modules.web.Servlets;
 
 import com.google.common.collect.Lists;
 import com.whp.framework.controller.BaseController;
+import com.whp.framework.entity.RecordObject;
 import com.whp.framework.exception.ExistedException;
 import com.whp.framework.log.Log;
 import com.whp.framework.log.LogMessageObject;
@@ -70,7 +71,7 @@ public class VehicleController extends BaseController {
 	public String create(Vehicle vehicle) {
 		BeanValidators.validateWithException(validator, vehicle);
         try {
-        	vehicle.setStatus("10");
+        	vehicle.setStatus(RecordObject.CREATE);
     		vehicle.setCreateUser(getShiroUser().getUser().getUsername());
     		vehicle.setCreateDate(new Date());
         	vehicle.setLicense(vehicle.getLicense().trim());
