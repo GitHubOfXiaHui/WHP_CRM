@@ -42,8 +42,7 @@
 						<thead align="center">
 							<tr>
 								<th type="enum" name="inspectionList[#index#].annualCycle" 
-									enumUrl="${contextPath }/management/vehicle/inspection/select"
-									size="16" postField="" defaultVal="2">年审周期</th>
+									enumUrl="${contextPath }/management/vehicle/inspection/select" size="16">年审周期</th>
 								<th type="date" format="yyyy-MM-dd" name="inspectionList[#index#].lastTime"
 									fieldClass="validate[required,maxSize[10]] required"  size="12"
 									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">上次年审时间</th>

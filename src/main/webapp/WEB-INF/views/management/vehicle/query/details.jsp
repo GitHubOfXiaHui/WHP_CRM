@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 
-<div class="pageFormContent">
+<div class="pageFormContent" layoutH="97">
 	<div>
 		<p>
 			<label>车牌号：</label>
@@ -24,15 +24,15 @@
 			<input type="text" value="${vehicle.displacement }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>乘员数(人)：</label>
+			<label>乘员数（人）：</label>
 			<input type="text" value="${vehicle.crew }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>价格(万元)：</label>
+			<label>价格（万元）：</label>
 			<input type="text" value="${vehicle.price }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>购置税(元)：</label>
+			<label>购置税（元）：</label>
 			<input type="text" value="${vehicle.purchaseTax }" size="20" readonly="readonly"/>
 		</p>
 		<p>
@@ -51,15 +51,15 @@
 				</ul>
 			</div>
 		</div>
-		<div class="tabsContent">
+		<div class="tabsContent" style="height: 220px;">
 			<div>
 				<table class="list nowrap" width="100%">
 					<thead align="center">
 						<tr>
 							<th>保险类型</th>
 							<th>承保公司</th>
-							<th>保险价格(元)</th>
-							<th>保险额度(万元) </th>
+							<th>保险价格（元）</th>
+							<th>保险额度（万元）</th>
 							<th>投保时间</th>
 							<th>过保时间</th>
 							<th>保险状态</th>
@@ -131,7 +131,7 @@
 						<tr>
 							<th>加装项</th>
 							<th>加装时间</th>
-							<th>价格明细(元) </th>
+							<th>价格明细（元）</th>
 							<th>加载说明</th>
 						</tr>
 					</thead>

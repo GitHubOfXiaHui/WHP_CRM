@@ -29,7 +29,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" mask="true" width="500" height="400" href="${contextPath }/management/vehicle/applications/create/{slt_uid}"><span>申请使用车辆</span></a></li>
+				<li><a iconClass="page_white_add" target="dialog" mask="true" width="500" height="500" href="${contextPath }/management/vehicle/applications/create/{slt_uid}"><span>申请使用车辆</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>
@@ -42,8 +42,7 @@
 				<th>车辆颜色</th>
 				<th>车辆配置</th>
 				<th>排量</th>
-				<th>乘员数</th>
-				<th>车辆状态</th>
+				<th>乘员数（人）</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,13 +54,6 @@
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
 				<td>${item.crew}</td>
-				<td>
-				<c:choose>
-					<c:when test="${item.vehicleStatus == '00'}">空闲</c:when>
-					<c:when test="${item.vehicleStatus == '10'}">使用中</c:when>
-					<c:when test="${item.vehicleStatus == '99'}">维修中</c:when>
-				</c:choose>
-				</td>
 			</tr>
 			</c:forEach>
 		</tbody>

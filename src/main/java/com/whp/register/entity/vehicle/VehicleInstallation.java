@@ -41,7 +41,7 @@ public class VehicleInstallation extends RecordObject {
 	@Column
 	private float price;
 	
-	// 加载说明
+	// 加装说明
 	@Column(name = "installation_description")
 	private String installationDescription;
 	

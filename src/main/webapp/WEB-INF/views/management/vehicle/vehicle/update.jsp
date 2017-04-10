@@ -26,15 +26,15 @@
 			<input type="text" name="displacement" value="${vehicle.displacement }" size="20"/>
 		</p>
 		<p>
-			<label>乘员数(人)：</label>
+			<label>乘员数（人）：</label>
 			<input type="text" class="validate[required,custom[number]] required" name="crew" value="${vehicle.crew }" size="20"/>
 		</p>
 		<p>
-			<label>价格(万元)：</label>
+			<label>价格（万元）：</label>
 			<input type="text" class="validate[required,custom[number]] required" name="price" value="${vehicle.price }" size="20"/>
 		</p>
 		<p>
-			<label>购置税(元)：</label>
+			<label>购置税（元）：</label>
 			<input type="text" class="validate[required,custom[number]] required" name="purchaseTax" value="${vehicle.purchaseTax }" size="20"/>
 		</p>
 		<p>

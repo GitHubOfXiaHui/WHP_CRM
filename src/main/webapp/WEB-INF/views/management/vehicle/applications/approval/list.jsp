@@ -56,13 +56,15 @@
 		<thead>
 			<tr>
 				<th>申请状态</th>
+				<th>出发地</th>
 				<th>目的地</th>
+				<th>驾驶员</th>
+				<th>乘车人数（人）</th>
+				<th>车辆用途</th>
+				<th>用车时间</th>
+				<th>申请人</th>
+				<th>申请人所在派出所</th>
 				<th>车牌号</th>
-				<th>车辆型号</th>
-				<th>车辆颜色</th>
-				<th>车辆配置</th>
-				<th>排量</th>
-				<th>乘员数</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -73,17 +75,19 @@
 					<c:when test="${item.approvalStatus == '11'}">等待所领导审批</c:when>
 					<c:when test="${item.approvalStatus == '12'}">等待吴主任审批</c:when>
 					<c:when test="${item.approvalStatus == '13'}">等待局领导审批</c:when>
-					<c:when test="${item.approvalStatus == '00'}">申请通过</c:when>
-					<c:when test="${item.approvalStatus == '99'}">申请驳回</c:when>
+					<c:when test="${item.approvalStatus == '00'}">通过</c:when>
+					<c:when test="${item.approvalStatus == '99'}">驳回</c:when>
 				</c:choose>
 				</td>
+				<td>${item.departure}</td>
 				<td>${item.destination}</td>
+				<td>${item.driver}</td>
+				<td>${item.passengerNum}</td>
+				<td>${item.applicationIntent}</td>
+				<td><fmt:formatDate value="${item.useTime}" pattern="yyyy-MM-dd"/></td>
+				<td>${item.applicationUser.realname}</td>
+				<td>${item.applicationUser.organization.name}</td>
 				<td>${item.parent.license}</td>
-				<td>${item.parent.type}</td>
-				<td>${item.parent.color}</td>
-				<td>${item.parent.configuration}</td>
-				<td>${item.parent.displacement}</td>
-				<td>${item.parent.crew}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

@@ -42,8 +42,7 @@
 						<thead align="center">
 							<tr>
 								<th type="enum" name="insuranceList[#index#].insuranceType"
-									enumUrl="${contextPath }/management/vehicle/insurance/select"
-									size="16" postField="" defaultVal="2">保险类型</th>
+									enumUrl="${contextPath }/management/vehicle/insurance/select" size="16">保险类型</th>
 								<th type="text" name="insuranceList[#index#].insuranceCarriers" 
 									fieldClass="validate[required,maxSize[64]] required" size="20">承保公司</th>
 								<th type="text" name="insuranceList[#index#].insuranceCost" 

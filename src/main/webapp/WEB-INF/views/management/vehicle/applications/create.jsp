@@ -8,33 +8,51 @@
 	<div class="pageFormContent" layoutH="58">
 		<p>
 			<label>车牌号：</label>
-			<input type="text" value="${vehicle.license }" size="20"/>
+			<input type="text" value="${vehicle.license }" size="20" readonly="readonly"/>
 			<input type="hidden" name="vehicleId" value="${vehicle.id }"/>
 		</p>
 		<p>
 			<label>车辆型号：</label>
-			<input type="text" value="${vehicle.type }" size="20"/>
+			<input type="text" value="${vehicle.type }" size="20" readonly="readonly"/>
 		</p>
 		<p>
 			<label>车辆配置：</label>
-			<input type="text" value="${vehicle.configuration }" size="20"/>
+			<input type="text" value="${vehicle.configuration }" size="20" readonly="readonly"/>
 		</p>
 		<p>
 			<label>排量：</label>
-			<input type="text" value="${vehicle.displacement }" size="20"/>
+			<input type="text" value="${vehicle.displacement }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>乘员数：</label>
-			<input type="text" value="${vehicle.crew }" size="20"/>
+			<label>乘员数（人）：</label>
+			<input type="text" value="${vehicle.crew }" size="20" readonly="readonly"/>
 		</p>
 		<div class="divider"></div>
 		<p>
-			<label>目的地：</label>
-			<input type="text" name="destination" size="20"/>
+			<label>出发地：</label>
+			<input type="text" class="validate[required,maxSize[64]] required" name="departure" size="20"/>
 		</p>
 		<p>
-			<label>&nbsp;</label>
+			<label>目的地：</label>
+			<input type="text" class="validate[required,maxSize[64]] required" name="destination" size="20"/>
 			<input type="checkbox" name="requireApproval" value="true" checked>目的地超出武汉
+		</p>
+		<p>
+			<label>驾驶员：</label>
+			<input type="text" name="driver" size="20"/>
+		</p>
+		<p>
+			<label>乘车人数：</label>
+			<input type="text" class="validate[custom[integer]]" name="passengerNum" size="20"/>
+		</p>
+		<p>
+			<label>车辆用途：</label>
+			<input type="text" class="validate[required,maxSize[64]] required" name="applicationIntent" size="20"/>
+		</p>
+		<p>
+			<label>用车时间：</label>
+			<input type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
+				name="useTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
 		</p>
 	</div>
 			

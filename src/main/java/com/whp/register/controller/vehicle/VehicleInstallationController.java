@@ -69,7 +69,7 @@ public class VehicleInstallationController extends BaseController {
 	public String create(Vehicle vehicle) {
 		BeanValidators.validateWithException(validator, vehicle);
 		Vehicle entity = vehicleService.get(vehicle.getId());
-		if (vehicle.getInsuranceList().isEmpty()) {
+		if (vehicle.getInstallationList().isEmpty()) {
 			return AjaxObject.newError("未添加加装信息").toString();
 		} else {
 			entity.setInstallationList(installationService.setInstallation(vehicle, getShiroUser()));

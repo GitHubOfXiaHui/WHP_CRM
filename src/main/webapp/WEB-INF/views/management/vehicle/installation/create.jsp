@@ -48,8 +48,8 @@
 									fieldClass="validate[required,maxSize[10]] required"
 									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">加装时间</th>
 								<th type="text" name="installationList[#index#].price" 
-									fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">价格明细 (元)</th>
-								<th type="text" name="installationList[#index#].installationDescription" size="30">加载说明</th>
+									fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">价格明细（元）</th>
+								<th type="text" name="installationList[#index#].installationDescription" size="30">加装说明</th>
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>

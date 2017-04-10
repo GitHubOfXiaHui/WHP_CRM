@@ -36,15 +36,17 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 	public Vehicle applicate(Long vehicleId, VehicleApplications application, ShiroUser shiroUser) throws ServiceException {
 		// TODO Auto-generated method stub
 		Vehicle vehicle = vehilceDao.findOne(vehicleId);
-		if (!vehicle.getVehicleStatus().equals(Vehicle.IDLE)) {
-			throw new ServiceException("该车辆(" + vehicle.getLicense() + ")无法使用。");
-		}
-		vehicle.setVehicleStatus(Vehicle.USING);
+//		if (!vehicle.getVehicleStatus().equals(Vehicle.IDLE)) {
+//			throw new ServiceException("该车辆(" + vehicle.getLicense() + ")无法使用。");
+//		}
+//		vehicle.setVehicleStatus(Vehicle.USING);
 		vehicle.getApplicationList().add(application);
 		
 		application.setStatus(RecordObject.CREATE);
 		application.setCreateUser(shiroUser.getUser().getUsername());
 		application.setCreateDate(new Date());
+		
+		application.setApplicationUser(shiroUser.getUser());
 		application.setParent(vehicle);
 		
 		return vehicle;

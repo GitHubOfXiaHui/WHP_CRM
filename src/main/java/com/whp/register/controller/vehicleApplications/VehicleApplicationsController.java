@@ -49,8 +49,6 @@ public class VehicleApplicationsController extends BaseController {
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Page page, Map<String, Object> model, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		// 默认筛选出空闲的车辆
-		searchParams.put("EQ_vehicleStatus", Vehicle.IDLE);
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 
 		model.put("page", page);

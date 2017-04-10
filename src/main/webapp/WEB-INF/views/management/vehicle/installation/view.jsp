@@ -33,8 +33,8 @@
 						<tr>
 							<th>加装项</th>
 							<th>加装时间</th>
-							<th>价格明细 (元)</th>
-							<th>加载说明</th>
+							<th>价格明细 （元）</th>
+							<th>加装说明</th>
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
