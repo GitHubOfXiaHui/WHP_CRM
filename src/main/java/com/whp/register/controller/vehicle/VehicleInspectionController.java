@@ -42,6 +42,8 @@ public class VehicleInspectionController extends BaseController {
 	private static final String LIST = "management/vehicle/inspection/list";
 	private static final String CREATE = "management/vehicle/inspection/create";
 	private static final String VIEW = "management/vehicle/inspection/view";
+	/** 年审周期. */
+	private static final String SELECT = "management/vehicle/inspection/select";
 	
 	//@RequiresPermissions("VehicleInspection:view")
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -93,4 +95,13 @@ public class VehicleInspectionController extends BaseController {
 		return VIEW;
 	}
 
+	/**
+	 * 行编辑器(年审周期下拉框)
+	 */
+	@RequestMapping(value = "/select", method = RequestMethod.POST)
+	public String select(String inputName, Page page, Map<String, Object> map) {
+		map.put("inputName", inputName);
+		return SELECT;
+	}
+	
 }

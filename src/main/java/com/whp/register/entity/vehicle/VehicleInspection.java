@@ -1,5 +1,6 @@
 package com.whp.register.entity.vehicle;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -26,6 +27,14 @@ import com.whp.framework.entity.RecordObject;
 @Table(name = "t_vehicle_inspection")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicle")
 public class VehicleInspection extends RecordObject {
+	
+	/** 年审周期. */
+	// 两年一审
+	public static final String INSPECTION_PER_TWO_YEAR = "12";
+	// 一年一审
+	public static final String INSPECTION_PER_YEAR = "11";
+	// 一年两审
+	public static final String DOUBLE_INSPECTION_PER_YEAR = "21";
 
 	private static final long serialVersionUID = 6523883328234169413L;
 
@@ -36,17 +45,34 @@ public class VehicleInspection extends RecordObject {
 	// 上次年审时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_time")
-	private Date lastTime;				
+	private Date lastTime;
 	
-	// 下次年审时间
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "next_time")
-	private Date nextTime;				
+	// 下次年审时间(只读)
+	public Date getNextTime() {
+		Calendar nextTime = Calendar.getInstance();
+		nextTime.setTime(lastTime);
+		if (annualCycle.equals(INSPECTION_PER_TWO_YEAR)) {
+			nextTime.add(Calendar.YEAR, 2);
+		} else if (annualCycle.equals(INSPECTION_PER_YEAR)) {
+			nextTime.add(Calendar.YEAR, 1);
+		} else if (annualCycle.equals(DOUBLE_INSPECTION_PER_YEAR)) {
+			nextTime.add(Calendar.MONTH, 6);
+		}
+		return nextTime.getTime();
+	}
 	
 	// 是否继续提醒
 	@Type(type = "yes_no")
 	@Column
-	private boolean remind = true;				
+	private boolean remind = true;
+	
+	// 年审结果
+	@Column(name = "inspection_result")
+	private String inspectionResult;
+	
+	// 备注
+	@Column(name = "inspection_remark")
+	private String inspectionRemark;
 	
 	/** 关联车辆主表. */
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -69,20 +95,28 @@ public class VehicleInspection extends RecordObject {
 		this.lastTime = lastTime;
 	}
 
-	public Date getNextTime() {
-		return nextTime;
-	}
-
-	public void setNextTime(Date nextTime) {
-		this.nextTime = nextTime;
-	}
-
 	public boolean getRemind() {
 		return remind;
 	}
 
 	public void setRemind(boolean remind) {
 		this.remind = remind;
+	}
+
+	public String getInspectionResult() {
+		return inspectionResult;
+	}
+
+	public void setInspectionResult(String inspectionResult) {
+		this.inspectionResult = inspectionResult;
+	}
+
+	public String getInspectionRemark() {
+		return inspectionRemark;
+	}
+
+	public void setInspectionRemark(String inspectionRemark) {
+		this.inspectionRemark = inspectionRemark;
 	}
 
 	public Vehicle getParent() {

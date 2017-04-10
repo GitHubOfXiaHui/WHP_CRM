@@ -28,19 +28,27 @@ public class VehicleInstallation extends RecordObject {
 
 	private static final long serialVersionUID = -8881474242781578450L;
 
+	// 加装项
 	@Column(name = "add_item")
-	private String addItem;				// 加装项
+	private String addItem;				
 	
+	// 加装时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "installation_time")
-	private Date installationTime;		// 加装时间
+	private Date installationTime;		
 	
+	// 价格明细
 	@Column
-	private float price;				// 价格明细
+	private float price;
 	
+	// 加载说明
+	@Column(name = "installation_description")
+	private String installationDescription;
+	
+	// 关联车辆主表
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "PARENT_ID")
-    private Vehicle parent;				// 关联车辆主表
+    private Vehicle parent;				
 
 	public String getAddItem() {
 		return addItem;
@@ -64,6 +72,14 @@ public class VehicleInstallation extends RecordObject {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public String getInstallationDescription() {
+		return installationDescription;
+	}
+
+	public void setInstallationDescription(String installationDescription) {
+		this.installationDescription = installationDescription;
 	}
 
 	public Vehicle getParent() {

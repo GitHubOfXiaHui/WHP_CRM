@@ -34,15 +34,25 @@
 							<th>年审周期</th>
 							<th>上次年审时间</th>
 							<th>下次年审时间</th>
+							<th>年审结果</th>
+							<th>备注</th>
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
-						<c:forEach var="child" items="${entity.inspectionList}" varStatus="status">
-							<tr class="unitBox">
-								<td>${child.annualCycle}</td>
-								<td><fmt:formatDate value="${child.lastTime}" pattern="yyyy-MM-dd"/></td>
-								<td><fmt:formatDate value="${child.nextTime}" pattern="yyyy-MM-dd"/></td>
-							</tr>
+						<c:forEach var="child" items="${entity.inspectionList}">
+						<tr class="unitBox">
+							<td>
+							<c:choose>
+								<c:when test="${child.annualCycle == '12'}">两年一审</c:when>
+								<c:when test="${child.annualCycle == '11'}">一年一审</c:when>
+								<c:when test="${child.annualCycle == '21'}">一年两审</c:when>
+							</c:choose>
+							</td>
+							<td><fmt:formatDate value="${child.lastTime}" pattern="yyyy-MM-dd"/></td>
+							<td><fmt:formatDate value="${child.nextTime}" pattern="yyyy-MM-dd"/></td>
+							<td>${child.inspectionResult }</td>
+							<td>${child.inspectionRemark }</td>
+						</tr>
 						</c:forEach>
 					</tbody>
 				</table>

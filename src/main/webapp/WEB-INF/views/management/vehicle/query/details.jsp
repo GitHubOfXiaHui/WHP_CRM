@@ -24,15 +24,15 @@
 			<input type="text" value="${vehicle.displacement }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>乘员数：</label>
+			<label>乘员数(人)：</label>
 			<input type="text" value="${vehicle.crew }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>价格：</label>
+			<label>价格(万元)：</label>
 			<input type="text" value="${vehicle.price }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>购置税：</label>
+			<label>购置税(元)：</label>
 			<input type="text" value="${vehicle.purchaseTax }" size="20" readonly="readonly"/>
 		</p>
 		<p>
@@ -58,8 +58,8 @@
 						<tr>
 							<th>保险类型</th>
 							<th>承保公司</th>
-							<th>保险价格（元）</th>
-							<th>保险额度（万元） </th>
+							<th>保险价格(元)</th>
+							<th>保险额度(万元) </th>
 							<th>投保时间</th>
 							<th>过保时间</th>
 							<th>保险状态</th>
@@ -67,7 +67,7 @@
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
-						<c:forEach var="child" items="${vehicle.insuranceList}" varStatus="status">
+						<c:forEach var="child" items="${vehicle.insuranceList}">
 						<tr class="unitBox">
 							<td>
 								<c:if test = "${child.insuranceType == '1' }">交强险</c:if>
@@ -102,14 +102,24 @@
 							<th>年审周期</th>
 							<th>上次年审时间</th>
 							<th>下次年审时间</th>
+							<th>年审结果</th>
+							<th>备注</th>
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
-						<c:forEach var="child" items="${vehicle.inspectionList}" varStatus="status">
+						<c:forEach var="child" items="${vehicle.inspectionList}">
 						<tr class="unitBox">
-							<td>${child.annualCycle}</td>
+							<td>
+							<c:choose>
+								<c:when test="${child.annualCycle == '12'}">两年一审</c:when>
+								<c:when test="${child.annualCycle == '11'}">一年一审</c:when>
+								<c:when test="${child.annualCycle == '21'}">一年两审</c:when>
+							</c:choose>
+							</td>
 							<td><fmt:formatDate value="${child.lastTime}" pattern="yyyy-MM-dd"/></td>
 							<td><fmt:formatDate value="${child.nextTime}" pattern="yyyy-MM-dd"/></td>
+							<td>${child.inspectionResult }</td>
+							<td>${child.inspectionRemark }</td>
 						</tr>
 						</c:forEach>
 					</tbody>
@@ -121,15 +131,17 @@
 						<tr>
 							<th>加装项</th>
 							<th>加装时间</th>
-							<th>价格明细 </th>
+							<th>价格明细(元) </th>
+							<th>加载说明</th>
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
-						<c:forEach var="child" items="${vehicle.installationList}" varStatus="status">
+						<c:forEach var="child" items="${vehicle.installationList}">
 						<tr class="unitBox">
 							<td>${child.addItem}</td>
 							<td><fmt:formatDate value="${child.installationTime}" pattern="yyyy-MM-dd"/></td>
 							<td>${child.price}</td>
+							<td>${child.installationDescription}</td>
 						</tr>
 						</c:forEach>
 					</tbody>

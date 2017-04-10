@@ -41,12 +41,15 @@
 					<table class="list nowrap itemDetail" addButton="添加" width="100%">
 						<thead align="center">
 							<tr>
-								<th type="text" name="installationList[#index#].addItem" fieldClass="validate[required,maxSize[64]] required" size="20">加装项</th>
+								<th type="text" name="installationList[#index#].addItem" 
+									fieldClass="validate[required,maxSize[64]] required" size="20">加装项</th>
 								<th type="date" format="yyyy-MM-dd"
 									name="installationList[#index#].installationTime" size="12"
 									fieldClass="validate[required,maxSize[10]] required"
 									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">加装时间</th>
-								<th type="text" name="insuranceList[#index#].price" fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">价格明细 </th>
+								<th type="text" name="installationList[#index#].price" 
+									fieldClass="validate[required,custom[number],maxSize[10]] required" size="20" defaultVal="0.0">价格明细 (元)</th>
+								<th type="text" name="installationList[#index#].installationDescription" size="30">加载说明</th>
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>

@@ -31,20 +31,20 @@
 				<table class="list nowrap" width="100%">
 					<thead align="center">
 						<tr>
-							<th type="text" name="installationList[#index#].addItem" size="20" fieldClass="validate[required,maxSize[64]] required">加装项</th>
-							<th type="date" format="yyyy-MM-dd"
-								name="installationList[#index#].installationTime" size="12"
-								fieldClass="validate[required,maxSize[10]] required">加装时间</th>
-							<th type="text" name="insuranceList[#index#].price" fieldClass="validate[maxSize[10]]" size="20">价格明细 </th>
+							<th>加装项</th>
+							<th>加装时间</th>
+							<th>价格明细 (元)</th>
+							<th>加载说明</th>
 						</tr>
 					</thead>
 					<tbody align="center" style="color:maroon">
 						<c:forEach var="child" items="${entity.installationList}" varStatus="status">
-							<tr class="unitBox">
-								<td>${child.addItem}</td>
-								<td><fmt:formatDate value="${child.installationTime}" pattern="yyyy-MM-dd"/></td>
-								<td>${child.price}</td>
-							</tr>
+						<tr class="unitBox">
+							<td>${child.addItem}</td>
+							<td><fmt:formatDate value="${child.installationTime}" pattern="yyyy-MM-dd"/></td>
+							<td>${child.price}</td>
+							<td>${child.installationDescription}</td>
+						</tr>
 						</c:forEach>
 					</tbody>
 				</table>

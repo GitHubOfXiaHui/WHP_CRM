@@ -125,7 +125,6 @@ $(function(){
 						<li><a href="${contextPath}/management/vehicle/applications/list" target="navTab" rel="applications">车辆使用申请</a></li>
 						<li><a href="${contextPath}/management/vehicle/applications/approval/list" target="navTab" rel="applicationsApproval">车辆使用审批</a></li>
 						<li><a href="" target="navTab" rel="">申请单打印</a></li>
-						<li><a href="" target="navTab" rel="">用车审批归档</a></li>
 						<li><a href="" target="navTab" rel="">车辆归还</a></li>
 						<li><a href="" target="navTab" rel="">违章信息录入</a></li>
 						<li><a href="" target="navTab" rel="">加油信息录入</a></li>

@@ -41,14 +41,15 @@
 					<table class="list nowrap itemDetail" addButton="添加" width="100%">
 						<thead align="center">
 							<tr>
-								<th type="text" name="inspectionList[#index#].annualCycle" 
-									fieldClass="validate[required,maxSize[64]] required" size="20">年审周期</th>
+								<th type="enum" name="inspectionList[#index#].annualCycle" 
+									enumUrl="${contextPath }/management/vehicle/inspection/select"
+									size="16" postField="" defaultVal="2">年审周期</th>
 								<th type="date" format="yyyy-MM-dd" name="inspectionList[#index#].lastTime"
 									fieldClass="validate[required,maxSize[10]] required"  size="12"
 									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">上次年审时间</th>
-								<th type="date" format="yyyy-MM-dd" name="inspectionList[#index#].nextTime"
-									fieldClass="validate[required,maxSize[10]] required" size="12"
-									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">下次年审时间</th>
+								<th type="text" name="inspectionList[#index#].inspectionResult" 
+									fieldClass="validate[required,maxSize[64]] required" size="20">年审结果</th>
+								<th type="text" name="insuranceList[#index#].insuranceRemark" size="30">备注</th>
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>
