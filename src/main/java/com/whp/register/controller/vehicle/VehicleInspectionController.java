@@ -40,7 +40,7 @@ public class VehicleInspectionController extends BaseController {
 	private VehicleInspectionService inspectionService;
 	
 	private static final String LIST = "management/vehicle/inspection/list";
-	private static final String CREATE = "management/vehicle/inspection/create";
+	private static final String RECORD = "management/vehicle/inspection/record";
 	private static final String VIEW = "management/vehicle/inspection/view";
 	/** 年审周期. */
 	private static final String SELECT = "management/vehicle/inspection/select";
@@ -59,32 +59,31 @@ public class VehicleInspectionController extends BaseController {
 	}
 	
 	//@RequiresPermissions("VehicleInspection:save")
-	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
-	public String preCreate(@PathVariable Long id, Map<String, Object> model) {
+	@RequestMapping(value = "/record/{id}", method = RequestMethod.GET)
+	public String preRecord(@PathVariable Long id, Map<String, Object> model) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (vehicle.isRecordedInspection()) {
-			return null;
-		}
 		model.put("vehicle", vehicle);
-		return CREATE;
+		return RECORD;
 	}
 	
-	@Log(message = "添加了车牌号为{0}的车辆年审信息。")
+	@Log(message = "修改了车牌号为{0}的车辆年审信息。")
 	//@RequiresPermissions("VehicleInspection:save")
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/record", method = RequestMethod.POST)
 	@ResponseBody
-	public String create(Vehicle vehicle) {
+	public String record(Vehicle vehicle) {
 		BeanValidators.validateWithException(validator, vehicle);
+		
 		Vehicle entity = vehicleService.get(vehicle.getId());
-		if (vehicle.getInspectionList().isEmpty()) {
-			return AjaxObject.newError("未添加年审信息").toString();
-		} else {
-			entity.setInspectionList(inspectionService.setInspection(vehicle, getShiroUser()));
-			entity.setRecordedInspection(true);
-			vehicleService.update(entity);
+		try {
+			inspectionService.modifyInspections(entity, vehicle, getShiroUser());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return AjaxObject.newError("系统忙，请稍候再试。").setCallbackType("").toString();
 		}
+		vehicleService.update(entity);
+		
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));
-		return AjaxObject.newOk("录入车辆年审信息成功。").toString();
+		return AjaxObject.newOk("修改车辆年审信息成功。").toString();
 	}
 	
 	//@RequiresPermissions("VehicleInspection:view")

@@ -28,14 +28,11 @@
 
 	<div class="panelBar">
 		<ul class="toolBar">
-			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li id='installationAdd'><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/installation/create/{slt_uid}"><span>录入加装信息</span></a></li>
-			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li id='installationEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/installation/update/{slt_uid}"><span>编辑加装信息</span></a></li>
+				<li><a iconClass="page_white_edit" target="dialog" max="true" mask="true" href="${contextPath }/management/vehicle/installation/record/{slt_uid}"><span>录入加装信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
-				<li><a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/installation/view/{slt_uid}"><span>查看加装信息</span></a></li>
+				<li><a iconClass="magnifier" target="dialog" max="true" mask="true" href="${contextPath}/management/vehicle/installation/view/{slt_uid}"><span>查看加装信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>
@@ -48,23 +45,16 @@
 				<th>车辆配置</th>
 				<th>排量</th>
 				<th>购买时间</th>
-				<th>加装信息状态</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
-			<tr target="slt_uid" rel="${item.id}" onclick="displayButton(${item.recordedInstallation })">
+			<tr target="slt_uid" rel="${item.id}">
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
 				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
-				<td>
-				<c:choose>
-					<c:when test="${item.recordedInstallation }">已录入</c:when>
-					<c:otherwise>未录入</c:otherwise>
-				</c:choose>
-				</td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -73,15 +63,3 @@
 	<keta:pagination page="${page }"/>
 	
 </div>
-
-<script type="text/javascript">
-function displayButton(recorded) {
-	if (recorded) {
-		$("#installationAdd").hide();
-		$("#installationEdit").show();
-	} else {
-		$("#installationAdd").show();
-		$("#installationEdit").hide();
-	}
-}
-</script>

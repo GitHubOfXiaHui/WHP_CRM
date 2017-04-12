@@ -28,14 +28,11 @@
 
 	<div class="panelBar">
 		<ul class="toolBar">
-			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li id='inspectionAdd'><a iconClass="page_white_add" target="dialog" max="true" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/inspection/create/{slt_uid}"><span>录入年审信息</span></a></li>
-			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li id='inspectionEdit'><a iconClass="page_white_edit" target="dialog" mask="true" width="530" height="250" href="${contextPath }/management/vehicle/inspection/update/{slt_uid}"><span>编辑年审信息</span></a></li>
+				<li><a iconClass="page_white_edit" target="dialog" max="true" mask="true" href="${contextPath }/management/vehicle/inspection/record/{slt_uid}"><span>录入年审信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
-				<li><a iconClass="magnifier" target="dialog" max=true mask="true" href="${contextPath}/management/vehicle/inspection/view/{slt_uid}"><span>查看年审信息</span></a></li>
+				<li><a iconClass="magnifier" target="dialog" max="true" mask="true" href="${contextPath}/management/vehicle/inspection/view/{slt_uid}"><span>查看年审信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>
@@ -74,15 +71,3 @@
 	<keta:pagination page="${page }"/>
 	
 </div>
-
-<script type="text/javascript">
-function displayButton(recorded) {
-	if (recorded) {
-		$("#inspectionAdd").hide();
-		$("#inspectionEdit").show();
-	} else {
-		$("#inspectionAdd").show();
-		$("#inspectionEdit").hide();
-	}
-}
-</script>

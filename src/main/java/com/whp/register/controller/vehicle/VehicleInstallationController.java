@@ -35,7 +35,7 @@ public class VehicleInstallationController extends BaseController {
 	private VehicleInstallationService installationService;
 	
 	private static final String LIST = "management/vehicle/installation/list";
-	private static final String CREATE = "management/vehicle/installation/create";
+	private static final String RECORD = "management/vehicle/installation/record";
 	private static final String VIEW = "management/vehicle/installation/view";
 
 	//@RequiresPermissions("VehicleInstallation:view")
@@ -50,34 +50,33 @@ public class VehicleInstallationController extends BaseController {
 
 		return LIST;
 	}
-
-	//@RequiresPermissions("VehicleInstallation:save")
-	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
-	public String preCreate(@PathVariable Long id, Map<String, Object> model) {
+	
+	//@RequiresPermissions("VehicleInspection:save")
+	@RequestMapping(value = "/record/{id}", method = RequestMethod.GET)
+	public String preRecord(@PathVariable Long id, Map<String, Object> model) {
 		Vehicle vehicle = vehicleService.get(id);
-		if (vehicle.isRecordedInstallation()) {
-			return null;
-		}
 		model.put("vehicle", vehicle);
-		return CREATE;
+		return RECORD;
 	}
 	
-	@Log(message = "添加了车牌号为{0}的车辆加装信息。")
-	//@RequiresPermissions("VehicleInstallation:save")
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@Log(message = "修改了车牌号为{0}的车辆加装信息。")
+	//@RequiresPermissions("VehicleInspection:save")
+	@RequestMapping(value = "/record", method = RequestMethod.POST)
 	@ResponseBody
-	public String create(Vehicle vehicle) {
+	public String record(Vehicle vehicle) {
 		BeanValidators.validateWithException(validator, vehicle);
+		
 		Vehicle entity = vehicleService.get(vehicle.getId());
-		if (vehicle.getInstallationList().isEmpty()) {
-			return AjaxObject.newError("未添加加装信息").toString();
-		} else {
-			entity.setInstallationList(installationService.setInstallation(vehicle, getShiroUser()));
-			entity.setRecordedInstallation(true);
-			vehicleService.update(entity);
+		try {
+			installationService.modifyInstallations(entity, vehicle, getShiroUser());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return AjaxObject.newError("系统忙，请稍候再试。").setCallbackType("").toString();
 		}
+		vehicleService.update(entity);
+		
 		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));
-		return AjaxObject.newOk("录入车辆加装信息成功。").toString();
+		return AjaxObject.newOk("修改车辆加装信息成功。").toString();
 	}
 
 	//@RequiresPermissions("VehicleInstallation:view")

@@ -2,7 +2,6 @@ package com.whp.register.entity.vehicle;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -54,7 +53,7 @@ public class VehicleInsurance extends RecordObject {
 	@Column(name = "insurance_remark")		
 	private String insuranceRemark;				// 备注
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
     @JoinColumn(name = "PARENT_ID")				
     private Vehicle parent;						// 关联车辆主表
 

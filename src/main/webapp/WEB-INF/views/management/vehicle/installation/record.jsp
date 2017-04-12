@@ -3,7 +3,7 @@
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 
-<form method="post" id="installationCreateForm" action="${contextPath }/management/vehicle/installation/create" class="required-validate pageForm"
+<form method="post" id="installationCreateForm" action="${contextPath }/management/vehicle/installation/record" class="required-validate pageForm"
 	onsubmit="return validateCallback(this, dialogReloadNavTab);">
 	<div class="pageFormContent" layoutH="97">
 		<p>
@@ -53,7 +53,23 @@
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>
-						<tbody align="center"></tbody>
+						<tbody>
+							<c:forEach var="child" items="${vehicle.installationList}" 
+								varStatus="status">
+								<tr class="unitBox">
+									<input type="hidden" name="installationList[${status.index}].id" value="${child.id}" />
+									<input type="hidden" name="installationList[${status.index}].parent.id" value="${child.parent.id}" />
+									<td><input type="text" class="validate[required,maxSize[64]] required" 
+											name="installationList[${status.index}].addItem" value="${child.addItem}"  size="20"/></td>
+									<td><input type="date" class="date validate[required,maxSize[10]] required" size="12" 
+											name="installationList[${status.index}].installationTime" value="<fmt:formatDate value="${child.installationTime}" pattern="yyyy-MM-dd"/>"/></td>
+									<td><input type="text" class="validate[required,custom[number],maxSize[10]] required" 
+											name="installationList[${status.index}].price" value="${child.price}"  size="20"/></td>
+									<td><input type="text" name="installationList[${status.index}].installationDescription" value="${child.installationDescription}"  size="30"/></td>
+									<td><a href="javascript:void(0)" class="btnDel">删除</a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>

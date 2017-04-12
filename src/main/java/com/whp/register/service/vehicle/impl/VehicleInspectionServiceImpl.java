@@ -1,7 +1,10 @@
 package com.whp.register.service.vehicle.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,25 +21,64 @@ import com.whp.register.service.vehicle.VehicleInspectionService;
 @Service
 @Transactional(readOnly = true)
 public class VehicleInspectionServiceImpl extends BaseServiceImpl<VehicleInspection, Long> implements VehicleInspectionService {
-
-	private VehicleInspectionDao vehicleInspectionDao;
 	
 	@Autowired
 	public VehicleInspectionServiceImpl(VehicleInspectionDao vehicleInspectionDao) {
 		super(vehicleInspectionDao);
-		this.vehicleInspectionDao = vehicleInspectionDao;
 	}
 
 	@Override
-	public List<VehicleInspection> setInspection(Vehicle vehicle, ShiroUser shiroUser) {
+	public void modifyInspections(Vehicle entity, Vehicle vehicle, ShiroUser shiroUser) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		for (VehicleInspection inspection : vehicle.getInspectionList()) {
-			inspection.setStatus(RecordObject.CREATE);
-			inspection.setCreateUser(shiroUser.getUser().getUsername());
-			inspection.setCreateDate(new Date());
-			inspection.setParent(vehicle);
+		List<VehicleInspection> oldInspections = entity.getInspectionList();
+		List<VehicleInspection> newInspections = vehicle.getInspectionList();
+		
+		ListIterator<VehicleInspection> oldit = oldInspections.listIterator();
+		while (oldit.hasNext()) {
+			VehicleInspection inspection = oldit.next();
+			if (!newInspections.contains(inspection)) {
+				// 删除
+				inspection.setStatus(RecordObject.OBSOLETE);
+				inspection.setObsoleteUser(shiroUser.getUser().getUsername());
+				inspection.setObsoleteDate(new Date());
+				inspection.setParent(null);
+				oldit.remove();
+			}
 		}
-		return vehicle.getInspectionList();
+		
+		for (VehicleInspection newInspection : newInspections) {
+			if (oldInspections.contains(newInspection)) {
+				// 更新
+				update(oldInspections, newInspection);
+			} else {
+				// 增加
+				newInspection.setStatus(RecordObject.CREATE);
+				newInspection.setCreateUser(shiroUser.getUser().getUsername());
+				newInspection.setCreateDate(new Date());
+				newInspection.setParent(entity);
+				oldInspections.add(newInspection);
+			}
+		}
+		
+	}
+	
+	/**
+	 * 更新业务逻辑字段，保留记录字段
+	 * @param oldInspections
+	 * @param newInspection
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
+	private void update(List<VehicleInspection> oldInspections, VehicleInspection newInspection) throws IllegalArgumentException, IllegalAccessException {
+		VehicleInspection oldInspection = oldInspections.get(oldInspections.indexOf(newInspection));
+		Field[] fields = oldInspection.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if (Modifier.isFinal(field.getModifiers())) {
+				continue;
+			}
+			field.setAccessible(true);
+			field.set(oldInspection, field.get(newInspection));
+		}
 	}
 
 }

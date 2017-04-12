@@ -3,7 +3,6 @@ package com.whp.register.entity.vehicle;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -75,7 +74,7 @@ public class VehicleInspection extends RecordObject {
 	private String inspectionRemark;
 	
 	/** 关联车辆主表. */
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
     @JoinColumn(name = "PARENT_ID")
     private Vehicle parent;				
 

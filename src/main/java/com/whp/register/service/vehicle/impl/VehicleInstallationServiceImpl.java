@@ -1,7 +1,10 @@
 package com.whp.register.service.vehicle.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +22,56 @@ import com.whp.register.service.vehicle.VehicleInstallationService;
 @Transactional(readOnly = true)
 public class VehicleInstallationServiceImpl extends BaseServiceImpl<VehicleInstallation, Long> implements VehicleInstallationService {
 
-	private VehicleInstallationDao vehicleInstallationDao;
-	
 	@Autowired
 	public VehicleInstallationServiceImpl(VehicleInstallationDao vehicleInstallationDao) {
 		super(vehicleInstallationDao);
-		this.vehicleInstallationDao = vehicleInstallationDao;
 	}
 
 	@Override
-	public List<VehicleInstallation> setInstallation(Vehicle vehicle, ShiroUser shiroUser) {
+	public void modifyInstallations(Vehicle entity, Vehicle vehicle, ShiroUser shiroUser) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		for (VehicleInstallation installation : vehicle.getInstallationList()) {
-			installation.setStatus(RecordObject.CREATE);
-			installation.setCreateUser(shiroUser.getUser().getUsername());
-			installation.setCreateDate(new Date());
-			installation.setParent(vehicle);
+		List<VehicleInstallation> oldInstallations = entity.getInstallationList();
+		List<VehicleInstallation> newInstallations = vehicle.getInstallationList();
+		
+		ListIterator<VehicleInstallation> oldit = oldInstallations.listIterator();
+		while (oldit.hasNext()) {
+			VehicleInstallation installation = oldit.next();
+			if (!newInstallations.contains(installation)) {
+				// 删除
+				installation.setStatus(RecordObject.OBSOLETE);
+				installation.setObsoleteUser(shiroUser.getUser().getUsername());
+				installation.setObsoleteDate(new Date());
+				installation.setParent(null);
+				oldit.remove();
+			}
 		}
-		return vehicle.getInstallationList();
+		
+		for (VehicleInstallation newInstallation : newInstallations) {
+			if (oldInstallations.contains(newInstallation)) {
+				// 更新
+				update(oldInstallations, newInstallation);
+			} else {
+				// 增加
+				newInstallation.setStatus(RecordObject.CREATE);
+				newInstallation.setCreateUser(shiroUser.getUser().getUsername());
+				newInstallation.setCreateDate(new Date());
+				newInstallation.setParent(entity);
+				oldInstallations.add(newInstallation);
+			}
+		}
+
+	}
+	
+	private void update(List<VehicleInstallation> oldInstallations, VehicleInstallation newInstallation) throws IllegalArgumentException, IllegalAccessException {
+		VehicleInstallation oldInstallation = oldInstallations.get(oldInstallations.indexOf(newInstallation));
+		Field[] fields = oldInstallation.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if (Modifier.isFinal(field.getModifiers())) {
+				continue;
+			}
+			field.setAccessible(true);
+			field.set(oldInstallation, field.get(newInstallation));
+		}
 	}
 
 }

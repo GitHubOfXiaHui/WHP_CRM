@@ -3,7 +3,7 @@
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 
-<form method="post" id="insuranceCreateForm" action="${contextPath }/management/vehicle/insurance/update"
+<form method="post" id="inspectionRecordForm" action="${contextPath }/management/vehicle/inspection/record"
 	class="required-validate pageForm" onsubmit="return validateCallback(this, dialogReloadNavTab);">
 	<div class="pageFormContent" layoutH="97">
 		<p>
@@ -41,26 +41,35 @@
 					<table class="list nowrap itemDetail" addButton="添加" width="100%">
 						<thead align="center">
 							<tr>
-								<th type="text" name="inspectionList[#index#].annualCycle" 
-									fieldClass="validate[required,maxSize[64]] required" size="20">年审周期</th>
+								<th type="enum" name="inspectionList[#index#].annualCycle" 
+									enumUrl="${contextPath }/management/vehicle/inspection/select">年审周期</th>
 								<th type="date" format="yyyy-MM-dd" name="inspectionList[#index#].lastTime"
 									fieldClass="validate[required,maxSize[10]] required"  size="12"
 									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">上次年审时间</th>
-								<th type="date" format="yyyy-MM-dd" name="inspectionList[#index#].nextTime"
-									fieldClass="validate[required,maxSize[10]] required" size="12"
-									defaultVal="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>">下次年审时间</th>
+								<th type="text" name="inspectionList[#index#].inspectionResult" 
+									fieldClass="validate[required,maxSize[64]] required" size="20">年审结果</th>
+								<th type="text" name="insuranceList[#index#].inspectionRemark" size="30">备注</th>
 								<th type="del" width="40">操作</th>
 							</tr>
 						</thead>
-						<tbody align="center">
+						<tbody>
 							<c:forEach var="child" items="${vehicle.inspectionList}" 
 								varStatus="status">
 								<tr class="unitBox">
 									<input type="hidden" name="inspectionList[${status.index}].id" value="${child.id}" />
 									<input type="hidden" name="inspectionList[${status.index}].parent.id" value="${child.parent.id}" />
-									<td><input type="text" name="inspectionList[${status.index}].annualCycle" value="${child.annualCycle}"/></td>
-									<td><input type="date" class="date required" size="10" name="inspectionList[${status.index}].lastTime" value="<fmt:formatDate value="${child.lastTime}" pattern="yyyy-MM-dd"/>"/></td>
-									<td><input type="date" class="date required" size="10" name="inspectionList[${status.index}].nextTime" value="<fmt:formatDate value="${child.nextTime}" pattern="yyyy-MM-dd"/>"/></td>
+									<td>
+										<select class="combox" name="inspectionList[${status.index}].annualCycle">
+											<option value="12" <c:if test="${child.annualCycle == '12'}">selected</c:if>>两年一审</option>
+											<option value="11" <c:if test="${child.annualCycle == '11'}">selected</c:if>>一年一审</option>
+										    <option value="21" <c:if test="${child.annualCycle == '21'}">selected</c:if>>一年两审</option>
+										</select>
+									</td>
+									<td><input type="date" class="date validate[required,maxSize[10]] required" size="12" 
+											name="inspectionList[${status.index}].lastTime" value="<fmt:formatDate value="${child.lastTime}" pattern="yyyy-MM-dd"/>"/></td>
+									<td><input type="text" class="validate[required,maxSize[64]] required" 
+											name="inspectionList[${status.index}].inspectionResult" value="${child.inspectionResult}"  size="20"/></td>
+									<td><input type="text" name="inspectionList[${status.index}].inspectionRemark" value="${child.inspectionRemark}"  size="30"/></td>
 									<td><a href="javascript:void(0)" class="btnDel">删除</a></td>
 								</tr>
 							</c:forEach>

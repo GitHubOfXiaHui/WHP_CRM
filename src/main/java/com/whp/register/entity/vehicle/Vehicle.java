@@ -83,25 +83,15 @@ public class Vehicle extends RecordObject {
 	private boolean recordedInsurance = false;
 	
     /** 保险列表. */
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parent", cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<VehicleInsurance> insuranceList = Lists.newArrayList();
     
-    // 是否录入年审信息
-    @Type(type = "yes_no")
-	@Column(name = "recorded_inspection")
-	private boolean recordedInspection = false;
-	
     /** 年审列表. */
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parent", cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<VehicleInspection> inspectionList = Lists.newArrayList();
     
-    // 是否录入加装信息
-    @Type(type = "yes_no")
-	@Column(name = "recorded_installation")
-	private boolean recordedInstallation = false;
-	
     /** 加装列表. */
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parent", cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<VehicleInstallation> installationList = Lists.newArrayList();
     
     // 车辆状态
@@ -109,7 +99,7 @@ public class Vehicle extends RecordObject {
  	private String vehicleStatus = IDLE;
  	
     /** 车辆使用申请列表. */
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parent", cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<VehicleApplications> applicationList = Lists.newArrayList();
 
 	public String getLicense() {
@@ -200,28 +190,12 @@ public class Vehicle extends RecordObject {
 		this.insuranceList = insuranceList;
 	}
 
-	public boolean isRecordedInspection() {
-		return recordedInspection;
-	}
-
-	public void setRecordedInspection(boolean recordedInspection) {
-		this.recordedInspection = recordedInspection;
-	}
-
 	public List<VehicleInspection> getInspectionList() {
 		return inspectionList;
 	}
 
 	public void setInspectionList(List<VehicleInspection> inspectionList) {
 		this.inspectionList = inspectionList;
-	}
-
-	public boolean isRecordedInstallation() {
-		return recordedInstallation;
-	}
-
-	public void setRecordedInstallation(boolean recordedInstallation) {
-		this.recordedInstallation = recordedInstallation;
 	}
 
 	public List<VehicleInstallation> getInstallationList() {
