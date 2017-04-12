@@ -75,7 +75,7 @@ public class VehicleInstallationController extends BaseController {
 		}
 		vehicleService.update(entity);
 		
-		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { vehicle.getLicense() }));
+		LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] { entity.getLicense() }));
 		return AjaxObject.newOk("修改车辆加装信息成功。").toString();
 	}
 
