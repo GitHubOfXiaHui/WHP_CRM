@@ -60,6 +60,8 @@ public class VehicleInspectionServiceImpl extends BaseServiceImpl<VehicleInspect
 			}
 		}
 		
+		// 年审信息状态
+		entity.setRecordedInspection(!entity.getInspectionList().isEmpty());
 	}
 	
 	/**

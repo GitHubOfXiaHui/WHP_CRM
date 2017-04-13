@@ -60,6 +60,8 @@ public class VehicleInstallationServiceImpl extends BaseServiceImpl<VehicleInsta
 			}
 		}
 
+		// 加装信息状态
+		entity.setRecordedInstallation(!entity.getInstallationList().isEmpty());
 	}
 	
 	private void update(List<VehicleInstallation> oldInstallations, VehicleInstallation newInstallation) throws IllegalArgumentException, IllegalAccessException {

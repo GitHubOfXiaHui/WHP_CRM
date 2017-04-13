@@ -45,6 +45,7 @@
 				<th>车辆配置</th>
 				<th>排量</th>
 				<th>购买时间</th>
+				<th>加装信息状态</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,6 +56,12 @@
 				<td>${item.configuration}</td>
 				<td>${item.displacement}</td>
 				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
+				<td>
+				<c:choose>
+					<c:when test="${item.recordedInstallation }">已录入</c:when>
+					<c:otherwise>未录入</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>

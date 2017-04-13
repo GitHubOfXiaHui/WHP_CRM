@@ -50,7 +50,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
-			<tr target="slt_uid" rel="${item.id}" onclick="displayButton(${item.recordedInspection })">
+			<tr target="slt_uid" rel="${item.id}">
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.configuration}</td>
