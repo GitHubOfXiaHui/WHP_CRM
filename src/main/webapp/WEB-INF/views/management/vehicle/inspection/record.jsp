@@ -32,7 +32,7 @@
 			<div class="tabsHeader">
 				<div class="tabsHeaderContent">
 					<ul>
-						<li class="selected"><a href="javascript:;"><span>保险信息</span></a></li>
+						<li class="selected"><a href="javascript:;"><span>年审信息</span></a></li>
 					</ul>
 				</div>
 			</div>

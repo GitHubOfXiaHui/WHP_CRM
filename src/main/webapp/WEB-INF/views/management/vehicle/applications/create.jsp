@@ -50,9 +50,14 @@
 			<input type="text" class="validate[required,maxSize[64]] required" name="applicationIntent" size="20"/>
 		</p>
 		<p>
-			<label>用车时间：</label>
-			<input type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
-				name="useTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
+			<label>起始时间：</label>
+			<input id="start" type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
+				name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly" onchange="setMinDateOfEndTime();"/>
+		</p>
+		<p>
+			<label>截止时间：</label>
+			<input id="end" type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
+				name="endTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
 		</p>
 	</div>
 			
@@ -64,3 +69,11 @@
 	</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+function setMinDateOfEndTime() {
+	var start = $('#start');
+	var end = $('#end');
+	end.attr('minDate', start.val());
+}
+</script>

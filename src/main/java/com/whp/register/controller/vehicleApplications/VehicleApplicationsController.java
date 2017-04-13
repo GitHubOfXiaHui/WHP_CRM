@@ -7,6 +7,7 @@ import javax.servlet.ServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,16 +45,18 @@ public class VehicleApplicationsController extends BaseController {
 
 	private static final String LIST = "management/vehicle/applications/list";
 	private static final String CREATE = "management/vehicle/applications/create";
+	
+	private static final String PRINT = "management/vehicle/applications/print/list";
 
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Page page, Map<String, Object> model, ServletRequest request) {
+	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 
-		model.put("page", page);
-		model.put("vehicles", vehicles);
-		model.putAll(searchParams);
+		map.put("page", page);
+		map.put("vehicles", vehicles);
+		map.putAll(searchParams);
 
 		return LIST;
 	}
@@ -80,6 +83,22 @@ public class VehicleApplicationsController extends BaseController {
 			return AjaxObject.newError(e.getMessage()).setCallbackType("").toString();
 		}
 		
+	}
+	
+	@RequestMapping(value = "/print/list", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list(boolean allApplications, Page page, Map<String, Object> map, ServletRequest request) {
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		if (!allApplications) {
+			searchParams.put("EQ_applicationUser.id", getShiroUser().getUser().getId());
+		}
+		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
+		
+		map.put("page", page);
+		map.put("applications", applications);
+		map.put("allApplications", allApplications);
+		map.putAll(searchParams);
+
+		return PRINT;
 	}
 	
 }

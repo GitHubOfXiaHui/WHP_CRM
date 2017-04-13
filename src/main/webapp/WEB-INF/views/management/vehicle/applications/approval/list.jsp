@@ -61,7 +61,8 @@
 				<th>驾驶员</th>
 				<th>乘车人数（人）</th>
 				<th>车辆用途</th>
-				<th>用车时间</th>
+				<th>起始时间</th>
+				<th>截止时间</th>
 				<th>申请人</th>
 				<th>申请人所在派出所</th>
 				<th>车牌号</th>
@@ -84,7 +85,8 @@
 				<td>${item.driver}</td>
 				<td>${item.passengerNum}</td>
 				<td>${item.applicationIntent}</td>
-				<td><fmt:formatDate value="${item.useTime}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${item.endTime}" pattern="yyyy-MM-dd"/></td>
 				<td>${item.applicationUser.realname}</td>
 				<td>${item.applicationUser.organization.name}</td>
 				<td>${item.parent.license}</td>

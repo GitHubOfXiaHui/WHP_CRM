@@ -71,10 +71,14 @@ public class VehicleApplications extends RecordObject {
 	@Column
 	private boolean requireApproval = false;
 	
-	// 申请用车时间
+	// 申请用车时间段
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "use_time")
-	private Date useTime;
+	@Column(name = "start_time")
+	private Date startTime;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "end_time")
+	private Date endTime;
 	
 	/** 申请人. */
 	@ManyToOne
@@ -142,12 +146,20 @@ public class VehicleApplications extends RecordObject {
 		this.requireApproval = requireApproval;
 	}
 
-	public Date getUseTime() {
-		return useTime;
+	public Date getStartTime() {
+		return startTime;
 	}
 
-	public void setUseTime(Date useTime) {
-		this.useTime = useTime;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 
 	public User getApplicationUser() {
