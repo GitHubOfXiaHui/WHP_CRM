@@ -47,12 +47,12 @@
 		</p>
 		<p>
 			<label>车辆用途：</label>
-			<input type="text" class="validate[required,maxSize[64]] required" name="applicationIntent" size="20"/>
+			<input type="text" class="validate[required,maxSize[64]] required" name="applicationIntent" size="20" onchange="setMinDateOfEndTime();"/>
 		</p>
 		<p>
 			<label>起始时间：</label>
 			<input id="start" type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
-				name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly" onchange="setMinDateOfEndTime();"/>
+				name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
 		</p>
 		<p>
 			<label>截止时间：</label>
@@ -69,11 +69,3 @@
 	</div>
 	</form>
 </div>
-
-<script type="text/javascript">
-function setMinDateOfEndTime() {
-	var start = $('#start');
-	var end = $('#end');
-	end.attr('minDate', start.val());
-}
-</script>
