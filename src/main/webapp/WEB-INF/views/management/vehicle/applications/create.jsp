@@ -51,13 +51,13 @@
 		</p>
 		<p>
 			<label>起始时间：</label>
-			<input id="start" type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
-				name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
+			<input id="startTime" type="date" class="Wdate" name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd', minDate:'<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>', maxDate:'#F{$dp.$D(\'endTime\')}'})" readonly="readonly"/>
 		</p>
 		<p>
 			<label>截止时间：</label>
-			<input id="end" type="date" class="date validate[required] required" minDate="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" 
-				name="endTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>" size="20" readonly="readonly"/>
+			<input id="endTime" type="date" class="Wdate" name="endTime" 
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd', minDate:'#F{$dp.$D(\'startTime\')}'})" readonly="readonly"/>
 		</p>
 	</div>
 			
