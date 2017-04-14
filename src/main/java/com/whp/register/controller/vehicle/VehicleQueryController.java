@@ -29,33 +29,33 @@ public class VehicleQueryController extends BaseController {
 	
 	//@RequiresPermissions("VehicleQuery:view")
 	@RequestMapping(value = "/list")
-	public String list(Page page, Map<String, Object> model, ServletRequest request) {
+	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 		
-		model.put("page", page);
-		model.put("vehicles", vehicles);
-		model.putAll(searchParams);
+		map.put("page", page);
+		map.put("vehicles", vehicles);
+		map.putAll(searchParams);
 		
 		return LIST;
 	}
 	
 	//@RequiresPermissions("VehicleQuery:view")
 	@RequestMapping(value = "/details/{id}")
-	public String details(@PathVariable Long id, Map<String, Object> model) {
+	public String details(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
 		
-		model.put("vehicle", vehicle);
+		map.put("vehicle", vehicle);
 		
 		return DETAILS;
 	}
 	
 	//@RequiresPermissions("VehicleQuery:view")
 	@RequestMapping(value = "/vehicle/{id}")
-	public String vehicle(@PathVariable Long id, Map<String, Object> model) {
+	public String vehicle(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
 		
-		model.put("vehicle", vehicle);
+		map.put("vehicle", vehicle);
 		
 		return VEHICLE;
 	}

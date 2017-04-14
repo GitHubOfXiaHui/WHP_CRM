@@ -36,13 +36,13 @@ public class ApplicationsApprovalController extends BaseController {
 	
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/approval/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Page page, Map<String, Object> model, ServletRequest request) {
+	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 
-		model.put("page", page);
-		model.put("applications", applications);
-		model.putAll(searchParams);
+		map.put("page", page);
+		map.put("applications", applications);
+		map.putAll(searchParams);
 
 		return LIST;
 	}

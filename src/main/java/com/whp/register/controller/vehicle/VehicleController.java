@@ -47,13 +47,13 @@ public class VehicleController extends BaseController {
 
 	//@RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(Page page, Map<String, Object> model, ServletRequest request) {
+	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 		
-		model.put("page", page);
-		model.put("vehicles", vehicles);
-		model.putAll(searchParams);
+		map.put("page", page);
+		map.put("vehicles", vehicles);
+		map.putAll(searchParams);
 		
 		return LIST;
 	}

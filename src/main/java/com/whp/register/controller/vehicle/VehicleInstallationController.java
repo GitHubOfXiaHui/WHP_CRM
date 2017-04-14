@@ -40,22 +40,22 @@ public class VehicleInstallationController extends BaseController {
 
 	//@RequiresPermissions("VehicleInstallation:view")
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(Page page, Map<String, Object> model, ServletRequest request) {
+	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 
-		model.put("page", page);
-		model.put("vehicles", vehicles);
-		model.putAll(searchParams);
+		map.put("page", page);
+		map.put("vehicles", vehicles);
+		map.putAll(searchParams);
 
 		return LIST;
 	}
 	
 	//@RequiresPermissions("VehicleInspection:save")
 	@RequestMapping(value = "/record/{id}", method = RequestMethod.GET)
-	public String preRecord(@PathVariable Long id, Map<String, Object> model) {
+	public String preRecord(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
-		model.put("vehicle", vehicle);
+		map.put("vehicle", vehicle);
 		return RECORD;
 	}
 	
@@ -81,9 +81,9 @@ public class VehicleInstallationController extends BaseController {
 
 	//@RequiresPermissions("VehicleInstallation:view")
 	@RequestMapping(value = "/view/{id}", method = { RequestMethod.GET })
-	public String view(@PathVariable Long id, Map<String, Object> model) {
+	public String view(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle entity = vehicleService.get(id);
-		model.put("entity", entity);
+		map.put("entity", entity);
 		return VIEW;
 	}
 
