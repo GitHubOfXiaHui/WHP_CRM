@@ -38,6 +38,9 @@ public class ApplicationsApprovalController extends BaseController {
 	@RequestMapping(value = "/approval/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Page page, Map<String, Object> model, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		
+		dataAuth(searchParams);
+		
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 
 		model.put("page", page);

@@ -344,20 +344,14 @@ public abstract class BaseController
             {
                 return false;
             }
-            //如果所在组织是市级管理机构，则可以查看所有机构的数据
-            if ("5".equals(organization.getJglx()))
-            {
-                
-            }
-            else
-            {
+
                 if (user.getUser().getUserb().equals("1"))
                 {
                     if (null != user.getUser().getUsername())
                     {
-                        if (null == searchParams.get("EQ_userb"))
+                        if (null == searchParams.get("EQ_userAuth"))
                         {
-                            searchParams.put("EQ_userb", user.getUser().getUsername());
+                            searchParams.put("EQ_userAuth", user.getUser().getUsername());
                         }
                     }
                 }
@@ -365,14 +359,13 @@ public abstract class BaseController
                 {
                     if (null != user.getUser().getOrgb())
                     {
-                        if (null == searchParams.get("EQ_orgb"))
+                        if (null == searchParams.get("EQ_orgAuth"))
                         {
-                            searchParams.put("EQ_orgb", user.getUser().getOrganization().getCode());
+                            searchParams.put("EQ_orgAuth", user.getUser().getOrganization().getCode());
                         }
                     }
                 }
             }
-        }
         return true;
     }
 }
