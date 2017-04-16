@@ -28,7 +28,10 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li id="print"><a iconClass="page_white_add" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/print/{slt_uid}"><span>打印申请单</span></a></li>
+				<li id="print"><a iconClass="page_white_add" target="dialog" mask="true" width="800" height="400" href="${contextPath }/management/vehicle/applications/print/{slt_uid}"><span>打印申请单</span></a></li>
+			<%-- </shiro:hasPermission> --%>
+			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
+				<li id="print"><a iconClass="page_white_add" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/cancel/{slt_uid}"><span>取消申请单</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>

@@ -45,7 +45,8 @@ public class VehicleApplicationsController extends BaseController {
 	private static final String LIST = "management/vehicle/applications/list";
 	private static final String CREATE = "management/vehicle/applications/create";
 	
-	private static final String PRINT = "management/vehicle/applications/print/list";
+	private static final String PRINT_LIST = "management/vehicle/applications/print/list";
+	private static final String PRINT = "management/vehicle/applications/print/print";
 
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -97,7 +98,16 @@ public class VehicleApplicationsController extends BaseController {
 		map.put("allApplications", allApplications);
 		map.putAll(searchParams);
 
-		return PRINT;
+		return PRINT_LIST;
 	}
 	
+	@RequestMapping(value = "/print/{id}", method = RequestMethod.GET)
+	public String print(@PathVariable Long id, Map<String, Object> map) {
+		VehicleApplications application = applicationsService.get(id);
+		
+		map.put("application", application);
+
+		return PRINT;
+	}
+
 }

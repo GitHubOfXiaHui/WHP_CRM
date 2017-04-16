@@ -46,9 +46,6 @@
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
 				<li class="approval3" style="display: none"><a iconClass="page_white_add" rel="reject" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/approval3/reject/{slt_uid}" title="确定要驳回申请吗？"><span>驳回申请</span></a></li>
 			<%-- </shiro:hasPermission> --%>
-			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" rel="cancel" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/cancel/{slt_uid}" title="确定要取消申请吗？"><span>取消申请</span></a></li>
-			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>
 	
