@@ -49,6 +49,9 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 		application.setApplicationUser(shiroUser.getUser());
 		application.setParent(vehicle);
 		
+		application.setOrgAuth(shiroUser.getUser().getOrganization().getCode());
+		application.setUserAuth(shiroUser.getUser().getUsername());
+		
 		return vehicle;
 	}
 

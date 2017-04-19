@@ -165,10 +165,10 @@ $(function(){
 				</div>
 				<div class="accordionContent">
 					<ul class="tree treeFolder">
-						<li><a href="" target="navTab" rel="">用户管理</a></li>
-						<li><a href="" target="navTab" rel="">组织管理</a></li>
-						<li><a href="" target="navTab" rel="">模块管理</a></li>
-						<li><a href="" target="navTab" rel="">角色管理</a></li>
+						<li><a href="${contextPath}/management/security/user/list" target="navTab" rel="">用户管理</a></li>
+						<li><a href="${contextPath}/management/security/organization/tree_list" target="navTab" rel="">组织管理</a></li>
+						<li><a href="${contextPath}/management/security/module/tree_list" target="navTab" rel="">模块管理</a></li>
+						<li><a href="${contextPath}/management/security/role/list" target="navTab" rel="">角色管理</a></li>
 						<li><a href="" target="navTab" rel="">系统配置</a></li>
 					</ul>
 				</div>			

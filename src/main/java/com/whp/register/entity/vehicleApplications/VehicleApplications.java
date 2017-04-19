@@ -89,6 +89,14 @@ public class VehicleApplications extends RecordObject {
 	@ManyToOne
     @JoinColumn(name = "PARENT_ID")
 	private Vehicle parent;
+	
+	/** 数据权限控制--用户. */
+	@Column(name = "user_auth")
+	private String userAuth;
+	
+	/** 数据权限控制--机构. */
+	@Column(name = "org_auth")
+	private String orgAuth;
 
 	public String getApprovalStatus() {
 		return approvalStatus;
@@ -176,6 +184,22 @@ public class VehicleApplications extends RecordObject {
 
 	public void setParent(Vehicle parent) {
 		this.parent = parent;
+	}
+
+	public String getUserAuth() {
+		return userAuth;
+	}
+
+	public void setUserAuth(String userAuth) {
+		this.userAuth = userAuth;
+	}
+
+	public String getOrgAuth() {
+		return orgAuth;
+	}
+
+	public void setOrgAuth(String orgAuth) {
+		this.orgAuth = orgAuth;
 	}
 	
 }
