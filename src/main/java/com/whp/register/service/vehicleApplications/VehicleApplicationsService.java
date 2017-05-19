@@ -19,42 +19,22 @@ public interface VehicleApplicationsService extends BaseService<VehicleApplicati
 	Vehicle applicate(Long vehicleId, VehicleApplications application, ShiroUser shiroUser) throws ServiceException;
 
 	/**
-	 * 所领导审批通过
+	 * 审批通过
 	 * @param id
 	 * @return
 	 */
-	void approval1Pass(Long id);
+	void approvalPass(Long id);
 
 	/**
-	 * 吴主任审批通过
+	 * 驳回申请
 	 * @param id
-	 * @return
 	 */
-	void approval2Pass(Long id);
-
+	void approvalReject(Long id);
+	
 	/**
-	 * 局领导审批通过
-	 * @param id
-	 * @return
-	 */
-	void approval3Pass(Long id);
-
-	/**
-	 * 所领导驳回申请
+	 * 还车
 	 * @param id
 	 */
-	void approval1Reject(Long id);
-
-	/**
-	 * 吴主任驳回申请
-	 * @param id
-	 */
-	void approval2Reject(Long id);
-
-	/**
-	 * 局领导驳回申请
-	 * @param id
-	 */
-	void approval3Reject(Long id);
+	VehicleApplications vehicleReturn(VehicleApplications applicationNew,VehicleApplications application);
 
 }

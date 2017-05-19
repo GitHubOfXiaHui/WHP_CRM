@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springside.modules.web.Servlets;
 
 import com.whp.framework.controller.BaseController;
+import com.whp.framework.entity.main.User;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicleApplications.VehicleApplications;
@@ -39,8 +40,9 @@ public class ApplicationsApprovalController extends BaseController {
 	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		
-		dataAuth(searchParams);
-		
+		//dataAuth(searchParams);
+		User user=getShiroUser().getUser();
+		searchParams.put("EQ_auditUser", user.getRealname());
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);
@@ -53,42 +55,14 @@ public class ApplicationsApprovalController extends BaseController {
 	@RequestMapping(value = "/approval1/pass/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public String approval1Pass(@PathVariable Long id) {
-		applicationsService.approval1Pass(id);
+		applicationsService.approvalPass(id);
 		return AjaxObject.newOk("审批通过。").setCallbackType("").toString();
 	}
 	
 	@RequestMapping(value = "/approval1/reject/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public String approval1Reject(@PathVariable Long id) {
-		applicationsService.approval1Reject(id);
-		return AjaxObject.newOk("驳回申请。").setCallbackType("").toString();
-	}
-
-	@RequestMapping(value = "/approval2/pass/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval2Pass(@PathVariable Long id) {
-		applicationsService.approval2Pass(id);
-		return AjaxObject.newOk("审批通过。").setCallbackType("").toString();
-	}
-	
-	@RequestMapping(value = "/approval2/reject/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval2Reject(@PathVariable Long id) {
-		applicationsService.approval2Reject(id);
-		return AjaxObject.newOk("驳回申请。").setCallbackType("").toString();
-	}
-
-	@RequestMapping(value = "/approval3/pass/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval3Pass(@PathVariable Long id) {
-		applicationsService.approval3Pass(id);
-		return AjaxObject.newOk("审批通过。").setCallbackType("").toString();
-	}
-	
-	@RequestMapping(value = "/approval3/reject/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval3Reject(@PathVariable Long id) {
-		applicationsService.approval3Reject(id);
+		applicationsService.approvalReject(id);
 		return AjaxObject.newOk("驳回申请。").setCallbackType("").toString();
 	}
 

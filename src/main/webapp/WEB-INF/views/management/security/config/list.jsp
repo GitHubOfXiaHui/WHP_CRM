@@ -28,7 +28,7 @@
 
 	<div class="panelBar">
 		<ul class="toolBar">
-			<shiro:hasPermission name="Config:view">
+			<%-- <shiro:hasPermission name="Config:view">
 				<li><a iconClass="magnifier" target="dialog" mask="true" width="530" height="350" href="${contextPath }/management/security/config/view/{slt_uid}"><span>查看配置</span></a></li>
 			</shiro:hasPermission>		
 			<shiro:hasPermission name="Config:save">
@@ -39,8 +39,11 @@
 			</shiro:hasPermission>
 			<shiro:hasPermission name="Config:delete">
 				<li><a iconClass="shield_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/security/config/delete" title="确认要删除配置?"><span>删除配置</span></a></li>
-			</shiro:hasPermission>
-			
+			</shiro:hasPermission> --%>
+			<li><a iconClass="magnifier" target="dialog" mask="true" width="530" height="350" href="${contextPath }/management/security/config/view/{slt_uid}"><span>查看配置</span></a></li>
+		<li><a iconClass="shield_add" target="dialog" mask="true" width="530" height="350" href="${contextPath }/management/security/config/create"><span>添加配置</span></a></li>
+		<li><a iconClass="shield_go" target="dialog" mask="true" width="530" height="350" href="${contextPath }/management/security/config/update/{slt_uid}"><span>编辑配置</span></a></li>
+		<li><a iconClass="shield_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/security/config/delete" title="确认要删除配置?"><span>删除配置</span></a></li>
 		</ul>
 	</div>
 	

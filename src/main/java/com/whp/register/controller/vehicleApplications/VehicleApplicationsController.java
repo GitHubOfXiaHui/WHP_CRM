@@ -15,10 +15,12 @@ import org.springside.modules.beanvalidator.BeanValidators;
 import org.springside.modules.web.Servlets;
 
 import com.whp.framework.controller.BaseController;
+import com.whp.framework.entity.main.User;
 import com.whp.framework.exception.ServiceException;
 import com.whp.framework.log.Log;
 import com.whp.framework.log.LogMessageObject;
 import com.whp.framework.log.impl.LogUitl;
+import com.whp.framework.service.main.UserService;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicle.Vehicle;
@@ -41,12 +43,17 @@ public class VehicleApplicationsController extends BaseController {
 	
 	@Autowired
 	private VehicleApplicationsService applicationsService;
+	
+	@Autowired
+	private UserService userService;
 
 	private static final String LIST = "management/vehicle/applications/list";
 	private static final String CREATE = "management/vehicle/applications/create";
 	
 	private static final String PRINT_LIST = "management/vehicle/applications/print/list";
 	private static final String PRINT = "management/vehicle/applications/print/print";
+
+	private static final String LOOKUP = "management/vehicle/applications/lookup_user";
 
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -110,4 +117,27 @@ public class VehicleApplicationsController extends BaseController {
 		return PRINT;
 	}
 
+	/**
+	 * 一级审批查询用户
+	 * @param page
+	 * @param map
+	 * @param request
+	 * @return
+	 */
+    @RequestMapping(value = "/lookup", method = {RequestMethod.GET, RequestMethod.POST})
+    public String lookupreq(Page page, Map<String, Object> map, ServletRequest request)
+    {
+        Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+        
+        User user=getShiroUser().getUser();
+        searchParams.put("EQ_organization.id", user.getOrganization().getId());
+        List<User> userList = null;
+
+        map.putAll(searchParams);
+        userList = userService.findByFilterJpa(page, searchParams);
+
+        map.put("page", page);
+        map.put("userList", userList);
+        return LOOKUP;
+    }
 }

@@ -113,15 +113,18 @@ td {
 			</tr>
 			<tr>
 				<th>车行驶数始码</th>
-				<td>&nbsp;</td>
+				<td>${application.startFGReading }</td>
 				<th>车行驶数止码</th>
-				<td>&nbsp;</td>
+				<td>${application.endFGReading }</td>
 			</tr>
 			<tr>
 				<th>经办人</th>
 				<td>${application.applicationUser.realname }</td>
 				<th>领导签字</th>
-				<td>&nbsp;</td>
+				<td>
+				<c:if test="${application.requireApproval}">${application.audit1User };${application.audit2User };${application.audit3User }</c:if>
+				<c:if test="${!application.requireApproval}">${application.audit1User };${application.audit2User }</c:if>
+				</td>
 			</tr>
 			<tr style="height: 100px;">
 				<th>备注</th>

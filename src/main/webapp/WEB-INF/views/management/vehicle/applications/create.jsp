@@ -35,15 +35,15 @@
 		<p>
 			<label>目的地：</label>
 			<input type="text" class="validate[required,maxSize[64]] required" name="destination" size="20"/>
-			<input type="checkbox" name="requireApproval" value="true" checked>目的地超出武汉
+			<input type="checkbox" name="requireApproval" value="true" checked/>目的地超出武汉
 		</p>
 		<p>
 			<label>驾驶员：</label>
-			<input type="text" name="driver" size="20"/>
+			<input type="text" class="validate[required,maxSize[64]] required" name="driver" size="20"/>
 		</p>
 		<p>
 			<label>乘车人数：</label>
-			<input type="text" class="validate[custom[integer]]" name="passengerNum" size="20"/>
+			<input type="text" class="validate[required,custom[integer]]  required" name="passengerNum" size="20"/>
 		</p>
 		<p>
 			<label>车辆用途：</label>
@@ -58,6 +58,12 @@
 			<label>截止时间：</label>
 			<input id="endTime" type="date" class="Wdate" name="endTime" 
 				onclick="WdatePicker({dateFmt:'yyyy-MM-dd', minDate:'#F{$dp.$D(\'startTime\')}'})" readonly="readonly"/>
+		</p>
+				<p>
+			<label>第一审批人：</label>
+			<input type="hidden" name="auditUser" val="user.mc" />	
+			<input class="validate[required] required" name="audit1User" val="user.mc" type="text" readonly="readonly"/>
+			<a class="btnLook" href="${contextPath }/management/vehicle/applications/lookup" lookupGroup="user" title="第一审批人" width="400">查找带回</a>	
 		</p>
 	</div>
 			

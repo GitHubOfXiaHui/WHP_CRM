@@ -6,13 +6,26 @@
 	<input type="hidden" name="search_LIKE_parent.license" value="${LIKE_parent.license}"/>
 </keta:paginationForm>
 
-<form method="post" action="${contextPath }/management/vehicle/applications/approval/list" onsubmit="return navTabSearch(this);">
+<form method="post" action="${contextPath }/management/vehicle/applications/return/list" onsubmit="return navTabSearch(this);">
 	<div class="pageHeader">
 		<div class="searchBar">
 			<ul class="searchContent">
 				<li>
 					<label>车牌号：</label>
 					<input type="text" name="search_LIKE_parent.license" value="${LIKE_parent.license}"/>
+				</li>
+				<li>
+					<label>申请状态：</label>
+					<select name="search_EQ_approvalStatus">
+						<option value="00" 
+						<c:if test="${EQ_approvalStatus =='00'}">
+							 selected="selected"
+						</c:if>>通过</option>
+						<option value="88" 
+						<c:if test="${EQ_approvalStatus =='88'}">
+							 selected="selected"
+						</c:if>>还车确认</option>
+						</select>
 				</li>
 			</ul>
 			<div class="subBar">
@@ -23,19 +36,6 @@
 		</div>
 	</div>
 </form>
-
-<div class="pageContent">
-
-	<div class="panelBar">
-		<ul class="toolBar">
-			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li class="approval1"><a iconClass="page_white_add" rel="pass" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/approval1/pass/{slt_uid}" title="确定要通过申请吗？"><span>通过申请</span></a></li>
-			<%-- </shiro:hasPermission> --%>
-			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li class="approval1"><a iconClass="page_white_add" rel="reject" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/approval1/reject/{slt_uid}" title="确定要驳回申请吗？"><span>驳回申请</span></a></li>
-			<%-- </shiro:hasPermission> --%>
-		</ul>
-	</div>
 	
 	<table class="table" layoutH="137" width="100%">
 		<thead>
@@ -51,11 +51,12 @@
 				<th>申请人</th>
 				<th>申请人所在派出所</th>
 				<th>车牌号</th>
+				<th width="5%">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${applications}">
-			<tr target="slt_uid" rel="${item.id}" onclick="displayButton('${item.approvalStatus }')">
+			<tr target="slt_uid" rel="${item.id}">
 				<td>
 				<c:choose>
 					<c:when test="${item.approvalStatus == '11'}">等待所领导审批</c:when>
@@ -63,6 +64,7 @@
 					<c:when test="${item.approvalStatus == '13'}">等待局领导审批</c:when>
 					<c:when test="${item.approvalStatus == '00'}">通过</c:when>
 					<c:when test="${item.approvalStatus == '99'}">驳回</c:when>
+					<c:when test="${item.approvalStatus == '88'}">还车确认</c:when>
 				</c:choose>
 				</td>
 				<td>${item.departure}</td>
@@ -75,6 +77,17 @@
 				<td>${item.applicationUser.realname}</td>
 				<td>${item.applicationUser.organization.name}</td>
 				<td>${item.parent.license}</td>
+				
+				<td>
+				<c:if test="${item.approvalStatus == '00'}">
+							<!-- rel="requestNoteManageOper"定义弹出框id为“requestNoteManageOper” 						// -->
+							<a target="dialog"  max="true"  mask="true"	href="${contextPath }/management/vehicle/applications/return/manageOper/${item.id}"  rel="requestNoteManageOper"  title="还车"><img src='${contextPath }/styles/dwz/themes/css/images/toolbar_icons16/cog.png'></a>
+							
+						</c:if>
+						<c:if test="${item.approvalStatus == '88'}">
+						<a iconClass="magnifier" target="dialog" max="true" mask="true" href="${contextPath }/management/vehicle/applications/return/view/${item.id}" rel="requestNoteManageView"  title="查看"></a>
+						</c:if>
+						</td> 
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -82,12 +95,3 @@
 	<!-- 分页 -->
 	<keta:pagination page="${page }"/>
 </div>
-<script type="text/javascript">
-function displayButton(status) {
-	if (status == "00") {
-		$("li.approval1").hide();
-	}else if(status != "00") {
-		$("li.approval1").show();
-	}
-}
-</script>

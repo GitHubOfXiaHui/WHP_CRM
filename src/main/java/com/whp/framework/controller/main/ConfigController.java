@@ -61,7 +61,7 @@ public class ConfigController
      * @param map
      * @return
      */
-    @RequiresPermissions("Config:view")
+    //@RequiresPermissions("Config:view")
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public String list(Page page, String keywords, Map<String, Object> map)
     {
@@ -89,7 +89,7 @@ public class ConfigController
      * @param map
      * @return
      */
-    @RequiresPermissions("Config:view")
+    //@RequiresPermissions("Config:view")
     @RequestMapping(value = "/view/{id}", method = {RequestMethod.GET})
     public String view(@PathVariable
     Long id, Map<String, Object> map)
@@ -108,7 +108,7 @@ public class ConfigController
      * @param map
      * @return
      */
-    @RequiresPermissions("Config:save")
+    //@RequiresPermissions("Config:save")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String preCreate(Map<String, Object> map)
     {
@@ -116,7 +116,7 @@ public class ConfigController
     }
     
     @Log(message = "添加了{0}配置。")
-    @RequiresPermissions("Config:save")
+    //@RequiresPermissions("Config:save")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public @ResponseBody
     String create(Config config)
@@ -159,7 +159,7 @@ public class ConfigController
      * @return
      */
     @Log(message = "删除了{0}配置。")
-    @RequiresPermissions("Config:delete")
+    //@RequiresPermissions("Config:delete")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public @ResponseBody
     String deleteMany(Long[] ids)
@@ -183,7 +183,7 @@ public class ConfigController
      * @param map
      * @return
      */
-    @RequiresPermissions("Config:edit")
+    //@RequiresPermissions("Config:edit")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String preUpdate(@PathVariable
     Long id, Map<String, Object> map)
@@ -194,7 +194,7 @@ public class ConfigController
     }
     
     @Log(message = "修改了{0}配置信息。")
-    @RequiresPermissions("Config:edit")
+    //@RequiresPermissions("Config:edit")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public @ResponseBody
     String update(Config config)

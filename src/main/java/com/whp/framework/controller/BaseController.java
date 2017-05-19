@@ -361,7 +361,7 @@ public abstract class BaseController
                     {
                         if (null == searchParams.get("EQ_orgAuth"))
                         {
-                            searchParams.put("EQ_orgAuth", user.getUser().getOrganization().getCode());
+                            searchParams.put("EQ_orgAuth", user.getUser().getOrganization().getId().toString());
                         }
                     }
                 }

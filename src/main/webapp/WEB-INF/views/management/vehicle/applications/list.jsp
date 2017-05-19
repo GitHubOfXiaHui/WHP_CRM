@@ -29,7 +29,7 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" mask="true" width="500" height="500" href="${contextPath }/management/vehicle/applications/create/{slt_uid}"><span>申请使用车辆</span></a></li>
+				<li><a iconClass="page_white_add" target="dialog" mask="true" rel="application_save" width="500" height="500" href="${contextPath }/management/vehicle/applications/create/{slt_uid}"><span>申请使用车辆</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>

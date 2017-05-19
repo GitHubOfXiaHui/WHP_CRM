@@ -125,13 +125,8 @@ $(function(){
 						<li><a href="${contextPath}/management/vehicle/applications/list" target="navTab" rel="applications">车辆使用申请</a></li>
 						<li><a href="${contextPath}/management/vehicle/applications/approval/list" target="navTab" rel="applicationsApproval">车辆使用审批</a></li>
 						<li><a href="${contextPath}/management/vehicle/applications/print/list" target="navTab" rel="applicationsPrint">申请单打印</a></li>
-						<li><a href="" target="navTab" rel="">车辆归还</a></li>
-						<li><a href="" target="navTab" rel="">违章信息录入</a></li>
-						<li><a href="" target="navTab" rel="">加油信息录入</a></li>
-						<li><a href="" target="navTab" rel="">事故信息录入</a></li>
-						<li><a href="" target="navTab" rel="">油卡信息录入</a></li>
-						<li><a href="" target="navTab" rel="">油卡信息查询</a></li>
-						<li><a href="" target="navTab" rel="">车辆使用记录查询</a></li>
+						<li><a href="${contextPath}/management/vehicle/applications/return/list" target="navTab" rel="">车辆归还</a></li>
+						<li><a href="${contextPath}/management/vehicle/applications/return/record" target="navTab" rel="">车辆使用记录查询</a></li>
 					</ul>
 				</div>
 				<div class="accordionHeader">
@@ -144,7 +139,6 @@ $(function(){
 						<li><a href="" target="navTab" rel="">车辆维修申请</a></li>
 						<li><a href="" target="navTab" rel="">车辆维修审批</a></li>
 						<li><a href="" target="navTab" rel="">申请单打印</a></li>
-						<li><a href="" target="navTab" rel="">维修审批归档</a></li>
 						<li><a href="" target="navTab" rel="">维修确认</a></li>
 						<li><a href="" target="navTab" rel="">维修记录查询</a></li>
 					</ul>
@@ -169,7 +163,7 @@ $(function(){
 						<li><a href="${contextPath}/management/security/organization/tree_list" target="navTab" rel="">组织管理</a></li>
 						<li><a href="${contextPath}/management/security/module/tree_list" target="navTab" rel="">模块管理</a></li>
 						<li><a href="${contextPath}/management/security/role/list" target="navTab" rel="">角色管理</a></li>
-						<li><a href="" target="navTab" rel="">系统配置</a></li>
+						<li><a href="${contextPath}/management/security/config/list" target="navTab" rel="">系统配置</a></li>
 					</ul>
 				</div>			
 			</div>
