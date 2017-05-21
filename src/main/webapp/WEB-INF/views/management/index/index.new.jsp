@@ -125,8 +125,8 @@ $(function(){
 						<li><a href="${contextPath}/management/vehicle/applications/list" target="navTab" rel="applications">车辆使用申请</a></li>
 						<li><a href="${contextPath}/management/vehicle/applications/approval/list" target="navTab" rel="applicationsApproval">车辆使用审批</a></li>
 						<li><a href="${contextPath}/management/vehicle/applications/print/list" target="navTab" rel="applicationsPrint">申请单打印</a></li>
-						<li><a href="${contextPath}/management/vehicle/applications/return/list" target="navTab" rel="">车辆归还</a></li>
-						<li><a href="${contextPath}/management/vehicle/applications/return/record" target="navTab" rel="">车辆使用记录查询</a></li>
+						<li><a href="${contextPath}/management/vehicle/applications/return/list" target="navTab" rel="return">车辆归还</a></li>
+						<li><a href="${contextPath}/management/vehicle/applications/return/record" target="navTab" rel="record">车辆使用记录查询</a></li>
 					</ul>
 				</div>
 				<div class="accordionHeader">
@@ -134,13 +134,13 @@ $(function(){
 				</div>
 				<div class="accordionContent">
 					<ul class="tree treeFolder">
-						<li><a href="" target="navTab" rel="">维修点管理</a></li>
-						<li><a href="" target="navTab" rel="">维修项管理</a></li>
-						<li><a href="" target="navTab" rel="">车辆维修申请</a></li>
-						<li><a href="" target="navTab" rel="">车辆维修审批</a></li>
-						<li><a href="" target="navTab" rel="">申请单打印</a></li>
-						<li><a href="" target="navTab" rel="">维修确认</a></li>
-						<li><a href="" target="navTab" rel="">维修记录查询</a></li>
+						<!-- <li><a href="" target="navTab" rel="">维修点管理</a></li>
+						<li><a href="" target="navTab" rel="">维修项管理</a></li> -->
+						<li><a href="${contextPath}/management/vehicle/repair/list" target="navTab" rel="">车辆维修申请</a></li>
+						<li><a href="${contextPath}/management/vehicle/repair/approval/list" target="navTab" rel="">车辆维修审批</a></li>
+						<li><a href="${contextPath}/management/vehicle/repair/print/list" target="navTab" rel="">申请单打印</a></li>
+						<li><a href="${contextPath}/management/vehicle/repair/affirm/list" target="navTab" rel="">维修确认</a></li>
+						<li><a href="${contextPath}/management/vehicle/repair/affirm/record" target="navTab" rel="">维修记录查询</a></li>
 					</ul>
 				</div>
 				<div class="accordionHeader">
@@ -152,6 +152,7 @@ $(function(){
 						<li><a href="" target="navTab" rel="">用车统计</a></li>
 						<li><a href="" target="navTab" rel="">维修统计</a></li>
 						<li><a href="" target="navTab" rel="">报告分析</a></li>
+						<li><a href="" target="navTab" rel="">综合查询</a></li>
 					</ul>
 				</div>
 				<div class="accordionHeader">

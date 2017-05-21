@@ -92,43 +92,40 @@ td {
 	<div id="myPrintArea">
 		<table>
 			<caption>
-				<h1>派 车 单</h1>
-				<p><fmt:formatDate value="${application.createDate }" pattern="yyyy年M月d日"/></p>
+				<h1>东新分局车辆检修审批单</h1>
 			</caption>
+			<tr><th>送检时间</th><td><fmt:formatDate value="${repair.startTime }" pattern="yyyy年M月d日"/></td><th>预计接车时间</th><td><fmt:formatDate value="${repair.endTime }" pattern="yyyy年M月d日"/></td><th>实际接车时间</th><td><fmt:formatDate value="${repair.actualEndTime }" pattern="yyyy年M月d日"/></td></tr>
 			<tr>
-				<th>用车单位</th>
-				<td>${application.applicationUser.organization.name }</td>
-				<th>车牌号</th>
-				<td>${application.parent.license }</td>
-			</tr>
-			<tr>
-				<th>事由</th>
-				<td colspan="3">${application.applicationIntent }</td>
-			</tr>
-			<tr>
-				<th>出车时间</th>
-				<td><fmt:formatDate value="${application.startTime }" pattern="yyyy-MM-dd"/></td>
-				<th>返回时间</th>
-				<td><fmt:formatDate value="${application.endTime }" pattern="yyyy-MM-dd"/></td>
-			</tr>
-			<tr>
-				<th>车行驶数始码</th>
-				<td>${application.startFGReading }</td>
-				<th>车行驶数止码</th>
-				<td>${application.endFGReading }</td>
-			</tr>
-			<tr>
+				<th>车号</th>
+				<td>${repair.parent.license }</td>
+				<th>单位</th>
+				<td>${repair.applicationUser.organization.name }</td>
 				<th>经办人</th>
-				<td>${application.applicationUser.realname }</td>
-				<th>领导签字</th>
-				<td>
-				<c:if test="${application.requireApproval}">${application.audit1User };${application.audit2User };${application.audit3User }</c:if>
-				<c:if test="${!application.requireApproval}">${application.audit1User };${application.audit2User }</c:if>
-				</td>
+				<td>${repair.applicationUser.realname }</td>
 			</tr>
-			<tr style="height: 100px;">
+			<tr>
+				<th>检修原因</th>
+				<td colspan="5">${repair.repairDescript }</td>
+			</tr>
+			<tr>
+				<th>检修费用</th>
+				<td colspan="5">大写：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 佰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小写：${repair.price }元</td>
+			</tr>
+			<tr>
+				<th style="height: 40px;">单位领导审批</th>
+				<td colspan="5">${repair.audit1User }</td>
+			</tr>
+			<tr>
+				<th style="height: 40px;">主管部门意见</th>
+				<td colspan="5">${repair.audit2User }</td>
+			</tr>
+			<tr>
+				<th style="height: 40px;">分局领导审批</th>
+				<td colspan="5">${repair.audit3User }</td>
+			</tr>
+			<tr style="height: 60px;">
 				<th>备注</th>
-				<td colspan="3" valign="top">${application.returnRemark }</td>
+				<td colspan="5" valign="top">${repair.affirmRemark }</td>
 			</tr>
 		</table>
 		<p>武汉市公安局东湖新技术开发区分局 制</p>

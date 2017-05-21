@@ -19,6 +19,7 @@ import org.hibernate.annotations.Type;
 import com.google.common.collect.Lists;
 import com.whp.framework.entity.RecordObject;
 import com.whp.register.entity.vehicleApplications.VehicleApplications;
+import com.whp.register.entity.vehicleRepair.VehicleRepair;
 
 /**
  * 车辆基本信息
@@ -111,6 +112,10 @@ public class Vehicle extends RecordObject {
     /** 车辆使用申请列表. */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleApplications> applicationList = Lists.newArrayList();
+    
+    /** 车辆维修申请列表. */
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VehicleRepair> repairs = Lists.newArrayList();
 
 	public String getLicense() {
 		return license;
@@ -246,6 +251,14 @@ public class Vehicle extends RecordObject {
 
 	public void setApplicationList(List<VehicleApplications> applicationList) {
 		this.applicationList = applicationList;
+	}
+
+	public List<VehicleRepair> getRepairs() {
+		return repairs;
+	}
+
+	public void setRepairs(List<VehicleRepair> repairs) {
+		this.repairs = repairs;
 	}
 
 }

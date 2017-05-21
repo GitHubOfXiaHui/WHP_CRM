@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 
-<keta:paginationForm action="${contextPath }/management/vehicle/applications/print/list" page="${page }" onsubmit="return navTabSearch(this);">
+<keta:paginationForm action="${contextPath }/management/vehicle/repair/print/list" page="${page }" onsubmit="return navTabSearch(this);">
 	<input type="hidden" name="allApplications" value="${allApplications }"/>
 </keta:paginationForm>
 
-<form method="post" action="${contextPath }/management/vehicle/applications/print/list" onsubmit="return navTabSearch(this);">
+<form method="post" action="${contextPath }/management/vehicle/repair/print/list" onsubmit="return navTabSearch(this);">
 	<div class="pageHeader">
 		<div class="searchBar">
 			<ul class="searchContent">
@@ -28,58 +28,47 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li id="print1"><a iconClass="page_white_add" target="dialog" mask="true" width="800" height="400" href="${contextPath }/management/vehicle/applications/print/{slt_uid}"><span>打印申请单</span></a></li>
+				<li id="print1"><a iconClass="page_white_add" target="dialog" mask="true" width="800" height="450" href="${contextPath }/management/vehicle/repair/print/{slt_uid}"><span>打印申请单</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<%--<li id="print"><a iconClass="page_white_add" target="ajaxTodo" href="${contextPath }/management/vehicle/applications/cancel/{slt_uid}"><span>取消申请单</span></a></li>
-			 </shiro:hasPermission> --%>
+			<%-- 	<li><a iconClass="page_white_add" target="ajaxTodo" href="${contextPath }/management/vehicle/repair/cancel/{slt_uid}"><span>取消申请单</span></a></li>
+			</shiro:hasPermission> --%>
 		</ul>
 	</div>
 	
 	<table class="table" layoutH="137" width="100%">
 		<thead>
-			<tr>
-				<th>审批状态</th>
-				<th>出发地</th>
-				<th>目的地</th>
-				<th>驾驶员</th>
-				<th>乘车人数</th>
-				<th>车辆用途</th>
-				<th>是否需要局领导审批</th>
-				<th>起始时间</th>
-				<th>截止时间</th>
-				<th>申请人</th>
 				<th>车牌号</th>
-			</tr>
+				<th>申请状态</th>
+				<th>检修地点</th>
+				<th>预计检修费用</th>
+				<th>检修原因</th>
+				<th>送检时间</th>
+				<th>接车时间</th>
+				<th>申请人</th>
+				<th>申请人所在派出所</th>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${applications}">
-			<tr target="slt_uid" rel="${item.id}" onclick="canPrint('${item.approvalStatus }');">
+			<c:forEach var="item" items="${repairs}">
+			<tr target="slt_uid" rel="${item.id}" onclick="canPrint('${item.approvalStatus }')">
+				<td>${item.parent.license}</td>
 				<td>
 				<c:choose>
 					<c:when test="${item.approvalStatus == '11'}">等待所领导审批</c:when>
-					<c:when test="${item.approvalStatus == '12'}">等待吴主任审批</c:when>
+					<c:when test="${item.approvalStatus == '12'}">等待后勤管理处审批</c:when>
 					<c:when test="${item.approvalStatus == '13'}">等待局领导审批</c:when>
 					<c:when test="${item.approvalStatus == '00'}">通过</c:when>
 					<c:when test="${item.approvalStatus == '99'}">驳回</c:when>
-					<c:when test="${item.approvalStatus == '88'}">还车确认</c:when>
+					<c:when test="${item.approvalStatus == '88'}">检修确认</c:when>
 				</c:choose>
 				</td>
-				<td>${item.departure}</td>
-				<td>${item.destination}</td>
-				<td>${item.driver}</td>
-				<td>${item.passengerNum}</td>
-				<td>${item.applicationIntent}</td>
-				<td>
-				<c:choose>
-					<c:when test="${item.requireApproval}">是</c:when>
-					<c:otherwise>否</c:otherwise>
-				</c:choose>
-				</td>
+				<td>${item.repairSite}</td>
+				<td>${item.price}</td>
+				<td>${item.repairDescript}</td>
 				<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd"/></td>
 				<td><fmt:formatDate value="${item.endTime}" pattern="yyyy-MM-dd"/></td>
 				<td>${item.applicationUser.realname}</td>
-				<td>${item.parent.license}</td>
+				<td>${item.applicationUser.organization.name}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

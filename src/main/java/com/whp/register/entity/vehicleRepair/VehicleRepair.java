@@ -23,6 +23,10 @@ import com.whp.register.entity.vehicle.Vehicle;
 @Table(name = "t_vehicle_repair")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.whp.register.entity.vehicleRepair")
 public class VehicleRepair extends RecordObject{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7595018913947454763L;
 	/** 审批状态. */
 	// 等待所领导审批
 	public static final String APPROVAL1 = "11";
@@ -34,7 +38,7 @@ public class VehicleRepair extends RecordObject{
 	public static final String PASS = "00";
 	// 驳回
 	public static final String REJECT = "99";
-	// 还车确认
+	// 检修确认
 	public static final String RETURN = "88";
 	
 	// 审批状态
@@ -89,32 +93,56 @@ public class VehicleRepair extends RecordObject{
 	@Column(length = 20)
 	private String audit3User;
 	
-	/** 预计维修开始时间. */
+	/** 预计送检时间. */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start_time")
 	private Date startTime;
 	
-	/** 预计维修结束时间. */
+	/** 预计接车时间. */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "end_time")
 	private Date endTime;
 	
-	/** 预计维修金额. */
+	/** 预计检修费用. */
 	@Column
 	private float price;
 	
-	// 维修地点
+	// 检修地点
 	@Column
 	private String repairSite;
 	
-	// 维修描述
-	@Column
+	// 检修原因
+	@Column(length=2000)
 	private String repairDescript;
 	
 	// 是否需要局领导审批
 	@Type(type = "yes_no")
 	@Column
 	private boolean requireApproval = false;
+	
+	/** 实际检修费用. */
+	@Column
+	private float actualPrice=0;
+	
+	/** 实际接车时间. */
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date actualEndTime;
+	
+	/** 确认人. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String affirmUser;
+	
+	/** 确认时间. */
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date affirmDate;
+	
+	/** 确认备注. */
+	@Length(max = 200)
+	@Column(length = 200)
+	private String affirmRemark;
 
 	public String getApprovalStatus() {
 		return approvalStatus;
@@ -250,6 +278,46 @@ public class VehicleRepair extends RecordObject{
 
 	public void setRequireApproval(boolean requireApproval) {
 		this.requireApproval = requireApproval;
+	}
+
+	public Date getActualEndTime() {
+		return actualEndTime;
+	}
+
+	public void setActualEndTime(Date actualEndTime) {
+		this.actualEndTime = actualEndTime;
+	}
+
+	public String getAffirmUser() {
+		return affirmUser;
+	}
+
+	public void setAffirmUser(String affirmUser) {
+		this.affirmUser = affirmUser;
+	}
+
+	public Date getAffirmDate() {
+		return affirmDate;
+	}
+
+	public void setAffirmDate(Date affirmDate) {
+		this.affirmDate = affirmDate;
+	}
+
+	public String getAffirmRemark() {
+		return affirmRemark;
+	}
+
+	public void setAffirmRemark(String affirmRemark) {
+		this.affirmRemark = affirmRemark;
+	}
+
+	public float getActualPrice() {
+		return actualPrice;
+	}
+
+	public void setActualPrice(float actualPrice) {
+		this.actualPrice = actualPrice;
 	}
 	
 }
