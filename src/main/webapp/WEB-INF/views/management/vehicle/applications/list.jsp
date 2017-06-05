@@ -37,7 +37,6 @@
 	<table class="table" layoutH="137" width="100%">
 		<thead>
 			<tr>
-				<th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
 				<th>车牌号</th>
 				<th>车辆型号</th>
 				<th>所属单位</th>
@@ -54,7 +53,6 @@
 		<tbody>
 			<c:forEach var="item" items="${vehicles}">
 			<tr target="slt_uid" rel="${item.id}">
-				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
 				<td>${item.organization.name}</td>

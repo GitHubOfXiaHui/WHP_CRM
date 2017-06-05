@@ -16,16 +16,22 @@
 			<input type="text" value="${vehicle.type }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>车辆配置：</label>
-			<input type="text" value="${vehicle.configuration }" size="20" readonly="readonly"/>
+			<label>车型：</label>
+			<c:if test="${vehicle.vehicleType==1 }"><input type="text" value="小型汽车" size="20" readonly="readonly"/></c:if>
+			<c:if test="${vehicle.vehicleType==2 }"><input type="text" value="中型客车" size="20" readonly="readonly"/></c:if>
+		</p>
+		<p>
+			<label>用途：</label>
+			<c:if test="${vehicle.utility==1 }"><input type="text" value="特种专业技术用车" size="20" readonly="readonly"/></c:if>
+			<c:if test="${vehicle.utility==2 }"><input type="text" value="执法执勤用车" size="20" readonly="readonly"/></c:if>
 		</p>
 		<p>
 			<label>排量：</label>
 			<input type="text" value="${vehicle.displacement }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>乘员数（人）：</label>
-			<input type="text" value="${vehicle.crew }" size="20" readonly="readonly"/>
+			<label>所属单位：</label>
+			<input type="text" value="${vehicle.organization.name }" size="20" readonly="readonly"/>
 		</p>
 		<div class="divider"></div>
 		<p>

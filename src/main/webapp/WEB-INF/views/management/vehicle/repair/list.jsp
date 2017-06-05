@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
 
-<keta:paginationForm action="${contextPath }/management/vehicle/applications/list" page="${page }" onsubmit="return navTabSearch(this);">
+<keta:paginationForm action="${contextPath }/management/vehicle/repair/list" page="${page }" onsubmit="return navTabSearch(this);">
 	<input type="hidden" name="search_LIKE_license" value="${LIKE_license}"/>
 </keta:paginationForm>
 
-<form method="post" action="${contextPath }/management/vehicle/applications/list" onsubmit="return navTabSearch(this);">
+<form method="post" action="${contextPath }/management/vehicle/repair/list" onsubmit="return navTabSearch(this);">
 	<div class="pageHeader">
 		<div class="searchBar">
 			<ul class="searchContent">
@@ -39,10 +39,15 @@
 			<tr>
 				<th>车牌号</th>
 				<th>车辆型号</th>
-				<th>车辆颜色</th>
-				<th>车辆配置</th>
+				<th>所属单位</th>
+				<th>车型</th>
 				<th>排量</th>
-				<th>乘员数（人）</th>
+				<th>车架号</th>
+				<th>发动机号</th>
+				<th>价格（万元）</th>
+				<th>行驶公里数</th>
+				<th>购买时间</th>
+				<th>用途</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,13 +55,21 @@
 			<tr target="slt_uid" rel="${item.id}">
 				<td>${item.license}</td>
 				<td>${item.type}</td>
-				<td>${item.color}</td>
-				<td>${item.configuration}</td>
+				<td>${item.organization.name}</td>
+				<td>
+				<c:if test="${item.vehicleType==1}">小型汽车</c:if>
+				<c:if test="${item.vehicleType==2}">中型客车</c:if></td>
 				<td>${item.displacement}</td>
-				<td>${item.crew}</td>
+				<td>${item.vehicleNumber}</td>
+				<td>${item.engineNumber}</td>
+				<td>${item.price}</td>
+				<td>${item.mileage}</td>
+				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM"/></td>
+				<td>
+				<c:if test="${item.utility==1}">特种专业技术用车</c:if>
+				<c:if test="${item.utility==2}">执法执勤用车</c:if></td>
 			</tr>
 			</c:forEach>
-		</tbody>
 	</table>
 	<!-- 分页 -->
 	<keta:pagination page="${page }"/>

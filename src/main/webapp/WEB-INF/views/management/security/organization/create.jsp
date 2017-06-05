@@ -6,51 +6,11 @@
 	<input type="hidden" name="parent.id" value="${parentOrganizationId }"/>
 	<div class="pageFormContent" layoutH="58">
 		<dl>
-			<dt>行政区划名称：</dt>
-			<dd>
-			     <input type="hidden" val="xzqhGroup.areaName" name="areaName" />
-				<input type="text" class="required" val="xzqhGroup.areaName" name="xzqhGroup.areaName"  readonly="readonly" />
-				<a class="btnLook" href="<%=basePath %>/management/security/organization/lookup/list" lookupGroup="xzqhGroup" title="行政区划列表" width="700">查找带回</a>	
-			</dd>
-		</dl>
-		
-		<dl>
-			<dt>行政区划代码：</dt>
-			<dd>
-			     <input type="text" val="xzqhGroup.areaCode" name="areaCode"  readonly="readonly"/>
-			</dd>
-		</dl>
-		
-	<dl>
-			<dt>代码：</dt>
-			<dd>
-				<input type="text" name="code" class="validate[required,maxSize[16]] required" size="32" maxlength="16" alt="请输入组织代码"/>
-			</dd>
-		</dl>
-		<dl>
 			<dt>名称：</dt>
 			<dd>
 				<input type="text" name="name" class="validate[required,maxSize[16]] required" size="32" maxlength="16" alt="请输入组织名称"/>
 			</dd>
-		</dl>	
-		<dl>     
-			<dt>机构类型：</dt>
-			<dd> 
-				 <select name="jglx" id="jglx">
-						<option value="1" >医疗机构</option>
-						<option value="2" >供应商</option>
-						<option value="3" >银行</option>
-						<option value="4" >区级管理机构</option>
-						<option value="5" >市级管理机构</option>
-				</select>
-			</dd>
-		</dl>	
-		<dl>
-			<dt>平台自编码：</dt>
-			<dd>
-				<input type="text" name="ptzbm" class="validate[maxSize[64]]" size="32" maxlength="64" alt="请输入平台自编码"/>
-			</dd>
-		</dl>		
+		</dl>			
 		<dl>
 			<dt>描述：</dt>
 			<dd>

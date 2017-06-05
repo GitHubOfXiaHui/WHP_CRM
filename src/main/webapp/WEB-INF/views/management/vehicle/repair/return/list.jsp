@@ -60,7 +60,7 @@
 				<td>
 				<c:choose>
 					<c:when test="${item.approvalStatus == '11'}">等待所领导审批</c:when>
-					<c:when test="${item.approvalStatus == '12'}">等待后勤管理处审批</c:when>
+					<c:when test="${item.approvalStatus == '12'}">等待警务保障室审批</c:when>
 					<c:when test="${item.approvalStatus == '13'}">等待局领导审批</c:when>
 					<c:when test="${item.approvalStatus == '00'}">通过</c:when>
 					<c:when test="${item.approvalStatus == '99'}">驳回</c:when>
