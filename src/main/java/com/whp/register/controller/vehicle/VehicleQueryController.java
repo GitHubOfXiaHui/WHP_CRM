@@ -35,6 +35,7 @@ public class VehicleQueryController extends BaseController {
 		
 		map.put("page", page);
 		map.put("vehicles", vehicles);
+		map.put("organization", searchParams.get("LIKE_organization.name"));
 		map.putAll(searchParams);
 		
 		return LIST;

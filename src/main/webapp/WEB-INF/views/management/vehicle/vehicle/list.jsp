@@ -36,10 +36,10 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li><a iconClass="page_white_add" target="dialog" mask="true" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/create"><span>录入车辆信息</span></a></li>
+				<li><a iconClass="page_white_add" target="dialog" mask="true" rel="vehicle_save" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/create"><span>录入车辆信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:edit"> --%>
-				<li><a iconClass="page_white_edit" target="dialog" mask="true" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑车辆信息</span></a></li>
+				<li><a iconClass="page_white_edit" target="dialog" mask="true" rel="vehicle_update" width="500" height="400" href="${contextPath }/management/vehicle/vehicle/update/{slt_uid}"><span>编辑车辆信息</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:delete"> --%>
 				<li><a iconClass="page_white_delete" target="selectedTodo" rel="ids" href="${contextPath }/management/vehicle/vehicle/delete" title="确认要删除选定的车辆信息?"><span>删除车辆信息</span></a></li>
@@ -59,13 +59,15 @@
 				<th width="22"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
 				<th>车牌号</th>
 				<th>车辆型号</th>
-				<th>车辆颜色</th>
-				<th>车辆配置</th>
+				<th>所属单位</th>
+				<th>车型</th>
 				<th>排量</th>
-				<th>乘员数（人）</th>
+				<th>车架号</th>
+				<th>发动机号</th>
 				<th>价格（万元）</th>
-				<th>购置税（元）</th>
+				<th>行驶公里数</th>
 				<th>购买时间</th>
+				<th>用途</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -74,13 +76,19 @@
 				<td><input name="ids" value="${item.id}" type="checkbox"></td>
 				<td>${item.license}</td>
 				<td>${item.type}</td>
-				<td>${item.color}</td>
-				<td>${item.configuration}</td>
+				<td>${item.organization.name}</td>
+				<td>
+				<c:if test="${item.vehicleType==1}">小型汽车</c:if>
+				<c:if test="${item.vehicleType==2}">中型客车</c:if></td>
 				<td>${item.displacement}</td>
-				<td>${item.crew}</td>
+				<td>${item.vehicleNumber}</td>
+				<td>${item.engineNumber}</td>
 				<td>${item.price}</td>
-				<td>${item.purchaseTax}</td>
-				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM-dd"/></td>
+				<td>${item.mileage}</td>
+				<td><fmt:formatDate value="${item.buyingTime}" pattern="yyyy-MM"/></td>
+				<td>
+				<c:if test="${item.utility==1}">特种专业技术用车</c:if>
+				<c:if test="${item.utility==2}">执法执勤用车</c:if></td>
 			</tr>
 			</c:forEach>
 		</tbody>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>接入服务平台</title>
+<title>车管平台</title>
 <link href="${contextPath}/styles/dwz/themes/css/login.css" rel="stylesheet" type="text/css" media="screen"/>
 
 <style>
@@ -58,7 +58,7 @@
        </div>
        </form>
      </div>
-    <div class="loginbm">版权所有：湖北省卫生计生委</div>
+    <div class="loginbm">版权所有：武汉市公安局东新分局</div>
   </div>
 </div>
 </body>

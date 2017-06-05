@@ -53,30 +53,17 @@
 	<table class="table" layoutH="142" width="100%" rel="jbsxBox2organizationList" >
 		<thead>
 			<tr>
-				<th width="150">名称</th>
-				<th width="100">机构代码</th>
-				<th width="65">机构类型</th>
-				<th width="90">行政区划名称</th>
-				<th width="90">行政区划代码</th>
-				<th width="150">父组织</th>
+				<th width="30%">名称</th>
+				<th>父组织</th>
+				<th >描述</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${organizations}">
 			<tr target="slt_uid" rel="${item.id}">
 				<td><a href="${contextPath}/management/security/organization/list/${item.id}" target="ajax" rel="jbsxBox2organizationList">${item.name}</a></td>
-				<td>${item.code}</td>
-				<td> 
-					<c:if test="${item.jglx==1 }">医疗机构 </c:if>
-					<c:if test="${item.jglx==2 }">供应商</c:if>
-					<c:if test="${item.jglx==3 }">银行</c:if>
-					<c:if test="${item.jglx==4 }">区级管理机构</c:if>
-					<c:if test="${item.jglx==5 }">市级管理机构</c:if>
-				</td>
-				<td>${item.areaName}</td>
-				<td>${item.areaCode}</td>
-				 
 				<td>${item.parent.name}</td>
+				<td>${item.description}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

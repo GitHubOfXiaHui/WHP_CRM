@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,6 +20,7 @@ import org.hibernate.annotations.Type;
 
 import com.google.common.collect.Lists;
 import com.whp.framework.entity.RecordObject;
+import com.whp.framework.entity.main.Organization;
 import com.whp.register.entity.vehicleApplications.VehicleApplications;
 import com.whp.register.entity.vehicleRepair.VehicleRepair;
 
@@ -63,7 +66,11 @@ public class Vehicle extends RecordObject {
 	
 	// 乘员数
 	@Column
-	private int crew;				
+	private int crew;	
+	
+	// 行驶公里数
+	@Column
+	private int mileage;
 	
 	// 价格
 	@Column
@@ -71,12 +78,37 @@ public class Vehicle extends RecordObject {
 	
 	// 购置税
 	@Column(name = "purchase_tax")
-	private float purchaseTax;		
+	private float purchaseTax;	
+	
+	//车型 1、小型汽车  2、中型客车
+	@Column(length=50)
+	private String vehicleType;
+	
+	//车架号
+	@Column(length=50)
+	private String vehicleNumber;
+	
+	//发动机号
+	@Column(length=50)
+	private String engineNumber;
+	
+	//用途 1特种专业技术用车 2执法执勤用车
+	@Column(length=50)
+	private String utility;
+	
+	//备注
+	@Column(length=1024)
+	private String remark;
 	
 	// 购买时间
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "buying_time")
-	private Date buyingTime;		
+	private Date buyingTime;
+	
+	//所属单位
+	@ManyToOne
+    @JoinColumn(name = "orgId")
+    private Organization organization;
 	
 	// 是否录入保险信息
 	@Type(type = "yes_no")
@@ -259,6 +291,62 @@ public class Vehicle extends RecordObject {
 
 	public void setRepairs(List<VehicleRepair> repairs) {
 		this.repairs = repairs;
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getVehicleNumber() {
+		return vehicleNumber;
+	}
+
+	public void setVehicleNumber(String vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
+	}
+
+	public String getEngineNumber() {
+		return engineNumber;
+	}
+
+	public void setEngineNumber(String engineNumber) {
+		this.engineNumber = engineNumber;
+	}
+
+	public String getUtility() {
+		return utility;
+	}
+
+	public void setUtility(String utility) {
+		this.utility = utility;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public int getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
 	}
 
 }

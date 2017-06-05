@@ -9,7 +9,7 @@
 		</p>
 		<p>
 			<label>车辆型号：</label>
-			<input type="text" value="${vehicle.type }" size="20" readonly="readonly"/>
+			<input type="text" value="${vehicle.type }" size="30" readonly="readonly"/>
 		</p>
 		<p>
 			<label>车辆颜色：</label>
@@ -24,8 +24,30 @@
 			<input type="text" value="${vehicle.displacement }" size="20" readonly="readonly"/>
 		</p>
 		<p>
+			<label>车型：</label>
+		<c:if test="${vehicle.vehicleType==1 }"><input type="text" value="小型汽车" size="20" readonly="readonly"/></c:if>
+		<c:if test="${vehicle.vehicleType==2 }"><input type="text" value="中型客车" size="20" readonly="readonly"/></c:if>
+		</p>
+		<p>
+			<label>车架号：</label>
+			<input type="text" name="vehicleNumber" size="30" value="${vehicle.vehicleNumber }" readonly="readonly"/>
+		</p>
+		<p>
+			<label>发动机号：</label>
+			<input type="text" name="engineNumber" size="20" value="${vehicle.engineNumber }" readonly="readonly"/>
+		</p>
+		<p>
+			<label>用途：</label>
+			<c:if test="${vehicle.utility==1 }"><input type="text" value="特种专业技术用车" size="20" readonly="readonly"/></c:if>
+			<c:if test="${vehicle.utility==2 }"><input type="text" value="执法执勤用车" size="20" readonly="readonly"/></c:if>
+		</p>
+		<p>
 			<label>乘员数（人）：</label>
 			<input type="text" value="${vehicle.crew }" size="20" readonly="readonly"/>
+		</p>
+		<p>
+			<label>行驶公里数：</label>
+			<input type="text" readonly="readonly" class="validate[required,custom[integer]] required" name="mileage" value="${vehicle.mileage }" size="20"/>
 		</p>
 		<p>
 			<label>价格（万元）：</label>
@@ -37,7 +59,15 @@
 		</p>
 		<p>
 			<label>购买时间：</label>
-			<input type="text" value="<fmt:formatDate value="${vehicle.buyingTime }" pattern="yyyy-MM-dd"/>" size="20" readonly="readonly"/>
+			<input type="text" value="<fmt:formatDate value="${vehicle.buyingTime }" pattern="yyyy-MM"/>" size="20" readonly="readonly"/>
+		</p>
+		<p>
+			<label>所属单位：</label>
+			<input type="text" value="${vehicle.organization.name }" size="20" readonly="readonly"/>
+		</p>
+		<p>
+			<label>备注：</label>
+			<textarea rows="2" cols="30" name="remark" readonly="readonly">${vehicle.remark }</textarea>
 		</p>
 	</div>
 	<div class="divider"></div>
@@ -51,7 +81,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="tabsContent" style="height: 220px;">
+		<div class="tabsContent" style="height: 200px;">
 			<div>
 				<table class="list nowrap" width="100%">
 					<thead align="center">

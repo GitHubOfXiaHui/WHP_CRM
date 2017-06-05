@@ -121,22 +121,9 @@ public class OrganizationController extends BaseController
         {
             return AjaxObject.newError("添加组织失败：id=" + organization.getParent().getId() + "的父组织不存在！").toString();
         }
-        if (StringUtils.isBlank(organization.getAreaCode()))
-        {
-            return AjaxObject.newError("添加组织失败：行政区划为空！").toString();
-        }
         if (StringUtils.length(organization.getName()) > 15)
         {
             return AjaxObject.newError("机构名称长度不能大于15！").toString();
-        }
-        if (StringUtils.length(organization.getCode()) > 11)
-        {
-            return AjaxObject.newError("机构代码长度不能大于11！").toString();
-        }
-        Organization temp = organizationService.findByCode(organization.getCode());
-        if (null != temp)
-        {
-            return AjaxObject.newError("添加组织失败：机构代码已经存在," + organization.getCode()).toString();
         }
         organization.setTbbz("0");
         organizationService.save(organization);
@@ -270,16 +257,6 @@ public class OrganizationController extends BaseController
         if (StringUtils.length(organization.getName()) > 15)
         {
             return AjaxObject.newError("机构名称长度不能大于15！").toString();
-        }
-        if (StringUtils.length(organization.getCode()) > 11)
-        {
-            return AjaxObject.newError("机构代码长度不能大于11！").toString();
-        }
-        Organization temp = organizationService.findByCode(organization.getCode());
-        if (null != temp)
-        {
-            if (!temp.getId().equals(organization.getId()))
-                return AjaxObject.newError("添加组织失败：机构代码已经存在," + organization.getCode()).toString();
         }
         organization.setTbbz("0");
         organizationService.update(organization);
