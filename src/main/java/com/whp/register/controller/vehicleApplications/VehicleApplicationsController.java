@@ -59,6 +59,11 @@ public class VehicleApplicationsController extends BaseController {
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		
+		User user=getShiroUser().getUser();
+		
+		if(!user.getIsSupervisor())
+			searchParams.put("EQ_organization.id", user.getOrganization().getId());
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);
@@ -95,9 +100,9 @@ public class VehicleApplicationsController extends BaseController {
 	@RequestMapping(value = "/print/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(boolean allApplications, Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		if (!allApplications) {
-			searchParams.put("EQ_applicationUser.id", getShiroUser().getUser().getId());
-		}
+		
+		dataAuth(searchParams);
+		
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 		
 		map.put("page", page);

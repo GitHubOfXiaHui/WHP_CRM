@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/views/include.inc.jsp"%>
+<link href="${contextPath }/styles/ztree/css/zTreeStyle.css" rel="stylesheet" type="text/css" />
 <%!
 public String role_tree(Module module, Role role, Integer[] moduleIndex) {
 	StringBuilder explandBuilder = new StringBuilder("<span class='inputValueRole'>");

@@ -117,11 +117,16 @@ td {
 			</tr>
 			<tr>
 				<th style="height: 40px;">主管部门意见</th>
-				<td colspan="5">${repair.audit2User }</td>
+				<td colspan="5">
+				<c:if test="${repair.requireApproval1}">${repair.audit2User }</c:if>
+				<c:if test="${!repair.requireApproval1}">无需主管部门审批</c:if>
+				</td>
 			</tr>
 			<tr>
 				<th style="height: 40px;">分局领导审批</th>
-				<td colspan="5">${repair.audit3User }</td>
+				<td colspan="5">
+				<c:if test="${repair.requireApproval}">${repair.audit3User }</c:if>
+				<c:if test="${!repair.requireApproval}">无需局领导审批</c:if></td>
 			</tr>
 			<tr style="height: 60px;">
 				<th>备注</th>

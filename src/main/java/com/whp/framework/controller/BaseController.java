@@ -338,13 +338,13 @@ public abstract class BaseController
         //如果不是超级管理员
         if (!user.getUser().getIsSupervisor())
         {
-            
             Organization organization = user.getUser().getOrganization();
             if (null == organization)
             {
                 return false;
             }
-
+            if(!organization.getParent().getIsRoot())
+            {
                 if (user.getUser().getUserb().equals("1"))
                 {
                     if (null != user.getUser().getUsername())
@@ -357,15 +357,13 @@ public abstract class BaseController
                 }
                 else if (user.getUser().getUserb().equals("2"))
                 {
-                    if (null != user.getUser().getOrgb())
-                    {
                         if (null == searchParams.get("EQ_orgAuth"))
                         {
                             searchParams.put("EQ_orgAuth", user.getUser().getOrganization().getId().toString());
                         }
-                    }
                 }
             }
+        }
         return true;
     }
 }

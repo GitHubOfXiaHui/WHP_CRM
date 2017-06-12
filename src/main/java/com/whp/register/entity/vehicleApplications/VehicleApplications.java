@@ -32,7 +32,7 @@ public class VehicleApplications extends RecordObject {
 	/** 审批状态. */
 	// 等待所领导审批
 	public static final String APPROVAL1 = "11";
-	// 等待吴主任审批
+	// 等待警务保障室审批
 	public static final String APPROVAL2 = "12";
 	// 等待局领导审批
 	public static final String APPROVAL3 = "13";

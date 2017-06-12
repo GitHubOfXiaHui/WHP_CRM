@@ -16,6 +16,7 @@ import org.springside.modules.beanvalidator.BeanValidators;
 import org.springside.modules.web.Servlets;
 
 import com.whp.framework.controller.BaseController;
+import com.whp.framework.entity.main.User;
 import com.whp.framework.exception.ServiceException;
 import com.whp.framework.log.Log;
 import com.whp.framework.log.LogMessageObject;
@@ -49,6 +50,11 @@ public class VehicleRepairController extends BaseController {
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		
+		User user=getShiroUser().getUser();
+		
+		if(!user.getIsSupervisor())
+		searchParams.put("EQ_organization.id", user.getOrganization().getId());
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);

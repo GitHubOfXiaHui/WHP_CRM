@@ -84,12 +84,12 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 	public void approvalPass(Long id) {
 
 		VehicleApplications application = vehicleApplicationsDao.findOne(id);
-		if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL1)) {
+		/*if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL1)) {
 			application.setApprovalStatus(VehicleApplications.APPROVAL2);
 			application.setAuditUser(application.getAudit2User());
 			application.setAudit1Date(new Date());
 			vehicleApplicationsDao.save(application);
-		} else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL2)) {
+		} else */if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL1)) {
 			// 需要局领导审批
 			if (application.isRequireApproval()) {
 				application.setApprovalStatus(VehicleApplications.APPROVAL3);

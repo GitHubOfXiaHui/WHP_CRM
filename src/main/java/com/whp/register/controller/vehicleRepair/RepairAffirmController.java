@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springside.modules.web.Servlets;
 
 import com.whp.framework.controller.BaseController;
+import com.whp.framework.entity.main.User;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicleApplications.VehicleApplications;
@@ -71,7 +72,7 @@ public class RepairAffirmController extends BaseController{
 		repairNew=repairService.vehicleReturn(repairNew,repair);
 		repairNew.setAffirmUser(getShiroUser().getUser().getRealname());
 		repairService.update(repairNew);
-		return AjaxObject.newOk("还车成功。").toString();
+		return AjaxObject.newOk("确认成功。").toString();
 	}
 	
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
@@ -88,6 +89,9 @@ public class RepairAffirmController extends BaseController{
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		
 		searchParams.put("EQ_approvalStatus", VehicleRepair.RETURN);
+		
+		dataAuth(searchParams);
+		
 		List<VehicleRepair> repairs = repairService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);

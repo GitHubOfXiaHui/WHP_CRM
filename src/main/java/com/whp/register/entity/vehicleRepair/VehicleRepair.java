@@ -30,7 +30,7 @@ public class VehicleRepair extends RecordObject{
 	/** 审批状态. */
 	// 等待所领导审批
 	public static final String APPROVAL1 = "11";
-	// 等待后勤管理处审批
+	// 等待警务保障室审批
 	public static final String APPROVAL2 = "12";
 	// 等待局领导审批
 	public static final String APPROVAL3 = "13";
@@ -119,6 +119,11 @@ public class VehicleRepair extends RecordObject{
 	@Type(type = "yes_no")
 	@Column
 	private boolean requireApproval = false;
+	
+	// 是否需要警务保障室审批
+	@Type(type = "yes_no")
+	@Column
+	private boolean requireApproval1 = false;
 	
 	/** 实际检修费用. */
 	@Column
@@ -318,6 +323,14 @@ public class VehicleRepair extends RecordObject{
 
 	public void setActualPrice(float actualPrice) {
 		this.actualPrice = actualPrice;
+	}
+
+	public boolean isRequireApproval1() {
+		return requireApproval1;
+	}
+
+	public void setRequireApproval1(boolean requireApproval1) {
+		this.requireApproval1 = requireApproval1;
 	}
 	
 }

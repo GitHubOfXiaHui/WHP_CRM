@@ -55,7 +55,7 @@
 		<tbody>
 			<c:forEach var="item" items="${repairs}">
 			<tr target="slt_uid" rel="${item.id}" onclick="displayButton('${item.approvalStatus }')">
-				<td>${item.parent.license}</td>
+				
 				<td>
 				<c:choose>
 					<c:when test="${item.approvalStatus == '11'}">等待所领导审批</c:when>
@@ -66,6 +66,7 @@
 					<c:when test="${item.approvalStatus == '88'}">检修确认</c:when>
 				</c:choose>
 				</td>
+				<td>${item.parent.license}</td>
 				<td>${item.repairSite}</td>
 				<td>${item.price}</td>
 				<td>${item.repairDescript}</td>

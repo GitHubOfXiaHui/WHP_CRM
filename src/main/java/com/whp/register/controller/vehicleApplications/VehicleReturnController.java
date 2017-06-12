@@ -43,8 +43,8 @@ public class VehicleReturnController extends BaseController{
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		dataAuth(searchParams);
-		
+		//dataAuth(searchParams);
+		searchParams.put("EQ_applicationUser.id", getShiroUser().getId());
 		if(null==searchParams.get("EQ_approvalStatus"))
 		searchParams.put("EQ_approvalStatus", VehicleApplications.PASS);
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
@@ -88,6 +88,9 @@ public class VehicleReturnController extends BaseController{
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		
 		searchParams.put("EQ_approvalStatus", VehicleApplications.RETURN);
+		
+		dataAuth(searchParams);
+		
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);

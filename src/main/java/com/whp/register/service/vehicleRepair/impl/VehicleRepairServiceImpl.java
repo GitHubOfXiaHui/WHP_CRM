@@ -49,7 +49,8 @@ implements VehicleRepairService{
 		
 		repair.setApplicationUser(shiroUser.getUser());
 		
-		
+		if(repair.getPrice()<2000&&repair.getPrice()>=1000)
+			repair.setRequireApproval1(true);
 		if(repair.getPrice()>=2000)
 			repair.setRequireApproval(true);
 		
@@ -86,9 +87,14 @@ implements VehicleRepairService{
 		// TODO Auto-generated method stub
 		VehicleRepair repair = dao.findOne(id);
 		if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL1)) {
-			repair.setApprovalStatus(VehicleApplications.APPROVAL2);
-			repair.setAuditUser(repair.getAudit2User());
-			repair.setAudit1Date(new Date());
+			if (repair.isRequireApproval1()) {
+				repair.setApprovalStatus(VehicleApplications.APPROVAL2);
+				repair.setAuditUser(repair.getAudit2User());
+				repair.setAudit1Date(new Date());
+			} else {
+				repair.setAudit1Date(new Date());
+				repair.setApprovalStatus(VehicleRepair.PASS);
+			}
 			update(repair);
 		} else if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL2)) {
 			// 需要局领导审批

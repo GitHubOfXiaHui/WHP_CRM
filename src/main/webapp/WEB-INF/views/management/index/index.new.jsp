@@ -88,7 +88,7 @@ $(function(){
                <a href="${contextPath}/management/index/updatePwd" target="dialog" mask="true" width="500" height="200" class="topLink02">修改密码</a>
                <a href="${contextPath}/management/logout" class="topLink04">退出</a></span></div></span>
                 <ul class="themeList-1" >  
-					<li>admin 您好，欢迎进入！</li>
+					<li>${login_user.realname } 您好，欢迎进入！</li>
 				</ul>
       </div>
 

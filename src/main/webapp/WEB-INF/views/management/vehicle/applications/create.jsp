@@ -41,7 +41,7 @@
 		<p>
 			<label>目的地：</label>
 			<input type="text" class="validate[required,maxSize[64]] required" name="destination" size="20"/>
-			<input type="checkbox" name="requireApproval" value="true" checked/>目的地超出武汉
+			<input type="checkbox" name="requireApproval" value="false" onchange="this.value=(requireApproval.checked)?true:false"/>目的地超出武汉
 		</p>
 		<p>
 			<label>驾驶员：</label>
@@ -57,13 +57,13 @@
 		</p>
 		<p>
 			<label>起始时间：</label>
-			<input id="startTime" type="date" class="Wdate" name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
-				onclick="WdatePicker({dateFmt:'yyyy-MM-dd', minDate:'<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>', maxDate:'#F{$dp.$D(\'endTime\')}'})" readonly="readonly"/>
+			<input id="startTime" class="Wdate" name="startTime" 
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>', maxDate:'#F{$dp.$D(\'endTime\')}'})" readonly="readonly"/>
 		</p>
 		<p>
 			<label>截止时间：</label>
-			<input id="endTime" type="date" class="Wdate" name="endTime" 
-				onclick="WdatePicker({dateFmt:'yyyy-MM-dd', minDate:'#F{$dp.$D(\'startTime\')}'})" readonly="readonly"/>
+			<input id="endTime" class="Wdate" name="endTime" 
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'startTime\')}'})" readonly="readonly"/>
 		</p>
 				<p>
 			<label>第一审批人：</label>

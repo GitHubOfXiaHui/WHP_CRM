@@ -46,6 +46,10 @@
 				<input type="text" class="ipt" id="captcha_key" maxlength="6" name="captcha_key"/>
 				<a class="verifyCode"><img  width="49" height="35" src="${contextPath}/Captcha.jpg" id="captcha" /></a>
 			</p>
+			<p>
+				<input type="checkbox" id="rememberMe" name="rememberMe"/>
+				<label style="color:#000">记住我:</label>
+			</p>
             
            <p class="pad_T_25"><input type="submit" class="btn01" value="登 录" /></p>
            <c:if test="${msg!=null }">
@@ -58,7 +62,7 @@
        </div>
        </form>
      </div>
-    <div class="loginbm">版权所有：武汉市公安局东新分局</div>
+    <div class="loginbm">版权所有：武汉市公安局东湖新技术开发区分局</div>
   </div>
 </div>
 </body>
