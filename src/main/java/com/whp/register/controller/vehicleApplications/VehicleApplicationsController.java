@@ -62,6 +62,8 @@ public class VehicleApplicationsController extends BaseController {
 		
 		User user=getShiroUser().getUser();
 		
+		searchParams.put("EQ_vehicleStatus", Vehicle.IDLE);
+		
 		if(!user.getIsSupervisor())
 			searchParams.put("EQ_organization.id", user.getOrganization().getId());
 		List<Vehicle> vehicles = vehicleService.findByFilterJpa(page, searchParams);

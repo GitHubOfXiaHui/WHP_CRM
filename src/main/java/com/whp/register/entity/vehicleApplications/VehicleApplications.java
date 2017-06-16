@@ -49,7 +49,7 @@ public class VehicleApplications extends RecordObject {
 	@Column(name = "approval_status", nullable = false, length = 2)
 	private String approvalStatus = APPROVAL1;
 	
-	// 出发地
+	// 申请人姓名
 	@Column
 	private String departure;
 	

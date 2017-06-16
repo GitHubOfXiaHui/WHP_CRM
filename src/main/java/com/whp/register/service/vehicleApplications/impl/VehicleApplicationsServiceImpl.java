@@ -46,7 +46,7 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 		// if (!vehicle.getVehicleStatus().equals(Vehicle.IDLE)) {
 		// throw new ServiceException("该车辆(" + vehicle.getLicense() + ")无法使用。");
 		// }
-		// vehicle.setVehicleStatus(Vehicle.USING);
+		vehicle.setVehicleStatus(Vehicle.USING);
 		vehicle.getApplicationList().add(application);
 
 		application.setStatus(RecordObject.CREATE);
@@ -142,6 +142,7 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 		applicationNew.setStartFGReading(application.getStartFGReading());
 		applicationNew.setAccidentRemark(application.getAccidentRemark());
 		applicationNew.setApprovalStatus(VehicleApplications.RETURN);
+		applicationNew.getParent().setVehicleStatus(Vehicle.IDLE);
 		return applicationNew;
 	}
 

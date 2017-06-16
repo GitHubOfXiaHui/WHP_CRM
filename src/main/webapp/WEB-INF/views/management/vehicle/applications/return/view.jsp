@@ -7,7 +7,7 @@
 			<input type="text" value="${application.parent.license }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>出发地：</label>
+			<label>申请人姓名：</label>
 			<input type="text" value="${application.departure }" size="20" readonly="readonly"/>
 		</p>
 		<p>

@@ -51,8 +51,11 @@ implements VehicleRepairService{
 		
 		if(repair.getPrice()<2000&&repair.getPrice()>=1000)
 			repair.setRequireApproval1(true);
-		if(repair.getPrice()>=2000)
+		if(repair.getPrice()>=2000){
+			repair.setRequireApproval1(true);
 			repair.setRequireApproval(true);
+		}
+			
 		
 		repair.setAudit2User(getAuditUser(2));
 		if(repair.isRequireApproval())
@@ -62,8 +65,10 @@ implements VehicleRepairService{
 		repair.setUserAuth(shiroUser.getUser().getUsername());
 		
 		Vehicle vehicle = vehilceDao.findOne(vehicleId);
+		vehicle.setVehicleStatus(Vehicle.USING);
 		repair.setParent(vehicle);
 		vehicle.getRepairs().add(repair);
+		
 		
 		return vehicle;
 	}
@@ -146,6 +151,7 @@ implements VehicleRepairService{
 		repairNew.setAffirmDate(new Date());
 		repairNew.setAffirmRemark(repair.getAffirmRemark());
 		repairNew.setApprovalStatus(VehicleRepair.RETURN);
+		repairNew.getParent().setVehicleStatus(Vehicle.IDLE);
 		return repairNew;
 	}
 }

@@ -108,8 +108,10 @@ td {
 				<td colspan="5">${repair.repairDescript }</td>
 			</tr>
 			<tr>
-				<th>检修费用</th>
-				<td colspan="5">大写：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 佰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小写：${repair.price }元</td>
+				<th>申请检修费用</th>
+				<td colspan="2">大写：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 佰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>小写：${repair.price }元</td>
+				<th>实际检修费用</th>
+				<td colspan="2">大写：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 佰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>小写：${repair.actualPrice }元</td>
 			</tr>
 			<tr>
 				<th style="height: 40px;">单位领导审批</th>

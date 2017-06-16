@@ -10,7 +10,7 @@
 			var printContent = $("#myPrintArea").html();
 		    var ow = window.open("", "newwin", "height=1, width=1");
 		    var style ='<html><c:set var="contextPath" value="${pageContext.request.contextPath}"/><head><style media=print> .Noprint{display:none;} .PageNext{page-break-after: always;} </style>';
-		    style+='<style type="text/css">div {overflow: hidden!important;}table {border-collapse:collapse;border: 1px solid #A1D4FF;white-space: nowrap;}th {border-right: 1px solid #A1D4FF;text-align: center;white-space: nowrap;border-bottom: 1px solid #A1D4FF;}td {border-right: 1px solid #A1D4FF;border-bottom: 1px solid #A1D4FF;text-align: center;white-space: nowrap;}</style></head>';
+		    style+='<style type="text/css">div {overflow: hidden!important;}table {width:100%;border-collapse:collapse;border: 1px solid #A1D4FF;white-space: nowrap;}th {border-right: 1px solid #A1D4FF;text-align: center;white-space: nowrap;border-bottom: 1px solid #A1D4FF;}td {border-right: 1px solid #A1D4FF;border-bottom: 1px solid #A1D4FF;text-align: center;white-space: nowrap;}</style></head>';
 		    ow.document.open();
 		    ow.document.write(style + "<body>");
 		    //ow.document.write(style + "</head><body>");
@@ -107,9 +107,9 @@ td {
 			</tr>
 			<tr>
 				<th>出车时间</th>
-				<td><fmt:formatDate value="${application.startTime }" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${application.startTime }" pattern="yyyy-MM-dd HH:mm"/></td>
 				<th>返回时间</th>
-				<td><fmt:formatDate value="${application.endTime }" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${application.returnDate }" pattern="yyyy-MM-dd HH:mm"/></td>
 			</tr>
 			<tr>
 				<th>车行驶数始码</th>
@@ -122,8 +122,8 @@ td {
 				<td>${application.applicationUser.realname }</td>
 				<th>领导签字</th>
 				<td>
-				<c:if test="${application.requireApproval}">${application.audit1User };${application.audit2User };${application.audit3User }</c:if>
-				<c:if test="${!application.requireApproval}">${application.audit1User };${application.audit2User }</c:if>
+				<c:if test="${application.requireApproval}">${application.audit1User };${application.audit3User }</c:if>
+				<c:if test="${!application.requireApproval}">${application.audit1User }</c:if>
 				</td>
 			</tr>
 			<tr style="height: 100px;">

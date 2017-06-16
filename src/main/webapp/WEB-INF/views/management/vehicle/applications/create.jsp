@@ -35,7 +35,7 @@
 		</p>
 		<div class="divider"></div>
 		<p>
-			<label>出发地：</label>
+			<label>申请人姓名：</label>
 			<input type="text" class="validate[required,maxSize[64]] required" name="departure" size="20"/>
 		</p>
 		<p>
@@ -57,8 +57,8 @@
 		</p>
 		<p>
 			<label>起始时间：</label>
-			<input id="startTime" class="Wdate" name="startTime" 
-				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>', maxDate:'#F{$dp.$D(\'endTime\')}'})" readonly="readonly"/>
+			<input id="startTime" class="Wdate" name="startTime" value="<%=new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())%>"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'<%=new SimpleDateFormat("yyyy-MM-dd  HH:mm").format(new Date())%>', maxDate:'#F{$dp.$D(\'endTime\')}'})" readonly="readonly"/>
 		</p>
 		<p>
 			<label>截止时间：</label>

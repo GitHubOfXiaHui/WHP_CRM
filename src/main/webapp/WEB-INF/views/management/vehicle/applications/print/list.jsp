@@ -40,7 +40,7 @@
 		<thead>
 			<tr>
 				<th>审批状态</th>
-				<th>出发地</th>
+				<th>申请人姓名</th>
 				<th>目的地</th>
 				<th>驾驶员</th>
 				<th>乘车人数</th>
@@ -76,8 +76,8 @@
 					<c:otherwise>否</c:otherwise>
 				</c:choose>
 				</td>
-				<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd"/></td>
-				<td><fmt:formatDate value="${item.endTime}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+				<td><fmt:formatDate value="${item.endTime}" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${item.applicationUser.realname}</td>
 				<td>${item.parent.license}</td>
 			</tr>

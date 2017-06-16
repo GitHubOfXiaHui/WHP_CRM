@@ -51,6 +51,8 @@ public class VehicleRepairController extends BaseController {
 	public String list(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		
+		searchParams.put("EQ_vehicleStatus", Vehicle.IDLE);
+		
 		User user=getShiroUser().getUser();
 		
 		if(!user.getIsSupervisor())

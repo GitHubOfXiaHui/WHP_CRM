@@ -11,7 +11,7 @@
 			<input type="text" value="${application.parent.license }" size="20" readonly="readonly"/>
 		</p>
 		<p>
-			<label>出发地：</label>
+			<label>申请人姓名：</label>
 			<input type="text" value="${application.departure }" size="20" readonly="readonly"/>
 		</p>
 		<p>
@@ -57,11 +57,8 @@
 		</p>
 		<p>
 			<label>实际驾驶人：</label>
+			<input type="hidden" name="returnSite" value="${application.parent.organization.name }" />
 			<input type="text" name="actualDriver" class="validate[required, maxSize[25]] required" size="20" />
-		</p>
-		<p>
-			<label>还车地点：</label>
-			<input type="text" class="validate[required, maxSize[25]] required" name="returnSite" size="20" />
 		</p>
 		<p>
 			<label>还车备注：</label>
