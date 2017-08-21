@@ -111,6 +111,11 @@ public class VehicleApplications extends RecordObject {
 	@Column(length = 20)
 	private String audit1User;
 	
+	/** 第一审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit1Username;
+	
 	/** 第二审核时间. */
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -121,6 +126,11 @@ public class VehicleApplications extends RecordObject {
 	@Column(length = 20)
 	private String audit2User;
 	
+	/** 第二审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit2Username;
+	
 	/** 第三审核时间. */
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -130,6 +140,11 @@ public class VehicleApplications extends RecordObject {
 	@Length(max = 20)
 	@Column(length = 20)
 	private String audit3User;
+	
+	/** 第三审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit3Username;
 	
 	/** 车行驶数始码. */
 	@Length(max = 20)
@@ -424,6 +439,30 @@ public class VehicleApplications extends RecordObject {
 
 	public void setAccidentRemark(String accidentRemark) {
 		this.accidentRemark = accidentRemark;
+	}
+
+	public String getAudit1Username() {
+		return audit1Username;
+	}
+
+	public void setAudit1Username(String audit1Username) {
+		this.audit1Username = audit1Username;
+	}
+
+	public String getAudit2Username() {
+		return audit2Username;
+	}
+
+	public void setAudit2Username(String audit2Username) {
+		this.audit2Username = audit2Username;
+	}
+
+	public String getAudit3Username() {
+		return audit3Username;
+	}
+
+	public void setAudit3Username(String audit3Username) {
+		this.audit3Username = audit3Username;
 	}
 	
 }

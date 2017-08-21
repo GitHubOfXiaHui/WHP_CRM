@@ -50,6 +50,10 @@ public class VehicleRepair extends RecordObject{
 	@JoinColumn(name = "application_user_id")
 	private User applicationUser;
 	
+	// 申请人姓名
+	@Column
+	private String departure;
+	
 	/** 关联车辆主表. */
 	@ManyToOne
     @JoinColumn(name = "PARENT_ID")
@@ -73,6 +77,11 @@ public class VehicleRepair extends RecordObject{
 	@Column(length = 20)
 	private String audit1User;
 	
+	/** 第一审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit1Username;
+	
 	/** 第二审核时间. */
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -83,6 +92,11 @@ public class VehicleRepair extends RecordObject{
 	@Column(length = 20)
 	private String audit2User;
 	
+	/** 第二审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit2Username;
+	
 	/** 第三审核时间. */
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -92,6 +106,11 @@ public class VehicleRepair extends RecordObject{
 	@Length(max = 20)
 	@Column(length = 20)
 	private String audit3User;
+	
+	/** 第三审核人姓名. */
+	@Length(max = 20)
+	@Column(length = 20)
+	private String audit3Username;
 	
 	/** 预计送检时间. */
 	@Temporal(TemporalType.TIMESTAMP)
@@ -331,6 +350,38 @@ public class VehicleRepair extends RecordObject{
 
 	public void setRequireApproval1(boolean requireApproval1) {
 		this.requireApproval1 = requireApproval1;
+	}
+
+	public String getAudit1Username() {
+		return audit1Username;
+	}
+
+	public void setAudit1Username(String audit1Username) {
+		this.audit1Username = audit1Username;
+	}
+
+	public String getAudit2Username() {
+		return audit2Username;
+	}
+
+	public void setAudit2Username(String audit2Username) {
+		this.audit2Username = audit2Username;
+	}
+
+	public String getAudit3Username() {
+		return audit3Username;
+	}
+
+	public void setAudit3Username(String audit3Username) {
+		this.audit3Username = audit3Username;
+	}
+
+	public String getDeparture() {
+		return departure;
+	}
+
+	public void setDeparture(String departure) {
+		this.departure = departure;
 	}
 	
 }

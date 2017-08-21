@@ -138,6 +138,8 @@ public class VehicleApplicationsController extends BaseController {
         
         User user=getShiroUser().getUser();
         searchParams.put("EQ_organization.id", user.getOrganization().getId());
+        //只有管理员才能审批
+        searchParams.put("EQ_userb", "2");
         List<User> userList = null;
 
         map.putAll(searchParams);

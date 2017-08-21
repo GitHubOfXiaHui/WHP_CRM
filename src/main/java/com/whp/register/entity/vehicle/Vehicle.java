@@ -80,7 +80,7 @@ public class Vehicle extends RecordObject {
 	@Column(name = "purchase_tax")
 	private float purchaseTax;	
 	
-	//车型 1、小型汽车  2、中型客车
+	//车型 1、小型汽车  2、中型客车3、大型汽车
 	@Column(length=50)
 	private String vehicleType;
 	

@@ -88,9 +88,9 @@ implements VehicleRepairService{
 
 	@Override
 	@Transactional
-	public void approvalPass(Long id) {
+	public void approvalPass(VehicleRepair repairs) {
 		// TODO Auto-generated method stub
-		VehicleRepair repair = dao.findOne(id);
+		VehicleRepair repair = dao.findOne(repairs.getId());
 		if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL1)) {
 			if (repair.isRequireApproval1()) {
 				repair.setApprovalStatus(VehicleApplications.APPROVAL2);
@@ -100,6 +100,7 @@ implements VehicleRepairService{
 				repair.setAudit1Date(new Date());
 				repair.setApprovalStatus(VehicleRepair.PASS);
 			}
+			repair.setAudit1Username(repairs.getAudit1Username());
 			update(repair);
 		} else if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL2)) {
 			// 需要局领导审批
@@ -111,29 +112,34 @@ implements VehicleRepairService{
 				repair.setAudit2Date(new Date());
 				repair.setApprovalStatus(VehicleRepair.PASS);
 			}
+			repair.setAudit2Username(repairs.getAudit1Username());
 			update(repair);
 		} else if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL3)) {
 			repair.setApprovalStatus(VehicleRepair.PASS);
+			repair.setAudit3Username(repairs.getAudit1Username());
 			update(repair);
 		}
 	}
 
 	@Override
 	@Transactional
-	public void approvalReject(Long id) {
+	public void approvalReject(VehicleRepair repairs) {
 		// TODO Auto-generated method stub
-		VehicleRepair repair = dao.findOne(id);
+		VehicleRepair repair = dao.findOne(repairs.getId());
 		if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL1)) {
 			reject(repair);
 			repair.setRejectUser(repair.getAudit1User());
+			repair.setAudit1Username(repairs.getAudit1Username());
 			dao.save(repair);
 		}else if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL2)) {
 			reject(repair);
 			repair.setRejectUser(repair.getAudit2User());
+			repair.setAudit2Username(repairs.getAudit1Username());
 			dao.save(repair);
 		}else if (repair.getApprovalStatus().equals(VehicleRepair.APPROVAL3)) {
 			reject(repair);
 			repair.setRejectUser(repair.getAudit3User());
+			repair.setAudit3Username(repairs.getAudit1Username());
 			dao.save(repair);
 		}
 	}

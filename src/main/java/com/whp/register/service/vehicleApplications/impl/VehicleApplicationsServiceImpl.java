@@ -81,9 +81,9 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 
 	@Override
 	@Transactional
-	public void approvalPass(Long id) {
+	public void approvalPass(VehicleApplications applications) {
 
-		VehicleApplications application = vehicleApplicationsDao.findOne(id);
+		VehicleApplications application = vehicleApplicationsDao.findOne(applications.getId());
 		/*if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL1)) {
 			application.setApprovalStatus(VehicleApplications.APPROVAL2);
 			application.setAuditUser(application.getAudit2User());
@@ -94,34 +94,39 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 			if (application.isRequireApproval()) {
 				application.setApprovalStatus(VehicleApplications.APPROVAL3);
 				application.setAuditUser(application.getAudit3User());
-				application.setAudit2Date(new Date());
+				application.setAudit1Date(new Date());
 			} else {
-				application.setAudit2Date(new Date());
+				application.setAudit1Date(new Date());
 				application.setApprovalStatus(VehicleApplications.PASS);
 			}
+			application.setAudit1Username(applications.getAudit1Username());
 			vehicleApplicationsDao.save(application);
 		} else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL3)) {
 			application.setApprovalStatus(VehicleApplications.PASS);
+			application.setAudit3Username(applications.getAudit1Username());
 			vehicleApplicationsDao.save(application);
 		}
 	}
 
 	@Override
 	@Transactional
-	public void approvalReject(Long id) {
+	public void approvalReject(VehicleApplications applications) {
 		// TODO Auto-generated method stub
-		VehicleApplications application = vehicleApplicationsDao.findOne(id);
+		VehicleApplications application = vehicleApplicationsDao.findOne(applications.getId());
 		if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL1)) {
 			reject(application);
 			application.setRejectUser(application.getAudit1User());
+			application.setAudit1Username(applications.getAudit1Username());
 			vehicleApplicationsDao.save(application);
 		}else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL2)) {
 			reject(application);
 			application.setRejectUser(application.getAudit2User());
+			application.setAudit2Username(applications.getAudit1Username());
 			vehicleApplicationsDao.save(application);
 		}else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL3)) {
 			reject(application);
 			application.setRejectUser(application.getAudit3User());
+			application.setAudit3Username(applications.getAudit1Username());
 			vehicleApplicationsDao.save(application);
 		}
 	}

@@ -17,6 +17,7 @@ import com.whp.framework.controller.BaseController;
 import com.whp.framework.entity.main.User;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
+import com.whp.register.entity.vehicleApplications.VehicleApplications;
 import com.whp.register.entity.vehicleRepair.VehicleRepair;
 import com.whp.register.service.vehicleRepair.VehicleRepairService;
 
@@ -34,6 +35,10 @@ public class RepairApprovalController extends BaseController {
 	private VehicleRepairService repairService;
 	
 	private static final String LIST = "management/vehicle/repair/approval/list";
+
+	private static final String PASS = "management/vehicle/repair/approval/pass";
+
+	private static final String REJECT = "management/vehicle/repair/approval/reject";
 	
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/approval/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -43,6 +48,8 @@ public class RepairApprovalController extends BaseController {
 		//dataAuth(searchParams);
 		User user=getShiroUser().getUser();
 		searchParams.put("EQ_auditUser", user.getRealname());
+      //过滤已通过和还车确认的申请
+      	searchParams.put("LT_approvalStatus", "50");
 		List<VehicleRepair> repairs = repairService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);
@@ -52,18 +59,36 @@ public class RepairApprovalController extends BaseController {
 		return LIST;
 	}
 	
-	@RequestMapping(value = "/approval1/pass/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval1Pass(@PathVariable Long id) {
-		repairService.approvalPass(id);
-		return AjaxObject.newOk("审批通过。").setCallbackType("").toString();
+	@RequestMapping(value = "/approval1/pass/{id}", method = RequestMethod.GET)
+	public String approvalPass(@PathVariable Long id, Map<String, Object> map) {
+		VehicleRepair repair = repairService.get(id);
+		
+		map.put("repair", repair);
+
+		return PASS;
 	}
 	
-	@RequestMapping(value = "/approval1/reject/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/approval1/pass", method = RequestMethod.POST)
 	@ResponseBody
-	public String approval1Reject(@PathVariable Long id) {
-		repairService.approvalReject(id);
-		return AjaxObject.newOk("驳回申请。").setCallbackType("").toString();
+	public String approval1Pass(VehicleRepair repair) {
+		repairService.approvalPass(repair);
+		return AjaxObject.newOk("审批通过。").toString();
+	}
+	
+	@RequestMapping(value = "/approval1/reject/{id}", method = RequestMethod.GET)
+	public String approvalReject(@PathVariable Long id, Map<String, Object> map) {
+		VehicleRepair repair = repairService.get(id);
+		
+		map.put("repair", repair);
+
+		return REJECT;
+	}
+	
+	@RequestMapping(value = "/approval1/reject", method = RequestMethod.POST)
+	@ResponseBody
+	public String approval1Reject(VehicleRepair repair) {
+		repairService.approvalReject(repair);
+		return AjaxObject.newOk("驳回申请。").toString();
 	}
 
 }

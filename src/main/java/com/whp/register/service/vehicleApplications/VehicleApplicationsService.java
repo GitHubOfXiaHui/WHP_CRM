@@ -20,16 +20,16 @@ public interface VehicleApplicationsService extends BaseService<VehicleApplicati
 
 	/**
 	 * 审批通过
-	 * @param id
+	 * @param applications
 	 * @return
 	 */
-	void approvalPass(Long id);
+	void approvalPass(VehicleApplications applications);
 
 	/**
 	 * 驳回申请
-	 * @param id
+	 * @param applications
 	 */
-	void approvalReject(Long id);
+	void approvalReject(VehicleApplications applications);
 	
 	/**
 	 * 还车

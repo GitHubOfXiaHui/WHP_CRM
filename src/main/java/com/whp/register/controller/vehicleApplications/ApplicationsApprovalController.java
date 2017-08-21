@@ -34,6 +34,10 @@ public class ApplicationsApprovalController extends BaseController {
 	private VehicleApplicationsService applicationsService;
 	
 	private static final String LIST = "management/vehicle/applications/approval/list";
+
+	private static final String PASS = "management/vehicle/applications/approval/pass";
+	
+	private static final String REJECT = "management/vehicle/applications/approval/reject";
 	
 	// @RequiresPermissions("Vehicle:view")
 	@RequestMapping(value = "/approval/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -43,6 +47,8 @@ public class ApplicationsApprovalController extends BaseController {
 		//dataAuth(searchParams);
 		User user=getShiroUser().getUser();
 		searchParams.put("EQ_auditUser", user.getRealname());
+		//过滤已通过和还车确认的申请
+		searchParams.put("LT_approvalStatus", "50");
 		List<VehicleApplications> applications = applicationsService.findByFilterJpa(page, searchParams);
 
 		map.put("page", page);
@@ -52,18 +58,35 @@ public class ApplicationsApprovalController extends BaseController {
 		return LIST;
 	}
 	
-	@RequestMapping(value = "/approval1/pass/{id}", method = RequestMethod.POST)
-	@ResponseBody
-	public String approval1Pass(@PathVariable Long id) {
-		applicationsService.approvalPass(id);
-		return AjaxObject.newOk("审批通过。").setCallbackType("").toString();
+	@RequestMapping(value = "/approval1/pass/{id}", method = RequestMethod.GET)
+	public String approvalPass(@PathVariable Long id, Map<String, Object> map) {
+		VehicleApplications application = applicationsService.get(id);
+		
+		map.put("application", application);
+
+		return PASS;
 	}
 	
-	@RequestMapping(value = "/approval1/reject/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/approval1/pass", method = RequestMethod.POST)
 	@ResponseBody
-	public String approval1Reject(@PathVariable Long id) {
-		applicationsService.approvalReject(id);
-		return AjaxObject.newOk("驳回申请。").setCallbackType("").toString();
+	public String approval1Pass(VehicleApplications applications) {
+		applicationsService.approvalPass(applications);
+		return AjaxObject.newOk("审批通过。").toString();
+	}
+	
+	@RequestMapping(value = "/approval1/reject/{id}", method = RequestMethod.GET)
+	public String approvalReject(@PathVariable Long id, Map<String, Object> map) {
+		VehicleApplications application = applicationsService.get(id);
+		
+		map.put("application", application);
+
+		return REJECT;
+	}
+	@RequestMapping(value = "/approval1/reject", method = RequestMethod.POST)
+	@ResponseBody
+	public String approval1Reject(VehicleApplications applications) {
+		applicationsService.approvalReject(applications);
+		return AjaxObject.newOk("驳回申请。").toString();
 	}
 
 }

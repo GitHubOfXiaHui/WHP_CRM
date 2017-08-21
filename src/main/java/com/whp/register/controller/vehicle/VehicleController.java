@@ -24,6 +24,7 @@ import com.whp.framework.exception.ExistedException;
 import com.whp.framework.log.Log;
 import com.whp.framework.log.LogMessageObject;
 import com.whp.framework.log.impl.LogUitl;
+import com.whp.framework.service.main.OrganizationService;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
 import com.whp.register.entity.vehicle.Vehicle;
@@ -40,6 +41,9 @@ public class VehicleController extends BaseController {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@Autowired
+	private OrganizationService organizationService;
 	
 	private static final String LIST = "management/vehicle/vehicle/list";
 	private static final String CREATE = "management/vehicle/vehicle/create";
@@ -98,9 +102,9 @@ public class VehicleController extends BaseController {
     //@RequiresPermissions("Vehicle:edit")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public String update(@ModelAttribute("preloadVehicle") Vehicle vehicle) {
+    public String update(@ModelAttribute("preloadVehicle") Vehicle vehicle,Long orgId) {
     	BeanValidators.validateWithException(validator, vehicle);
-
+    	vehicle.setOrganization(organizationService.get(orgId));
     	vehicleService.update(vehicle);
         
         LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[] {vehicle.getLicense()}));
