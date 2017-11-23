@@ -69,11 +69,9 @@
 		</p>
 		<p>
 			<label>所属单位：</label>	
-			<input name="organization.id" val="organization.id" value="${vehicle.organization.id}" type="hidden"/>
-			<input name="organization.parent.name" val="organization.parentName" value="${vehicle.organization.parent.name}" type="hidden"/>
-			<input name="organization.parent.code" val="organization.parentCode" value="${vehicle.organization.parent.code}" type="hidden"/>
-			<input class="validate[required] required" name="organization.name" val="organization.name" value="${vehicle.organization.name}" type="text" readonly="readonly"/>
-			<a class="btnLook" href="${contextPath }/management/security/user/lookup2org" lookupGroup="organization" title="关联组织" width="400">查找带回</a>	
+			<input name="orgId" val="organization.id" value="${vehicle.organization.id }" type="hidden"/>
+			<input class="validate[required] required" val="organization.name" type="text" readonly="readonly" value="${vehicle.organization.name }"/>
+			<a class="btnLook" href="${contextPath}/management/security/user/lookup2org" lookupGroup="organization" title="关联组织" width="400">查找带回</a>	
 		</p>
 		<p>
 			<label>备注：</label>

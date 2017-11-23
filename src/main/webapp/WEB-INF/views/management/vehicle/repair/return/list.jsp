@@ -78,7 +78,7 @@
 				<td>${item.applicationUser.organization.name}</td>
 				<td>
 				<c:if test="${item.approvalStatus == '00'}">
-				<a target="dialog"  max="true"  mask="true"	href="${contextPath }/management/vehicle/repair/affirm/manageOper/${item.id}"  rel="requestNoteManageOper"  title="还车"><img src='${contextPath }/styles/dwz/themes/css/images/toolbar_icons16/cog.png'></a>
+				<a target="dialog"  max="true"  mask="true"	href="${contextPath }/management/vehicle/repair/affirm/manageOper/${item.id}"  rel="requestNoteManageOper"  title="维修确认"><img src='${contextPath }/styles/dwz/themes/css/images/toolbar_icons16/cog.png'></a>
 				</c:if>
 				<c:if test="${item.approvalStatus == '88'}">
 				<a iconClass="magnifier" target="dialog" max="true" mask="true" href="${contextPath }/management/vehicle/repair/affirm/view/${item.id}" rel="requestNoteManageView"  title="查看"></a>

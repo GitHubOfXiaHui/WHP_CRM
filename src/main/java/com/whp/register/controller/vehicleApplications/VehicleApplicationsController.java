@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.ServletRequest;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,6 +76,7 @@ public class VehicleApplicationsController extends BaseController {
 		return LIST;
 	}
 
+	@RequiresPermissions("VehicleApplications:save")
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
@@ -83,6 +85,7 @@ public class VehicleApplicationsController extends BaseController {
 	}
 
 	@Log(message = "申请使用车牌号为{0}的车辆。")
+	@RequiresPermissions("VehicleApplications:save")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public String create(Long vehicleId, VehicleApplications application) {

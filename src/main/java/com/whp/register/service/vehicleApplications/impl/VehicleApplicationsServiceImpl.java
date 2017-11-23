@@ -134,6 +134,7 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 	private void reject(VehicleApplications application) {
 		application.setApprovalStatus(VehicleApplications.REJECT);
 		application.setRejectDate(new Date());
+		application.getParent().setVehicleStatus(Vehicle.IDLE);
 	}
 
 	public VehicleApplications vehicleReturn(VehicleApplications applicationNew,VehicleApplications application) {

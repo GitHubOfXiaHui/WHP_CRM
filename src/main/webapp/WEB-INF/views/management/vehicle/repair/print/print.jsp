@@ -101,7 +101,7 @@ td {
 				<th>单位</th>
 				<td>${repair.applicationUser.organization.name }</td>
 				<th>经办人</th>
-				<td>${repair.applicationUser.realname }</td>
+				<td>${repair.departure }</td>
 			</tr>
 			<tr>
 				<th>检修原因</th>
@@ -115,19 +115,19 @@ td {
 			</tr>
 			<tr>
 				<th style="height: 40px;">单位领导审批</th>
-				<td colspan="5">${repair.audit1User }</td>
+				<td colspan="5">${repair.audit1Username }</td>
 			</tr>
 			<tr>
 				<th style="height: 40px;">主管部门意见</th>
 				<td colspan="5">
-				<c:if test="${repair.requireApproval1}">${repair.audit2User }</c:if>
+				<c:if test="${repair.requireApproval1}">${repair.audit2Username }</c:if>
 				<c:if test="${!repair.requireApproval1}">无需主管部门审批</c:if>
 				</td>
 			</tr>
 			<tr>
 				<th style="height: 40px;">分局领导审批</th>
 				<td colspan="5">
-				<c:if test="${repair.requireApproval}">${repair.audit3User }</c:if>
+				<c:if test="${repair.requireApproval}">${repair.audit3Username }</c:if>
 				<c:if test="${!repair.requireApproval}">无需局领导审批</c:if></td>
 			</tr>
 			<tr style="height: 60px;">

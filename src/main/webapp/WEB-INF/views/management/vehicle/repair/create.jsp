@@ -35,6 +35,10 @@
 		</p>
 		<div class="divider"></div>
 		<p>
+			<label>申请人姓名：</label>
+			<input type="text" class="validate[required,maxSize[64]] required" name="departure" size="20"/>
+		</p>
+		<p>
 			<label>预计维修金额（元）：</label>
 			<input type="text" class="validate[required,custom[integer]] required" name="price" size="20"/>
 		</p>

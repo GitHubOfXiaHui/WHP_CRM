@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 import javax.validation.Validator;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,6 +67,7 @@ public class VehicleRepairController extends BaseController {
 		return LIST;
 	}
 	
+	@RequiresPermissions("Repair:save")
 	@RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
 	public String preCreate(@PathVariable Long id, Map<String, Object> map) {
 		Vehicle vehicle = vehicleService.get(id);
@@ -73,6 +75,7 @@ public class VehicleRepairController extends BaseController {
 		return CREATE;
 	}
 	
+	@RequiresPermissions("Repair:save")
 	@Log(message = "申请维修车牌号为{0}的车辆。")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody

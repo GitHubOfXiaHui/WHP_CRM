@@ -119,11 +119,11 @@ td {
 			</tr>
 			<tr>
 				<th>经办人</th>
-				<td>${application.applicationUser.realname }</td>
+				<td>${application.departure }</td>
 				<th>领导签字</th>
 				<td>
-				<c:if test="${application.requireApproval}">${application.audit1User };${application.audit3User }</c:if>
-				<c:if test="${!application.requireApproval}">${application.audit1User }</c:if>
+				<c:if test="${application.requireApproval}">${application.audit1Username };${application.audit3Username }</c:if>
+				<c:if test="${!application.requireApproval}">${application.audit1Username }</c:if>
 				</td>
 			</tr>
 			<tr style="height: 100px;">

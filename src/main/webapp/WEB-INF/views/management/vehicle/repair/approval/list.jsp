@@ -29,10 +29,10 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li class="approval1"><a iconClass="page_white_add" rel="pass" target="ajaxTodo" href="${contextPath }/management/vehicle/repair/approval1/pass/{slt_uid}" title="确定要通过申请吗？"><span>通过申请</span></a></li>
+				<li class="approval1"><a iconClass="page_white_add" rel="pass" target="dialog" mask="true" width="500" height="500" href="${contextPath }/management/vehicle/repair/approval1/pass/{slt_uid}" title="通过申请"><span>通过申请</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 			<%-- <shiro:hasPermission name="Vehicle:save"> --%>
-				<li class="approval1"><a iconClass="page_white_add" rel="reject" target="ajaxTodo" href="${contextPath }/management/vehicle/repair/approval1/reject/{slt_uid}" title="确定要驳回申请吗？"><span>驳回申请</span></a></li>
+				<li class="approval1"><a iconClass="page_white_add" rel="reject" target="dialog" mask="true" width="500" height="500" href="${contextPath }/management/vehicle/repair/approval1/reject/{slt_uid}" title="驳回申请"><span>驳回申请</span></a></li>
 			<%-- </shiro:hasPermission> --%>
 		</ul>
 	</div>
