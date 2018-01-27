@@ -109,4 +109,12 @@ public interface BaseService<T, ID extends Serializable>
      * @see [类、类#方法、类#成员]
      */
     public void analysisFile(String dataType);
+    
+    /**
+     * 根据查询条件获取所有的，数据LIST，不分页
+     * @param searchParams
+     * @return
+     * @see [类、类#方法、类#成员]
+     */
+    List<T> findByFilterJpa(Map<String, Object> searchParams);
 }

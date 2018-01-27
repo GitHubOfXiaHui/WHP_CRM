@@ -117,16 +117,22 @@ public class VehicleApplicationsServiceImpl extends BaseServiceImpl<VehicleAppli
 			reject(application);
 			application.setRejectUser(application.getAudit1User());
 			application.setAudit1Username(applications.getAudit1Username());
+			//将车辆状态重新置为空闲
+			application.getParent().setVehicleStatus(Vehicle.IDLE);
 			vehicleApplicationsDao.save(application);
 		}else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL2)) {
 			reject(application);
 			application.setRejectUser(application.getAudit2User());
 			application.setAudit2Username(applications.getAudit1Username());
+			//将车辆状态重新置为空闲
+			application.getParent().setVehicleStatus(Vehicle.IDLE);
 			vehicleApplicationsDao.save(application);
 		}else if (application.getApprovalStatus().equals(VehicleApplications.APPROVAL3)) {
 			reject(application);
 			application.setRejectUser(application.getAudit3User());
 			application.setAudit3Username(applications.getAudit1Username());
+			//将车辆状态重新置为空闲
+			application.getParent().setVehicleStatus(Vehicle.IDLE);
 			vehicleApplicationsDao.save(application);
 		}
 	}

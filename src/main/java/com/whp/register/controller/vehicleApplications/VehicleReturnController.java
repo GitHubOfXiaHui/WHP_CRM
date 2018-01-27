@@ -1,10 +1,14 @@
 package com.whp.register.controller.vehicleApplications;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springside.modules.web.Servlets;
 
 import com.whp.framework.controller.BaseController;
-import com.whp.framework.entity.main.User;
 import com.whp.framework.utils.dwz.AjaxObject;
 import com.whp.framework.utils.dwz.Page;
-import com.whp.register.entity.vehicle.Vehicle;
+import com.whp.framework.utils.excel.ExcelTool;
 import com.whp.register.entity.vehicleApplications.VehicleApplications;
 import com.whp.register.service.vehicle.VehicleService;
 import com.whp.register.service.vehicleApplications.VehicleApplicationsService;
@@ -86,6 +89,10 @@ public class VehicleReturnController extends BaseController{
 	@RequestMapping(value = "/record", method = { RequestMethod.GET, RequestMethod.POST })
 	public String record(Page page, Map<String, Object> map, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		/*if(StringUtils.isNotBlank((String)searchParams.get("GTE_startTime")))
+		searchParams.put("GTE_startTime", DateUtil.string2Date((String)searchParams.get("GTE_startTime"),"yyyyMMdd"));
+		if(StringUtils.isNotBlank((String)searchParams.get("LTE_startTime")))
+		searchParams.put("LTE_startTime", DateUtil.string2Date((String)searchParams.get("LTE_startTime"),"yyyyMMdd"));*/
 		
 		searchParams.put("EQ_approvalStatus", VehicleApplications.RETURN);
 		
@@ -96,7 +103,30 @@ public class VehicleReturnController extends BaseController{
 		map.put("page", page);
 		map.put("applications", applications);
 		map.putAll(searchParams);
+		map.put("organization", searchParams.get("LIKE_parent.organization.name"));
 
 		return RECORD;
 	}
+	
+    /**
+     * 导出供应商信息.
+     * 
+     * @param map
+     *            the map
+     * @return the string
+     */
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public void export(HttpServletResponse response,
+        HttpServletRequest request)
+    {   
+    	Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+        List<VehicleApplications> entityList = null;
+//        dataPermission(params);
+        entityList = applicationsService.findByFilterJpa(searchParams);
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("list", entityList);
+        
+        ExcelTool.export(request, response, map2, "VehicleApplicationsExport", "VehicleApplicationsExport");
+        
+    }
 }

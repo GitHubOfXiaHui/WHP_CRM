@@ -347,4 +347,12 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
     {
         System.out.println("哈哈!!!哥什么都不做！");
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> findByFilterJpa(Map<String, Object> searchParams)
+    {
+        Specification<T> spec = buildSpecification(searchParams, getObjClass());
+        return baseJpaDao.findAll(spec);
+    }
 }
